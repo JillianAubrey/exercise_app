@@ -3,7 +3,7 @@ import "./ToggleButton";
 import ToggleButton from "./ToggleButton";
 import './Toggle.scss'
 
-export default function Toggle (props) {
+export default function Toggle(props) {
   //receives props with a label for each of two buttons and onClick actions for each
   const { leftLabel, rightLabel, rightClick, leftClick } = props;
   const [selected, setSelected] = useState("left");
