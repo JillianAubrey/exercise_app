@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { library } from '@fortawesome/fontawesome-svg-core'
+//import {  } from '@fortawesome/free-regular-svg-icons' if we need this package 
+import { faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons'
+library.add( faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark )
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

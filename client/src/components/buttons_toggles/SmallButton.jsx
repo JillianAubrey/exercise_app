@@ -9,7 +9,7 @@ export default function SmallButton(props) {
   const buttonClasses = classnames("small_button", {
     "small_button--edit": type === "edit",
     "small_button--destroy": type === "delete" || type === "cancel",
-    "small_button--save": type === "save",
+    "small_button--save": type === "save" || type === "add",
   });
 
   return (
