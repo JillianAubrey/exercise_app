@@ -1,9 +1,6 @@
 import React from 'react'
-
-
 import { action } from "@storybook/addon-actions"
 import SmallButton from '../components/buttons_toggles/SmallButton';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark } from '@fortawesome/free-solid-svg-icons'

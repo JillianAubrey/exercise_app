@@ -1,0 +1,101 @@
+
+.exercise__card {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  box-shadow: 2px 2px 7px #0b3306a3;
+  border-radius: 10px;
+  background-color: white;
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 1px 1px 16px grey;
+    transform: scale(1.05);
+  }
+
+  p, h1 {
+    margin: 0;
+  }
+
+  &-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 12px;
+    width: 35%;
+    img {
+      width: 100%;
+    }
+    .exercise__card-icon {
+      font-size: 4em;
+    }
+  }
+
+  &-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 12px;
+    padding: 0.5em;
+  }
+
+  &-setbased, &-timebased {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 0.5em 0;
+    padding: 0.5em 0.5em 0.5em 0.8em;
+    gap: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px inset #0b3306a3;
+    p {
+      display: inline-block;
+    }
+    span {
+      font-weight: bolder;
+    }
+  }
+
+  &-divider {
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(to right, #1D7F10, #FFFFFF);
+    border-radius: 3px;
+    border: 0.5px solid white;
+  }
+
+  &-header {
+    h1 {
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: -3px;
+    }
+    p {
+      display: block;
+      border-radius: 3px;
+    }
+
+    
+  }
+
+ &-note {
+  display: flex;
+  flex-direction: column;
+  
+  button {
+    display: block;
+    border: none;
+    color: white;
+    padding: 0.2em;
+    border-radius: 4px;
+    background-color: #209011b5;
+  }
+  div {
+    padding-top: 0.3rem;
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 400;
+  }
+ }
+
+}
