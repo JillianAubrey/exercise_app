@@ -70,6 +70,7 @@
     "@storybook/testing-library": "0.0.13",
     "@testing-library/react": "^13.4.0",
     "babel-plugin-named-exports-order": "0.0.2",
+    "jest": "^27.5.1",
     "prop-types": "^15.8.1",
     "webpack": "^5.75.0"
   }
