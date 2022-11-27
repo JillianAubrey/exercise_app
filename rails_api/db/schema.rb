@@ -13,12 +13,12 @@
 ActiveRecord::Schema.define(version: 2022_11_27_015401) do
 
   create_table "exercises", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.string "category"
     t.string "gif_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.index ["user_id"], name: "index_exercises_on_user_id"
   end
 
@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_11_27_015401) do
   end
 
   create_table "users_workouts", id: false, force: :cascade do |t|
-    t.integer "workout_id", null: false
     t.integer "user_id", null: false
+    t.integer "workout_id", null: false
     t.index ["user_id"], name: "index_users_workouts_on_user_id"
     t.index ["workout_id"], name: "index_users_workouts_on_workout_id"
   end
@@ -51,10 +51,10 @@ ActiveRecord::Schema.define(version: 2022_11_27_015401) do
   end
 
   create_table "workouts", force: :cascade do |t|
+    t.integer "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.index ["user_id"], name: "index_workouts_on_user_id"
   end
 
