@@ -1,13 +1,14 @@
-import React from "react";
+import React, {Fragment} from "react";
 import Show from "./Show";
 import './styles.scss'
+import { Fragment } from "react";
 
 
 export default function Exercise(props) {
 
 
-  return (<article className="exercise-item">
-            <Show/>
-          </article>)
+  return (<Fragment>
+  
+          </Fragment>)
 }
 

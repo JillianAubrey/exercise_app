@@ -1,6 +1,11 @@
 import React from "react";
 import Show from "../components/Exercise/Show";
 import { library } from '@fortawesome/fontawesome-svg-core'
+//import {  } from '@fortawesome/free-regular-svg-icons' if we need this package 
+import { faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark, faDumbbell, faPersonRunning, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { action } from "@storybook/addon-actions";
+library.add( faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark, faDumbbell, faPersonRunning, faChevronDown, faChevronUp)
+
 
 export default {
   component: Show,
@@ -61,3 +66,27 @@ WithoutNoteSets.args = {
   sets: 4, 
   gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0031.gif",
 }
+
+export const EditableNoNote = Template.bind({});
+EditableNoNote.args = {
+  name: "Barbell Curl",
+  category: "Arms",
+  onEdit: action("edit action"),
+  onDelete: action("delete action"),
+  reps: 8,
+  sets: 4, 
+  gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0031.gif",
+}
+
+export const EditableWithNote = Template.bind({});
+EditableWithNote.args = {
+  name: "Treadmill Run",
+  category: "Cardio",
+  onEdit: action("edit action"),
+  onDelete: action("delete action"),
+  duration: 305,
+  gif_url: "http://d205bpvrqc9yn1.cloudfront.net/3666.gif",
+  note: "Please start on a gentle incline and run at a decent pace, trying to go for the full 5 minutes"
+}
+
+
