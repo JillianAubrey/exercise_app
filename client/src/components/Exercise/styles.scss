@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap');
 
 .exercise__card {
   margin: 0 auto;
+  font-family: Alexandria, sans-serif;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   width: 90%;
   box-shadow: 2px 2px 7px #0b3306a3;
   border-radius: 10px;
@@ -22,6 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0.5em 0;
     margin-left: 12px;
     width: 35%;
     img {
@@ -37,11 +41,12 @@
     flex-direction: column;
     justify-content: center;
     margin-left: 12px;
-    padding: 0.5em;
+    padding: 0.5em 0.5em 0.7em 0.5em;
   }
 
   &-setbased, &-timebased {
     display: flex;
+    font-size: 0.75em;
     flex-flow: row nowrap;
     margin: 0.5em 0;
     padding: 0.5em 0.5em 0.5em 0.8em;
@@ -50,9 +55,10 @@
     box-shadow: 1px 1px 4px inset #0b3306a3;
     p {
       display: inline-block;
+      font-weight: 200;
     }
     span {
-      font-weight: bolder;
+      font-weight: 400
     }
   }
 
@@ -68,7 +74,7 @@
     h1 {
       font-weight: bold;
       font-size: 1.5rem;
-      margin-bottom: -3px;
+      margin-bottom: -1px;
     }
     p {
       display: block;
@@ -93,8 +99,8 @@
   div {
     padding-top: 0.3rem;
     display: inline-block;
-    font-size: 0.8rem;
-    font-weight: 400;
+    font-size: 0.7rem;
+    font-weight: 300;
   }
  }
 
