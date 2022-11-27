@@ -26,9 +26,10 @@ user2 = User.create!({
 ## Workouts
 puts "Creating Workouts..."
 workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
-workout1.users << user1
-
 workout2 = user2.owned_workouts.create!({name: 'Cardio'})
+
+puts "Adding users to Workouts..."
+workout1.users << user1
 workout2.users << user1
 workout2.users << user2
 
@@ -83,3 +84,10 @@ for exercise in cardio_exercises do
   workout2.workout_exercises.create!({exercise_id: exercise.id, duration: 300})
   workout2.workout_exercises.create!({exercise_id: rest.id, duration: 30})
 end
+
+## Walkthroughs
+puts "Adding walkthroughs..."
+
+workout1.walkthroughs.create!({user_id: user1.id})
+workout2.walkthroughs.create!({user_id: user1.id})
+workout2.walkthroughs.create!({user_id: user2.id})
