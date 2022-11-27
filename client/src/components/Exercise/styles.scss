@@ -117,4 +117,34 @@
   padding: 0.8rem 0;
  }
 
+ &-rest {
+  padding: 0.1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1d7f1093;
+  color: white;
+  width: 100%;
+  border-radius: inherit;
+  text-align: center;
+
+
+
+  h1 {
+    letter-spacing: 3px;
+    font-weight: 300;
+    font-size: 1.5em;
+  }
+
+  p {
+    font-weight: 200;
+    font-size: 0.9em;
+    margin-bottom: 1px;
+  }
+
+  .icon {
+    font-size: 1.5em;
+  }
+ }
+
 }

@@ -1,13 +1,35 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { library } from '@fortawesome/fontawesome-svg-core'
-//import {  } from '@fortawesome/free-regular-svg-icons' if we need this package 
-import { faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark, faDumbbell, faPersonRunning, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
-library.add( faFloppyDisk, faFilePen, faTrash, faCirclePlus, faXmark, faDumbbell, faPersonRunning, faChevronDown, faChevronUp)
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { library } from "@fortawesome/fontawesome-svg-core";
+//import { } from "@fortawesome/free-regular-svg-icons";
+import {
+  faFloppyDisk,
+  faFilePen,
+  faTrash,
+  faCirclePlus,
+  faXmark,
+  faDumbbell,
+  faPersonRunning,
+  faChevronDown,
+  faChevronUp,
+  faMoon,
+} from "@fortawesome/free-solid-svg-icons";
+library.add(
+  faFloppyDisk,
+  faFilePen,
+  faTrash,
+  faCirclePlus,
+  faXmark,
+  faDumbbell,
+  faPersonRunning,
+  faChevronDown,
+  faChevronUp,
+  faMoon
+);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <App />
