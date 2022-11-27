@@ -1,12 +1,11 @@
 .toggle {
-  position: fixed;
+  position: absolute;
+  right: 0;
   bottom: 0;
-  left: 0;
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 7%;
   justify-content: center;
   background-color: transparent;
-  box-shadow: 0px -3px 10px rgba(128, 128, 128, 0.39);
+  //avoiding positioning this as fixed automatically as it will be used in several contexts 
 }

@@ -1,3 +1,6 @@
+@import '../../styles/variables.scss';
+
+
 .small_button {
   border: none;
   border-radius: 3px;
@@ -12,20 +15,20 @@
   }
 
   &--destroy {
-    background-color: rgba(226, 59, 8, 0.788);
+    background-color: $danger-color;
   }
 
   &--edit {
-    background-color: rgb(233, 186, 13);
+    background-color: $edit-color;
   }
 
   &--save {
-    background-color: rgba(57, 199, 14, 0.934)
+    background-color: $theme-green;
   }
 
   &--move {
     background-color: rgb(255, 255, 255);
-    color: #209011b5;
+    color: $theme-green;
     font-size: 0.7em;
   }
 }
