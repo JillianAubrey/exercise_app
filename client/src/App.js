@@ -1,4 +1,4 @@
-import useApplicationData from "hooks/useApplicationData";
+import useApplicationData from "./hooks/useApplicationData";
 
 function App() {
   return (
