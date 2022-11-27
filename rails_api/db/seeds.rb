@@ -24,4 +24,10 @@ user2 = User.create!({
 })
 
 ## Workouts
-user1.owned_workouts.create!({name: 'leg day'})
+puts "Creating Workouts..."
+workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
+workout1.users << user1
+
+workout2 = user2.owned_workouts.create!({name: 'Cardio'})
+workout2.users << user1
+workout2.users << user2
