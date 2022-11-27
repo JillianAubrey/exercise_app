@@ -1,3 +1,4 @@
+import useApplicationData from "hooks/useApplicationData";
 
 function App() {
   return (
