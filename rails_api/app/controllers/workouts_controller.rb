@@ -3,15 +3,26 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts
   def index
-    @workouts = Workout.all
+    if params[:user]
+      @workouts = User.find(params[:user]).workouts
+    else
+      @workouts = Workout.all
+    end
 
-    render json: @workouts
+    render json: @workouts.as_json(
+      :except => [:created_at, :updated_at, :user_id],
+      :methods => [:category_counts, :first_gif],
+      :include => {:owner => {only: [:id, :name]}}
+    )
   end
 
   # GET /workouts/1
   def show
+    puts @workout.category_counts
+
     render json: @workout.as_json(
       :except => [:created_at, :updated_at, :user_id],
+      :methods => [:category_counts, :first_gif],
       :include => [
         {:owner => {only: [:id, :name]}},
         {:workout_exercises => {
@@ -48,13 +59,13 @@ class WorkoutsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_workout
-      @workout = Workout.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def workout_params
-      params.fetch(:workout, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_workout
+    @workout = Workout.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def workout_params
+    params.require(:workout).permit(:user)
+  end
 end
