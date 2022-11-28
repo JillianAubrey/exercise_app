@@ -23,6 +23,13 @@ user2 = User.create!({
   password_confirmation: 'password'
 })
 
+user3 = User.create!({
+  name: 'Bob',
+  email: 'bob@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
 ## Workouts
 puts "Creating Workouts..."
 workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
@@ -32,6 +39,7 @@ puts "Adding users to Workouts..."
 workout1.users << user1
 workout2.users << user1
 workout2.users << user2
+workout2.users << user3
 
 ## Exercises
 puts "Creating Exercises..."
@@ -90,4 +98,8 @@ puts "Adding walkthroughs..."
 
 workout1.walkthroughs.create!({user_id: user1.id})
 workout2.walkthroughs.create!({user_id: user1.id})
+workout2.walkthroughs.create!({user_id: user1.id, created_at: DateTime.now - 1})
+workout2.walkthroughs.create!({user_id: user1.id, created_at: DateTime.now - 8})
+workout2.walkthroughs.create!({user_id: user1.id, created_at: DateTime.now - 15})
 workout2.walkthroughs.create!({user_id: user2.id})
+workout2.walkthroughs.create!({user_id: user2.id, created_at: DateTime.now - 8})
