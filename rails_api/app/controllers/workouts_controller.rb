@@ -1,8 +1,8 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy, :statistics]
 
-  # GET /workouts
-  # GET /workouts?user=1
+  # GET /workouts         => all workouts
+  # GET /workouts?user=1  => all workouts that user 1 is associated with (both owned and shared)
   def index
     if params[:user]
       @workouts = User.find(params[:user]).workouts

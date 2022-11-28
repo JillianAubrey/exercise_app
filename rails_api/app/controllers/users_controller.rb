@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /workouts?user=1
+  # GET /users                          => all users
+  # GET /users?not_in_workout=1         => all users not in workout 1
+  # GET /users?q=bob                    => all users with name like %bob%
+  # GET /users?not_in_workout=1&q=bob   => users not in workout 1 with name lie %bob% 
   def index
     if params[:q]
       where_params = [

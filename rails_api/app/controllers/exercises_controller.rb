@@ -1,10 +1,10 @@
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :update, :destroy]
 
-  # GET /exercises
-  # GET /exercises?user=1
-  # GET /exercises?q=legs
-  # GET /exercises?user=1&q=legs
+  # GET /exercises                => All db (un-owned) exercises
+  # GET /exercises?user=1         => All exercises owned by user 1
+  # GET /exercises?q=legs         => db exercises with name or category like %legs%
+  # GET /exercises?user=1&q=legs  => Exercises owned by user 1 with name or category like %legs%
   def index
     if params[:q]
       where_params = [
