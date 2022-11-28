@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import useForm from "../../useForm"; //will later be "../hooks/useForm"
 import CardLeft from "./CardLeft";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SmallButton from "../buttons_toggles/SmallButton";
 
 export default function Form(props) {
@@ -34,6 +33,7 @@ export default function Form(props) {
   const validateData = (data) => {
     const { duration, reps, sets } = data;
     setError(null);
+
     if (timed) {
       if (!duration) {
         setError("Please specify a duration for a timed activity!");
@@ -152,23 +152,10 @@ export default function Form(props) {
         </section>
       </article>
       <section className="exercise__card-editcancel">
-        <SmallButton
-          onClick={() => {
-            validateData(data);
-          }}
-          type="save"
-        >
-          <FontAwesomeIcon icon="floppy-disk" />
-        </SmallButton>
-        <SmallButton onClick={() => onReorder("up", id)} type="reorder">
-          <FontAwesomeIcon icon="chevron-up" />
-        </SmallButton>
-        <SmallButton onClick={() => onReorder("down", id)} type="reorder">
-          <FontAwesomeIcon icon="chevron-down" />
-        </SmallButton>
-        <SmallButton onClick={onCancel} type="cancel">
-          <FontAwesomeIcon icon="xmark" />
-        </SmallButton>
+        <SmallButton onClick={() => {validateData(data)}} type="save" />
+        <SmallButton onClick={() => onReorder("up", id)} type="moveup" />
+        <SmallButton onClick={() => onReorder("down", id)} type="movedown" />
+        <SmallButton onClick={onCancel} type="cancel" />
       </section>
     </div>
   );

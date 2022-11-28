@@ -17,35 +17,30 @@ const Template = args => <SmallButton {...args} />
 export const Edit = Template.bind({});
 Edit.args = {
     onClick: action("button clicked"),
-    children: <FontAwesomeIcon icon="file-pen" />,
     type: "edit"
 }
 
 export const Delete = Template.bind({});
 Delete.args = {
     onClick: action("button clicked"),
-    children: <FontAwesomeIcon icon="trash" />,
     type: "delete"
 }
 
 export const Cancel = Template.bind({});
 Cancel.args = {
     onClick: action("button clicked"),
-    children: <FontAwesomeIcon icon="xmark" />,
     type: "cancel"
 }
 
 export const Save = Template.bind({});
 Save.args = {
     onClick: action("button clicked"),
-    children: <FontAwesomeIcon icon="floppy-disk" />,
     type: "save"
 }
 
 export const Add = Template.bind({});
 Add.args = {
     onClick: action("button clicked"),
-    children: <FontAwesomeIcon icon="circle-plus" />,
     type: "add"
 }
 

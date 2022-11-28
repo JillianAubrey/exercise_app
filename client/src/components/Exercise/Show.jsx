@@ -90,12 +90,8 @@ export default function Show(props) {
       {/* if the component is passed on edit and on delete actions, consider the element to be editable and add the appropriate buttons */}
       {onEdit && onDelete && (
         <section className="exercise__card-editcancel">
-          <SmallButton onClick={onEdit} type="edit">
-            <FontAwesomeIcon icon="file-pen" />
-          </SmallButton>
-          <SmallButton onClick={onDelete} type="delete">
-            <FontAwesomeIcon icon="trash" />
-          </SmallButton>
+          <SmallButton onClick={onEdit} type="edit" />
+          <SmallButton onClick={onDelete} type="delete" />
         </section>
       )}
     </div>
