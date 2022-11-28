@@ -16,10 +16,18 @@ export default function useForm(initialValues) {
     }))
     console.log(data)
   }
+   //#idea 
+  // const resetForm = (keys) => {
+  //   keys.forEach((key) => {
+  //     setData(prev => ({
+  //       ...prev, key: initialValues.key || null
+  //     }))
+  //   })
+  // }
 
   return {
     handleFormSubmit,
     handleInputChange,
-    data
+    data,
   }
 };

@@ -45,3 +45,13 @@ NotPrepopulated.args = {
   onCancel: action("ON CANCEL CLICKED"),
   onReorder: action("ON REORDER CLICKED")
 };
+
+export const Rest = Template.bind({});
+Rest.args = {
+  name: "rest",
+  category: "rest",
+  duration: 100,
+  onConfirm: action("ON CONFIRM CLICKED"),
+  onCancel: action("ON CANCEL CLICKED"),
+  onReorder: action("ON REORDER CLICKED")
+};
