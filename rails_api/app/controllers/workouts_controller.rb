@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :set_workout, only: [:show, :update, :destroy]
+  before_action :set_workout, only: [:show, :update, :destroy, :statistics]
 
   # GET /workouts
   # GET /workouts?user=1
@@ -55,6 +55,12 @@ class WorkoutsController < ApplicationController
   # DELETE /workouts/1
   def destroy
     @workout.destroy
+  end
+
+  # GET /workout/statistics/1
+  def statistics
+    @workout = Workout.find(params[:id])
+    render json: @workout.statistics
   end
 
   private

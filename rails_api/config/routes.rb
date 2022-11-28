@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :users
-  resources :workouts
+
+  resources :workouts do
+    member do
+      get 'statistics'
+    end
+  end
+
   resources :exercises, except: [:show]
-  resources :statistics, only: [:show]
 end
