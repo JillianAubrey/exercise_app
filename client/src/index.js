@@ -15,6 +15,7 @@ import {
   faChevronDown,
   faChevronUp,
   faMoon,
+  faFloppyDisk,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faFloppyDisk,
@@ -26,7 +27,8 @@ library.add(
   faPersonRunning,
   faChevronDown,
   faChevronUp,
-  faMoon
+  faMoon,
+  faFloppyDisk,
 );
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

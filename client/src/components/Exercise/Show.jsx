@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import "./styles.scss";
 import SmallButton from "../buttons_toggles/SmallButton";
+import CardLeft from "./CardLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Show(props) {
@@ -14,8 +15,9 @@ export default function Show(props) {
     note,
     onEdit,
     onDelete,
-    onReorder,
   } = { ...props };
+  const cardLeftProps = { gif_url, name, category }
+  
   const [truncated, setTruncated] = useState(true);
   const handleTruncated = () => {
     setTruncated((prev) => !prev);
@@ -28,22 +30,7 @@ export default function Show(props) {
         {/* if the exercise category and name is not 'rest', render the regular exercise show elements */}
         {category !== "rest" && name !== "rest" && (
           <Fragment>
-            <section className="exercise__card-left">
-              {/* in the left section of the card, render the gif. if there is no gif, render an icon. which icon depends on whether it is cardio based */}
-              {gif_url ? (
-                <img src={gif_url} alt={name} />
-              ) : category === "Cardio" || category === "cardio" ? (
-                <FontAwesomeIcon
-                  className="exercise__card-icon"
-                  icon="person-running"
-                />
-              ) : (
-                <FontAwesomeIcon
-                  className="exercise__card-icon"
-                  icon="dumbbell"
-                />
-              )}
-            </section>
+            <CardLeft {...cardLeftProps}/>
             <section className="exercise__card-right">
               <div className="exercise__card-header">
                 <h1> {name} </h1>

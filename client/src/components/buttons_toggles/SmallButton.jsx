@@ -14,7 +14,7 @@ export default function SmallButton(props) {
   });
 
   return (
-    <button onClick={onClick} class={buttonClasses}>
+    <button onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );
