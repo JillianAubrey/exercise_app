@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+
+.small_button {
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 0.9em;
+  padding: 0.2em 0.2em;
+  box-shadow: 2px 2px 2px rgba(128, 128, 128, 0.536);
+  transition: 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.1)
+  }
+
+  &--destroy {
+    background-color: $danger-color;
+  }
+
+  &--edit {
+    background-color: $edit-color;
+  }
+
+  &--save {
+    background-color: $theme-green;
+  }
+
+  &--move {
+    background-color: rgb(255, 255, 255);
+    color: $theme-green;
+    font-size: 0.7em;
+  }
+}

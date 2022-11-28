@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { action } from "@storybook/addon-actions"
-import Toggle from '../buttons_toggles/Toggle';
+import Toggle from '../components/buttons_toggles/Toggle';
 
 export default {
   component: Toggle,

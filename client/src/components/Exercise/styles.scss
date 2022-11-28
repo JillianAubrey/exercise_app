@@ -1,0 +1,105 @@
+@use "../../styles/animations.scss";
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap');
+
+
+.exercise__container {
+  display: flex;
+  gap: 10px;
+}
+
+.exercise__card {
+  @include card-base-styling;
+
+  &--empty {
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    align-items: center;
+    font-size: 4.5rem;
+    color: white;
+    background-color: $theme-green;
+    transition: 0.2s ease-in-out;
+
+    .icon:active {
+      animation: 0.1s linear 1 spin_90deg;
+    }
+  }
+
+  &-setbased, &-timebased {
+    display: flex;
+    font-size: 0.75em;
+    flex-flow: row nowrap;
+    margin: 0.5em 0;
+    padding: 0.5em 0.5em 0.5em 0.8em;
+    gap: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px inset #0b3306a3;
+    p {
+      display: inline-block;
+      font-weight: 200;
+    }
+    span {
+      font-weight: 400
+    }
+  }
+
+ &-note {
+  display: flex;
+  flex-direction: column;
+  
+  button {
+    display: block;
+    border: none;
+    pointer-events: auto;
+    color: white;
+    padding: 0.2em;
+    border-radius: 4px;
+    background-color: $theme-green;
+  }
+  div {
+    padding-top: 0.3rem;
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 300;
+  }
+ }
+
+ &-editcancel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.6rem 0;
+ }
+
+ &-rest {
+  padding: 0.1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #1d7f1093;
+  color: white;
+  width: 100%;
+  border-radius: inherit;
+  text-align: center;
+
+  h1 {
+    letter-spacing: 3px;
+    font-weight: 300;
+    font-size: 1.5em;
+  }
+
+  p {
+    font-weight: 200;
+    font-size: 0.9em;
+    margin-bottom: 1px;
+  }
+
+  .icon {
+    font-size: 1.5em;
+  }
+ }
+
+}
