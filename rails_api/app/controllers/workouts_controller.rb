@@ -1,7 +1,8 @@
 class WorkoutsController < ApplicationController
-  before_action :set_workout, only: [:show, :update, :destroy]
+  before_action :set_workout, only: [:show, :update, :destroy, :statistics]
 
   # GET /workouts
+  # GET /workouts?user=1
   def index
     if params[:user]
       @workouts = User.find(params[:user]).workouts
@@ -18,8 +19,6 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/1
   def show
-    puts @workout.category_counts
-
     render json: @workout.as_json(
       :except => [:created_at, :updated_at, :user_id],
       :methods => [:category_counts, :first_gif],

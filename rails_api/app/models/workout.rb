@@ -12,4 +12,12 @@ class Workout < ApplicationRecord
   def first_gif
     self.exercises.first.gif_url
   end
+
+  def statistics
+    {
+      :users => self.users.select(:id, :name),
+      :all_walkthroughs => self.walkthroughs.group(:user_id).count,
+      :last_week_walkthroughs => self.walkthroughs.created_since(DateTime.now - 7).group(:user_id).count
+    }
+  end
 end
