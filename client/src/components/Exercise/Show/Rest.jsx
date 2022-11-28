@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Rest(props){
 
-  const {id, duration} = { ...props }
-
+  const {duration} = { ...props }
 
   return (
     <section className="exercise__card-rest">

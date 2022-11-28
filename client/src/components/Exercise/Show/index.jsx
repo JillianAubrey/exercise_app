@@ -25,7 +25,7 @@ export default function Show(props) {
   return (
     <div className="exercise__container">
       <article className="exercise__card exercise__card--show">
-        {name === "rest" && <Rest duration={duration} id={id} />}
+        {name === "rest" && <Rest duration={duration}/>}
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
       {onEdit && onDelete && (

@@ -52,38 +52,33 @@ export default function Form(props) {
         };
 
   const handleSubmit = () => {
-    validateExerciseEdit(data, setError, onConfirm)
-  }
+    validateExerciseEdit(data, setError, timed) && onConfirm(data);
+  };
 
   return (
     <div className="exercise__container">
       <article className="exercise__card exercise__card--form">
-
         {name !== "rest" && <Exercise {...exerciseProps} />}
         {name === "rest" && <Rest {...restProps} />}
-
-        {error && <p className="exercise__card-error"> {error} </p>}
-
-        <section className="exercise__card-timed?">
-          <button
-            className="exercise__card-timed"
-            onClick={() => setTimed(true)}
-          >
-            {name === "rest" ? "Timed Rest" : "Timed Exercise"}
-          </button>
-          <button
-            className="exercise__card-untimed"
-            onClick={() => setTimed(false)}
-          >
-            {name === "rest" ? "Untimed Rest" : "Sets Based Exercise"}
-          </button>
-        </section>
       </article>
       <section className="exercise__card-editcancel">
         <SmallButton onClick={handleSubmit} type="save" />
         <SmallButton onClick={() => onReorder("up", id)} type="moveup" />
         <SmallButton onClick={() => onReorder("down", id)} type="movedown" />
         <SmallButton onClick={onCancel} type="cancel" />
+      </section>
+
+      <section className="exercise__card-bottom">
+        {error && <p className="exercise__card-error"> {error} </p>}
+        <button className="exercise__card-timed" onClick={() => setTimed(true)}>
+          {name === "rest" ? "Timed Rest" : "Timed Exercise"}
+        </button>
+        <button
+          className="exercise__card-untimed"
+          onClick={() => setTimed(false)}
+        >
+          {name === "rest" ? "Untimed Rest" : "Sets Based Exercise"}
+        </button>
       </section>
     </div>
   );

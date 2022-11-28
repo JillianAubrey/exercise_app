@@ -1,12 +1,12 @@
 
-export default function validateExerciseEdit(data, errorSetter, validatedAction) {
+export default function validateExerciseEdit(data, errorSetter, timed) {
   const { duration, reps, sets } = data;
   errorSetter(null);
 
   if (timed) {
     if (!duration) {
       errorSetter("Please specify a duration for a timed activity!");
-      return;
+      return false;
     }
     data.sets = null;
     data.reps = null;
@@ -15,15 +15,15 @@ export default function validateExerciseEdit(data, errorSetter, validatedAction)
   if (!timed) {
     if (!sets) {
       errorSetter("Please provide the number of sets for this exercise");
-      return;
+      return false;
     }
     if (!reps) {
       errorSetter("Please provide the number of reps for this exercise");
-      return;
+      return false;
     }
     data.duration = null;
     data.sets = Number(data.sets)
     data.reps = Number(data.sets)
   }
-  validatedAction(data);
+  return true;
 };
