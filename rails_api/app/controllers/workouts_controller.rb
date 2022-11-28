@@ -1,5 +1,6 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy, :statistics]
+  before_action :set_owner, only: [:create]
 
   # GET /workouts         => all workouts
   # GET /workouts?user=1  => all workouts that user 1 is associated with (both owned and shared)
@@ -34,7 +35,21 @@ class WorkoutsController < ApplicationController
 
   # POST /workouts
   def create
-    @workout = Workout.new(workout_params)
+    @workout = @owner.owned_workouts.new(name: params[:name])
+
+    # Add owner into workout's users
+    @workout.users << @owner
+
+    # Add all workout_exercises
+    for workout_exercise in params[:workout_exercises] do
+      @workout.workout_exercises.new(
+        exercise_id:  workout_exercise[:exercise_id],
+        duration:     workout_exercise[:duration],
+        reps:         workout_exercise[:reps],
+        sets:         workout_exercise[:sets],
+        note:         workout_exercise[:note]
+      )
+    end
 
     if @workout.save
       render json: @workout, status: :created, location: @workout
@@ -68,9 +83,26 @@ class WorkoutsController < ApplicationController
   def set_workout
     @workout = Workout.find(params[:id])
   end
+
+  def set_owner
+    @owner = User.find(params[:owner])
+  end
   
   # Only allow a list of trusted parameters through.
   def workout_params
-    params.require(:workout).permit(:user)
+    params.require(:workout).permit(
+      # index params
+      :user, 
+      # create/edit params   
+      :name,
+      :owner,
+      {workout_exercises: [
+        :exercise_id,
+        :duration,
+        :reps,
+        :sets,
+        :note
+      ]}
+    )
   end
 end
