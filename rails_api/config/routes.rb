@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, only: [:index]
 
   resources :workouts do
     member do
@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :exercises, except: [:show]
+
+  resources :walkthroughs, only: [:create]
 end
