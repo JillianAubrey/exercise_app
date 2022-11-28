@@ -3,11 +3,26 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
+const dummyState = {
+  user: 1,
+  workouts: {
+    2: {
+      id: 2,
+      name: "cardio",
+      
+    }
+  },
+  workout_exercises: {
+    // do we want exercises to be stored in state or just a list of workout_exercise ids in the workouts state
+    //this could be empty for the workout list page and then be populated when a workout is selected (to show exercises) 
+  }
+}
+
 export default function useApplicationData() {
   const [state, setState] = useState({
     //can I store userId in the state in a safe way?
     user: 1,
-    workoutList: []
+    workouts: []
   });
 
   const setUser = user => setState({ ...state, user });
@@ -26,13 +41,17 @@ export default function useApplicationData() {
     }
   }
 
-  async function saveNewWorkout(workout) {
+  function submitWorkout(workout) { // need to decide the form of this workout object, needs to include workout_exercises info
+    return axios.put(`/workouts`, { workout })
+      .then((res) => {
+      
+    })
 
   }
 
-  async function updateWorkout(workout) {
+  function completeWorkout(sessionInfo) {
 
   }
 
-  return {state, setUser, saveNewWorkout, updateWorkout}
+  return {state, setUser, submitWorkout}
 }
