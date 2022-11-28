@@ -21,12 +21,7 @@ class ExercisesController < ApplicationController
       @exercises = Exercise.db_exercises.where(where_params)
     end
 
-    render json: @exercises.as_json
-  end
-
-  # GET /exercises/1
-  def show
-    render json: @exercise
+    render json: @exercises
   end
 
   # POST /exercises

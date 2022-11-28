@@ -1,5 +1,5 @@
 class WorkoutsController < ApplicationController
-  before_action :set_workout, only: [:show, :update, :destroy, :statistics]
+  before_action :set_workout, only: [:show, :update, :destroy]
 
   # GET /workouts
   # GET /workouts?user=1
