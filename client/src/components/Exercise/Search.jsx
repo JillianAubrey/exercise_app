@@ -1,56 +1,75 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from "react";
 import useSearchData from "../../hooks/useSearchData";
-import Show from "./Show"
+import useForm from "../../hooks/useForm";
+import TextInput from "../form_elements/TextInput";
+import Toggle from "../buttons_toggles/Toggle";
+import Show from "./Show";
 
 export default function Search(props) {
+  const { user } = props;
+  const {
+    searchData,
+    searchCustomExercises,
+    searchDatabaseExercises,
+  } = useSearchData(user);
+  const { handleInputChange, handleFormSubmit, data } = useForm({});
+  const [custom, setCustom] = useState(true);
+  const query = data.search || null;
 
   useEffect(() => {
-    getInitialData()
-  }, [])
+    searchCustomExercises();
+  }, []);
 
-  const { user } = props;
-  const { searchData, getInitialData } = useSearchData(user);
+  useEffect(() => {
+    if (custom) {
+      query && searchCustomExercises(query);
+      !query && searchCustomExercises();
+    }
+    if (!custom) {
+      query && searchDatabaseExercises(query);
+      !query && searchDatabaseExercises();
+    }
+  }, [query, custom]);
 
-    const resultsList = searchData && searchData.map((exercise) => {
-    const {id, name, category, gif_url} = {... exercise };
-  
-    return (
-      <Show 
-      key={id}
-      id={id}
-      name={name}
-      category={category}
-      gif_url={gif_url}
-      onAdd="true"
-      />
-    )}) 
+  const resultsList =
+    searchData &&
+    searchData.map((exercise) => {
+      const { id, name, category, gif_url } = { ...exercise };
+
+      return (
+        name !== "rest" && <Show
+          key={id}
+          id={id}
+          name={name}
+          category={category}
+          gif_url={gif_url}
+          onAdd="true"
+        />
+      );
+    });
 
   return (
-    <div className="search__results">
-    { resultsList }
-    </div>
-    
-  )
+    <article>
+      <Toggle
+        leftLabel="Custom Exercises"
+        rightLabel="Exercise Database"
+        leftClick={() => setCustom(true)}
+        rightClick={() => setCustom(false)}
+      />
+      <form
+        autoComplete="off"
+        className="exercise__card--form-form"
+        onSubmit={handleFormSubmit}
+      >
+        <TextInput
+          className="search__input"
+          name="search"
+          value={data?.search || ""}
+          onChange={handleInputChange}
+          label="Search"
+        />
+      </form>
+      <div className="search__results">{resultsList}</div>
+    </article>
+  );
 }
-
- // const searchData = [
-  //       {
-  //           "id": 17,
-  //           "user_id": 1,
-  //           "name": "bent over twist",
-  //           "category": "stretch",
-  //           "gif_url": "https://www.spotebi.com/wp-content/uploads/2015/02/bent-over-twist-exercise-illustration.gif",
-  //           "created_at": "2022-11-29T03:13:42.893Z",
-  //           "updated_at": "2022-11-29T03:13:42.893Z"
-  //       },
-  //       {
-  //           "id": 18,
-  //           "user_id": 1,
-  //           "name": "forward fold",
-  //           "category": "stretch",
-  //           "gif_url": null,
-  //           "created_at": "2022-11-29T03:13:42.895Z",
-  //           "updated_at": "2022-11-29T03:13:42.895Z"
-  //       }
-  //   ]
-

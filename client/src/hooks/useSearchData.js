@@ -1,27 +1,42 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import axios from 'axios';
 
 export default function useSearchData(user) {
   const [searchData, setSearchData] = useState();
 
 
-  const getInitialData = async () => {
+  const searchCustomExercises = async (searchString) => {
+
     try {
-      const response = await axios.get(`/exercises?user=${user}`)
-      setSearchData(response.data)
+      if (searchString) {
+        const response = await axios.get(`/exercises?user=${user}&q=${searchString}`)
+        setSearchData(response.data)
+      } else {
+        const response = await axios.get(`/exercises?user=${user}`)
+        setSearchData(response.data)
+      }
     }
     catch(error) {
-      console.log("useSearchData error", error)
+      console.log("searchCustomExercises error", error)
     }
   }
 
-  const searchCustomExercises = async () => {
+  const searchDatabaseExercises = async (searchString) => {
     try {
-      const response = await axios.get()
+      if (searchString) {
+        const response = await axios.get(`/exercises?q=${searchString}`)
+        setSearchData(response.data)
+      } else {
+        const response = await axios.get(`/exercises`)
+        setSearchData(response.data)
+      }
+    }
+    catch(error) {
+      console.log("searchDatabaseExercises error", error)
     }
   }
 
-  return { getInitialData, searchData }
+  return { searchData, searchCustomExercises, searchDatabaseExercises }
 
 }
 
