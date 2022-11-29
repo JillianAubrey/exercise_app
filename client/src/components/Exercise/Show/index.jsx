@@ -30,13 +30,13 @@ export default function Show(props) {
         {name === "rest" && <Rest duration={duration}/>}
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
-      {(onEdit && onDelete) || onAdd && (
+      {onEdit && onDelete && (
         <section className="exercise__card-editcanceladd">
           {onEdit && <SmallButton onClick={onEdit} type="edit" />}
           {onDelete && <SmallButton onClick={onDelete} type="delete" />}
-          {onAdd && <SmallButton type="add"/>}
         </section>
       )}
+      {onAdd && <SmallButton type="add"/>}
     </div>
   );
 }
