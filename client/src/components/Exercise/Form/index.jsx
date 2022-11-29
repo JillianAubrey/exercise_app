@@ -7,7 +7,8 @@ import Rest from "./Rest";
 
 export default function Form(props) {
   const {
-    id,
+    exercise_id,
+    workout_exercise_id,
     name,
     category,
     duration,
@@ -25,7 +26,8 @@ export default function Form(props) {
     sets,
     duration,
     note,
-    id,
+    workout_exercise_id,
+    exercise_id,
     name
   });
   const { data } = formFunctions;
@@ -73,8 +75,8 @@ export default function Form(props) {
       </article>
       <section className="exercise__card-editcancel">
         <SmallButton onClick={handleSubmit} type="save" />
-        <SmallButton onClick={() => onReorder("up", id)} type="moveup" />
-        <SmallButton onClick={() => onReorder("down", id)} type="movedown" />
+        <SmallButton onClick={() => onReorder("up", workout_exercise_id)} type="moveup" />
+        <SmallButton onClick={() => onReorder("down", workout_exercise_id)} type="movedown" />
         <SmallButton onClick={onCancel} type="cancel" />
       </section>
     </div>
