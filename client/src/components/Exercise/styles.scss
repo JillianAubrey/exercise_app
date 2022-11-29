@@ -88,6 +88,18 @@
   width: 100%;
   border-radius: inherit;
   text-align: center;
+  .error {
+    padding-top: 0.8em;
+  }
+
+  .switch {
+    
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    width: 100%;
+    justify-content: center;
+  }
 
   h1 {
     letter-spacing: 3px;
@@ -106,4 +118,86 @@
   }
  }
 
+ &--form {
+
+  &-rest {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+
+    input {
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        height: 1.5rem;
+        width: 30%;
+        font-size: 1.2em;
+        padding-left: 0.8em;
+        box-shadow: 1px 1px 3px grey inset;
+    }
+    label {
+      font-weight: 300;
+    }
+  }
+
+  &-form {
+    margin-top: 10px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 5px;
+  }
+
+  &-sets-reps, &-duration {
+    display: flex;
+    gap: 5px;
+    input {
+      width: 60%;
+      height: 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 400;
+      text-align: center;
+    }
+  }
+
+  &-duration, &-sets, &-reps, &-note{
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    label {
+      font-weight: 300;
+      font-size: 0.9rem;
+    }
+    
+    input, textarea {
+      border: none;
+      border-radius: 5px;
+      box-shadow: 1px 1px 4px rgb(44, 44, 44) inset;
+      resize: none;
+      font-family: inherit;
+      padding: 0.3em;
+      font-weight: 500;
+    }
+
+    input {
+      background-color: #1d7f1093;
+      color: white;
+      padding-left: 1em;
+    }
+
+    textarea {
+      width: 90%;
+      font-weight: 200;
+    }
+
+  }
+ }
+ .switch {
+  .MuiFormControlLabel-label {
+    font-family: inherit;
+    font-weight: 300;
+  }
+ }
 }

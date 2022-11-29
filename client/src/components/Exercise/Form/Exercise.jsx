@@ -38,11 +38,11 @@ export default function Exercise(props) {
               name="duration"
               value={data.duration || ""}
               onChange={handleInputChange}
-              label="Duration"
+              label="Duration (seconds)"
             />
           )}
           {!timed && (
-            <Fragment>
+            <div className="exercise__card--form-sets-reps">
               <NumberInput
                 className="exercise__card--form-sets"
                 name="sets"
@@ -57,15 +57,16 @@ export default function Exercise(props) {
                 onChange={handleInputChange}
                 label="Reps"
               />
-            </Fragment>
+            </div>
           )}
           <TextArea
             className="exercise__card--form-note"
             name="note"
-            placeHolder="Note (optional)"
+            placeHolder="(optional)"
             value={data.note || ""}
             onChange={handleInputChange}
             rows="3"
+            label="Note"
           />
         </form>
         {error && <p>{error}</p>}

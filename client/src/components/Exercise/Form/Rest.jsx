@@ -28,11 +28,11 @@ export default function Rest(props) {
             name="duration"
             value={data.duration || ""}
             onChange={handleInputChange}
-            label="Duration"
+            label="Duration (seconds):"
           />
         </form>
       )}
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <FormControlLabel
         className="switch"
         control={

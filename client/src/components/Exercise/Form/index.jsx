@@ -34,6 +34,7 @@ export default function Form(props) {
   const [error, setError] = useState(null);
 
   const handleTimed = () => {
+    setError(null)
     setTimed(prev => !prev)
   }
 
