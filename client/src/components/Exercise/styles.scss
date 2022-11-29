@@ -8,6 +8,9 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap');
 
+* {
+  box-sizing: border-box;
+}
 
 .exercise__container {
   margin-top: 0.9rem;
@@ -72,7 +75,7 @@
   }
  }
 
- &-editcanceladd {
+ &-editcancel {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -118,6 +121,14 @@
   }
  }
 
+ .error {
+  font-weight: 300;
+  font-size: 0.9em;
+  margin-top: 5px;
+  color: $danger-color;
+  text-shadow: 0px 0px 8px white;
+ }
+
  &--form {
 
   &-rest {
@@ -146,6 +157,7 @@
     display: flex;
     flex-flow: column wrap;
     gap: 5px;
+    
   }
 
   &-sets-reps, &-duration {
@@ -200,4 +212,10 @@
     font-weight: 300;
   }
  }
+}
+
+.search__results {
+  .exercise__container {
+    height: 12vh;
+  }
 }

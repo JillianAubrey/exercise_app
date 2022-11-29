@@ -26,9 +26,9 @@ export default function Search(props) {
     )}) 
 
   return (
-    <Fragment>
+    <div className="search__results">
     { resultsList }
-    </Fragment>
+    </div>
     
   )
 }

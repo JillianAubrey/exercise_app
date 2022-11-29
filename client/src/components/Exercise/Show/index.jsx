@@ -31,7 +31,7 @@ export default function Show(props) {
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
       {onEdit && onDelete && (
-        <section className="exercise__card-editcanceladd">
+        <section className="exercise__card-editcancel">
           {onEdit && <SmallButton onClick={onEdit} type="edit" />}
           {onDelete && <SmallButton onClick={onDelete} type="delete" />}
         </section>

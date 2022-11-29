@@ -69,7 +69,7 @@ export default function Exercise(props) {
             label="Note:"
           />
         </form>
-        {error && <p>{error}</p>}
+        {error && <p className="error">{error}</p>}
         <FormControlLabel
           className="switch"
           control={
