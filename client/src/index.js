@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
@@ -29,13 +28,6 @@ library.add(
   faChevronUp,
   faMoon,
 );
-=======
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-//import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
->>>>>>> 6108a61 (remove reference to deleted index.js)
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
