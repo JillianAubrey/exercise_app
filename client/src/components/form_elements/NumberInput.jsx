@@ -10,7 +10,7 @@ export default function NumberInput(props) {
     <input
       name={name}
       type="number"
-      min="0"
+      min="1"
       placeholder={placeHolder ? placeHolder : ""}
       value={value}
       onChange={onChange}

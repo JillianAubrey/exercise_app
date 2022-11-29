@@ -7,11 +7,17 @@ export default function useSearchData(user) {
 
   const getInitialData = async () => {
     try {
-    const response = await axios.get(`/exercises?user=${user}`)
-    setSearchData(response.data)
+      const response = await axios.get(`/exercises?user=${user}`)
+      setSearchData(response.data)
     }
     catch(error) {
       console.log("useSearchData error", error)
+    }
+  }
+
+  const searchCustomExercises = async () => {
+    try {
+      const response = await axios.get()
     }
   }
 

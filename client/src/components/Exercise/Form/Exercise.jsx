@@ -79,7 +79,7 @@ export default function Exercise(props) {
               color="success"
             />
           }
-          label={timed ? "Timed" : "Untimed"}
+          label={timed ? "Timed" : "Reps Based"}
         />
       </section>
     </Fragment>
