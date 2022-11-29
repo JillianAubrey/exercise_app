@@ -1,5 +1,4 @@
-import React, { useState, Fragment } from "react";
-import useApplicationData from "../hooks/useApplicationData";
+import React, { Fragment } from "react";
 
 export default function WorkoutItem(props) {
   return (
@@ -8,6 +7,7 @@ export default function WorkoutItem(props) {
       <li
         className={"workout-item"}
         data-testid="workout-item"
+        onClick={props.onClick}
       >
         <h2>{props.name}</h2>
         <h3>{props.first_gif}</h3>

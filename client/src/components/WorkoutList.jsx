@@ -1,9 +1,9 @@
-import React, { useState, Fragment } from "react";
-import useApplicationData from "../hooks/useApplicationData";
+import React, { Fragment } from "react";
 import WorkoutItem from './WorkoutItem'
 
 export default function WorkoutList(props) {
-  const { workoutList } = useApplicationData();
+  const { workoutList, getWorkoutExercises } = props;
+  
 
   const workout = workoutList.map((workout) => {
     return (
@@ -12,12 +12,16 @@ export default function WorkoutList(props) {
         name={workout.name}
         gif_url={workout.first_gif}
         owner={workout.owner.name}
+        onClick={() => {
+          console.log("calling getWorkoutExercises")
+          getWorkoutExercises(workout.id)
+        }
+        }
       />
     )
   })
   return (
     <Fragment>
-      This is the Workoutlist component
       <ul>{workout}</ul>
     </Fragment>
   );

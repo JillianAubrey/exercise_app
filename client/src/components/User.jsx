@@ -1,18 +1,20 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 
 export default function User(props) {
-  const {  } = props;
-
-  const [mode, setMode] = useState("MINE");
-  const [showWorkout, setShowWorkout] = useState(null)
-
+  const { workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises } = props
+  console.log("Rendering the User component")
+  console.log("exerciseList.length: ", exerciseList.length)
   return (
     <Fragment>
-      This is the User component
-      {!showWorkout && <WorkoutList />}
-      {showWorkout && <WorkoutShow id={showWorkout} />}
+      {!exerciseList.workout_exercises &&
+        <WorkoutList
+          setWorkoutShow={setWorkoutShow}
+          workoutList={workoutList}
+          getWorkoutExercises={getWorkoutExercises}
+        />}
+      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} /> }
     </Fragment>
   );
 }
