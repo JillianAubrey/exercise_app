@@ -8,8 +8,7 @@ const dummyState = {
   workouts: {
     2: {
       id: 2,
-      name: "cardio",
-      
+      name: "cardio"
     }
   },
   workout_exercises: {
