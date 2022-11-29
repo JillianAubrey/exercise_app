@@ -37,6 +37,9 @@
 
   &--add {
     align-self: center;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
     background-color: white;
     color: $theme-green;
     align-self: flex-start;
