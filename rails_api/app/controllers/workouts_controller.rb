@@ -41,13 +41,13 @@ class WorkoutsController < ApplicationController
     @workout.users << @owner
 
     # Add all workout_exercises
-    for workout_exercise in params[:workout_exercises] do
+    for item in params[:workout_exercises] do
       @workout.workout_exercises.new(
-        exercise_id:  workout_exercise[:exercise_id],
-        duration:     workout_exercise[:duration],
-        reps:         workout_exercise[:reps],
-        sets:         workout_exercise[:sets],
-        note:         workout_exercise[:note]
+        exercise_id:  item[:exercise_id],
+        duration:     item[:duration],
+        reps:         item[:reps],
+        sets:         item[:sets],
+        note:         item[:note]
       )
     end
 
@@ -60,11 +60,36 @@ class WorkoutsController < ApplicationController
 
   # PATCH/PUT /workouts/1
   def update
-    if @workout.update(workout_params)
-      render json: @workout
-    else
-      render json: @workout.errors, status: :unprocessable_entity
+    workout_exercises = []
+    
+    for item in params[:workout_exercises] do
+      workout_exercise = WorkoutExercise.new(
+        workout_id:   @workout.id,
+        exercise_id:  item[:exercise_id],
+        duration:     item[:duration],
+        reps:         item[:reps],
+        sets:         item[:sets],
+        note:         item[:note]
+      )
+
+      if workout_exercise.valid?
+        workout_exercises << workout_exercise
+      else
+        render json: workout_exercise.errors, status: :unprocessable_entity
+        return
+      end
     end
+      
+    @workout.update(name: params[:name])
+
+    if !@workout.valid?
+      render json: @workout.errors, status: :unprocessable_entity
+      return
+    end
+
+    @workout.workout_exercises.destroy_all
+    @workout.workout_exercises << workout_exercises
+    render json: @workout
   end
 
   # DELETE /workouts/1

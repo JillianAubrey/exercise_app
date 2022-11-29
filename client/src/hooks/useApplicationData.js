@@ -3,54 +3,57 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
-const dummyState = {
-  user: 1,
-  workouts: {
-    2: {
-      id: 2,
-      name: "cardio"
-    }
-  },
-  workout_exercises: {
-    // do we want exercises to be stored in state or just a list of workout_exercise ids in the workouts state
-    //this could be empty for the workout list page and then be populated when a workout is selected (to show exercises) 
-  }
-}
-
 export default function useApplicationData() {
-  const [state, setState] = useState({
-    //can I store userId in the state in a safe way?
-    user: 1,
-    workouts: []
-  });
-
-  const setUser = user => setState({ ...state, user });
+  const [user, setUser] = useState(1); //can i store the userID in state or need it be garbled
+  const [workoutShow, setWorkoutShow] = useState(null);
+  const [workoutList, setWorkoutList] = useState([]);
+  const [exerciseList, setExerciseList] = useState({});
 
   useEffect(() => {
-    getUserWorkouts(state.user) 
+    getUserWorkouts(user) 
   }, []);
   
   async function getUserWorkouts(userId) { // should this call get all exercise data for workouts that user is a member of?
     try {
+      console.log("getting the workoutList")
       const response = await axios.get(`/workouts?user=${userId}`);
       console.log(response);
-      setState((prev) => ({ ...prev, workouts: response.data }));
+      console.log("setting the WorkoutList")
+      setWorkoutList((prev) => response.data );
     } catch (error) {
       console.error("getUserWorkouts error: ", error);
     }
   }
 
-  function submitWorkout(workout) { // need to decide the form of this workout object, needs to include workout_exercises info
-    return axios.put(`/workouts`, { workout })
-      .then((res) => {
+  // useEffect(() => {
+  //   if (workoutShow) {
+  //     getWorkoutExercises(workoutShow)
+  //   }
+  // }, [workoutShow])
+
+  async function getWorkoutExercises(workoutId) {
+    try {
+      console.log("getting the exerciseList")
+      const response = await axios.get(`/workouts/${workoutId}`);
+      console.log(response);
+      console.log("setting the ExerciseList")
+      setExerciseList((prev) => response.data);
+    } catch (error) {
+      console.error("getExercises error: ", error);
+    }
+  }
+
+  // function submitWorkout(workout) { // need to decide the form of this workout object, needs to include workout_exercises info
+  //   return axios.put(`/workouts`, { workout })
+  //     .then((res) => {
       
-    })
+  //   })
 
-  }
+  // }
 
-  function completeWorkout(sessionInfo) {
+  // function completeWorkout(sessionInfo) {
 
-  }
+  // }
 
-  return {state, setUser, submitWorkout}
+  return {user, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
 }

@@ -34,12 +34,14 @@ user3 = User.create!({
 puts "Creating Workouts..."
 workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
 workout2 = user2.owned_workouts.create!({name: 'Cardio'})
+workout3 = user1.owned_workouts.create!({name: 'Cool Down'})
 
-puts "Adding users to Workouts..."
+puts "Adding Users to Workouts..."
 workout1.users << user1
 workout2.users << user1
 workout2.users << user2
 workout2.users << user3
+workout3.users << user1
 
 ## Exercises
 puts "Creating Exercises..."
@@ -53,8 +55,10 @@ chest_exercises = [
   Exercise.create!({name: 'chest fly', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0308.gif'})
 ]
 
-ab_exercises = [
-  Exercise.create!({name: 'sit-up', category: 'abs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3679.gif'})
+core_exercises = [
+  Exercise.create!({name: 'sit-up', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3679.gif'}),
+  Exercise.create!({name: 'crunch', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0274.gif'}),
+  Exercise.create!({name: 'dead bug', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0276.gif'})
 ]
 
 leg_exercises = [
@@ -74,15 +78,38 @@ cardio_exercises = [
 ]
 
 stretch_exercises = [
-  Exercise.create!({name: 'butterfly pose', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1494.gif' })
+  Exercise.create!({name: 'butterfly pose', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1494.gif' }),
+  Exercise.create!({name: 'overhead tricep stretch', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0643.gif' }),
+  Exercise.create!({name: 'wrist circles', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1428.gif' })
+]
+
+arm_exercises = [
+  Exercise.create!({name: 'bicep curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0294.gif'}),
+  Exercise.create!({name: 'tricep extension', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0430.gif'}),
+  Exercise.create!({name: 'wrist curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0369.gif'})
+]
+
+shoulder_exercises = [
+  Exercise.create!({name: 'lateral raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0334.gif'}),
+  Exercise.create!({name: 'front raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0310.gif'}),
+  Exercise.create!({name: 'shoulder press', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0405.gif'}),
+]
+
+back_exercises = [
+  Exercise.create!({name: 'bent over row', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0293.gif'}),
+  Exercise.create!({name: 'lat pulldown', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0198.gif'}),
+  Exercise.create!({name: 'shrug', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0406.gif'})
 ]
 
 # Custom Exercises
-user1.exercises.create!({ name: 'bent over twist', category: 'stretch', gif_url: 'https://www.spotebi.com/wp-content/uploads/2015/02/bent-over-twist-exercise-illustration.gif'})
-user1.exercises.create!({name: 'forward fold', category: 'stretch'})
+custom_exercises = [
+  user1.exercises.create!({name: 'water break', category: 'rest', gif_url: 'http://clipart-library.com/img/2048367.jpg'}),
+  user1.exercises.create!({name: 'forward fold', category: 'stretch'}),
+  user1.exercises.create!({name: 'bent over twist', category: 'stretch', gif_url: 'https://www.spotebi.com/wp-content/uploads/2015/02/bent-over-twist-exercise-illustration.gif'})
+]
 
 ## Workout_Exercises
-puts "Adding exercises to workouts..."
+puts "Adding Exercises to Workouts..."
 
 for exercise in leg_exercises do
   workout1.workout_exercises.create!({exercise_id: exercise.id, reps: 8, sets: 3})
@@ -93,8 +120,12 @@ for exercise in cardio_exercises do
   workout2.workout_exercises.create!({exercise_id: rest.id, duration: 30})
 end
 
+for exercise in custom_exercises do
+  workout3.workout_exercises.create({exercise_id: exercise.id, duration: 30})
+end
+
 ## Walkthroughs
-puts "Adding walkthroughs..."
+puts "Adding Walkthroughs..."
 
 workout1.walkthroughs.create!({user_id: user1.id})
 workout2.walkthroughs.create!({user_id: user1.id})
