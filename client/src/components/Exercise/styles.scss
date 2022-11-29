@@ -1,15 +1,16 @@
 @use "../../styles/animations.scss";
 @import "../../styles/variables.scss";
 @import "../../styles/mixins.scss";
-@import '@fontsource/roboto/300.css';
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
+@import "@fontsource/roboto/300.css";
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
 
-@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap");
 
 * {
   box-sizing: border-box;
+  font-family: Alexandria, sans-serif;
 }
 
 .exercise__container {
@@ -36,7 +37,8 @@
     }
   }
 
-  &-setbased, &-timebased {
+  &-setbased,
+  &-timebased {
     display: flex;
     font-size: 0.75em;
     flex-flow: row nowrap;
@@ -50,94 +52,93 @@
       font-weight: 200;
     }
     span {
-      font-weight: 400
+      font-weight: 400;
     }
   }
 
- &-note {
-  display: flex;
-  flex-direction: column;
-  
-  button {
-    display: block;
-    border: none;
-    pointer-events: auto;
-    color: white;
-    padding: 0.2em;
-    border-radius: 4px;
-    background-color: $theme-green;
-  }
-  div {
-    padding-top: 0.3rem;
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 300;
-  }
- }
-
- &-editcancel {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 0.6rem 0;
- }
-
- &-rest {
-  padding: 0.1em 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #1d7f1093;
-  color: white;
-  width: 100%;
-  border-radius: inherit;
-  text-align: center;
-  .error {
-    padding-top: 0.8em;
-  }
-
-  .switch {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    width: 100%;
-    justify-content: center;
-  }
-
-  h1 {
-    letter-spacing: 3px;
-    font-weight: 300;
-    font-size: 1.5em;
-  }
-
-  p {
-    font-weight: 200;
-    font-size: 0.9em;
-    margin-bottom: 1px;
-  }
-
-  .icon {
-    font-size: 1.5em;
-  }
- }
-
- .error {
-  font-weight: 300;
-  font-size: 0.9em;
-  margin-top: 5px;
-  color: $danger-color;
-  text-shadow: 0px 0px 8px white;
- }
-
- &--form {
-
-  &-rest {
+  &-note {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    align-items: center;
 
-    input {
+    button {
+      display: block;
+      border: none;
+      pointer-events: auto;
+      color: white;
+      padding: 0.2em;
+      border-radius: 4px;
+      background-color: $theme-green;
+    }
+    div {
+      padding-top: 0.3rem;
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 300;
+    }
+  }
+
+  &-editcancel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+  }
+
+  &-rest {
+    padding: 0.1em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #1d7f1093;
+    color: white;
+    width: 100%;
+    border-radius: inherit;
+    text-align: center;
+    .error {
+      padding-top: 0.8em;
+    }
+
+    .switch {
+      display: flex;
+      flex-direction: row;
+      margin: 0;
+      width: 100%;
+      justify-content: center;
+    }
+
+    h1 {
+      letter-spacing: 3px;
+      font-weight: 300;
+      font-size: 1.5em;
+    }
+
+    p {
+      font-weight: 200;
+      font-size: 0.9em;
+      margin-bottom: 1px;
+    }
+
+    .icon {
+      font-size: 1.5em;
+    }
+  }
+
+  .error {
+    font-weight: 300;
+    font-size: 0.9em;
+    margin-top: 5px;
+    color: $danger-color;
+    text-shadow: 0px 0px 8px white;
+  }
+
+  &--form {
+    &-rest {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: center;
+
+      input {
         border: none;
         border-radius: 5px;
         text-align: center;
@@ -146,76 +147,142 @@
         font-size: 1.2em;
         padding-left: 0.8em;
         box-shadow: 1px 1px 3px grey inset;
+      }
+      label {
+        font-weight: 300;
+      }
     }
-    label {
-      font-weight: 300;
+
+    &-form {
+      margin-top: 10px;
+      display: flex;
+      flex-flow: column wrap;
+      gap: 5px;
+    }
+
+    &-sets-reps,
+    &-duration {
+      display: flex;
+      gap: 5px;
+      input {
+        width: 60%;
+        height: 2.5rem;
+        font-size: 1.1rem;
+        font-weight: 400;
+        text-align: center;
+      }
+    }
+
+    &-duration,
+    &-sets,
+    &-reps,
+    &-note {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+
+      label {
+        font-weight: 300;
+        font-size: 0.9rem;
+      }
+
+      input,
+      textarea {
+        border: none;
+        border-radius: 5px;
+        box-shadow: 1px 1px 4px rgb(44, 44, 44) inset;
+        resize: none;
+        font-family: inherit;
+        padding: 0.3em;
+        font-weight: 500;
+      }
+
+      input {
+        background: #1d7f1093 40%;
+        color: white;
+        padding-left: 1em;
+      }
+
+      textarea {
+        width: 90%;
+        font-weight: 200;
+      }
     }
   }
-
-  &-form {
-    margin-top: 10px;
-    display: flex;
-    flex-flow: column wrap;
-    gap: 5px;
-    
-  }
-
-  &-sets-reps, &-duration {
-    display: flex;
-    gap: 5px;
-    input {
-      width: 60%;
-      height: 2.5rem;
-      font-size: 1.1rem;
-      font-weight: 400;
-      text-align: center;
-    }
-  }
-
-  &-duration, &-sets, &-reps, &-note{
-
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-
-    label {
-      font-weight: 300;
-      font-size: 0.9rem;
-    }
-    
-    input, textarea {
-      border: none;
-      border-radius: 5px;
-      box-shadow: 1px 1px 4px rgb(44, 44, 44) inset;
-      resize: none;
+  .switch {
+    .MuiFormControlLabel-label {
       font-family: inherit;
-      padding: 0.3em;
-      font-weight: 500;
+      font-weight: 300;
     }
-
-    input {
-      background: #1d7f1093 40%;
-      color: white;
-      padding-left: 1em;
-    }
-
-    textarea {
-      width: 90%;
-      font-weight: 200;
-    }
-
   }
- }
- .switch {
-  .MuiFormControlLabel-label {
-    font-family: inherit;
-    font-weight: 300;
-  }
- }
 }
 
 .search__results {
   .exercise__container {
     height: 12vh;
+  }
+}
+
+.search__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95%;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px grey;
+  padding: 1em;
+  padding-top: 4.3rem;
+
+  .toggle {
+    position: absolute;
+    font-size: 0.9em;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0 auto;
+
+    .toggle__button:first-of-type {
+      border-top-left-radius: 10px;
+    }
+    .toggle__button:last-of-type {
+      border-top-right-radius: 10px;
+    }
+  }
+
+  .search__form {
+    width: 100%;
+    .search__input {
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      padding-right: 3em;
+      width: 100%;
+      margin-right: 1rem;
+      label {
+        margin-right: -10px;
+        padding-right: 17px;
+        padding-left: 5px;
+        font-size: 1.2rem;
+        color: white;
+        height: 1.8rem;
+        background-color: $theme-green;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: 2px solid $theme-green;
+        border-right: 10px $theme-green;
+      }
+      input {
+        border: none;
+        border-radius: 5px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        border: 2px solid $theme-green;
+        border-left: none;
+        width: 50%;
+        height: 1.8rem;
+      }
+    }
   }
 }

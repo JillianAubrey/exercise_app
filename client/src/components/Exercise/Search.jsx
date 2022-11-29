@@ -49,7 +49,7 @@ export default function Search(props) {
     });
 
   return (
-    <article>
+    <article className="search__container">
       <Toggle
         leftLabel="Custom Exercises"
         rightLabel="Exercise Database"
@@ -58,7 +58,7 @@ export default function Search(props) {
       />
       <form
         autoComplete="off"
-        className="exercise__card--form-form"
+        className="search__form"
         onSubmit={handleFormSubmit}
       >
         <TextInput
