@@ -38,7 +38,7 @@ export default function Exercise(props) {
               name="duration"
               value={data.duration || ""}
               onChange={handleInputChange}
-              label="Duration (seconds)"
+              label="Duration (seconds):"
             />
           )}
           {!timed && (
@@ -48,14 +48,14 @@ export default function Exercise(props) {
                 name="sets"
                 value={data.sets || ""}
                 onChange={handleInputChange}
-                label="Sets"
+                label="Sets:"
               />
               <NumberInput
                 className="exercise__card--form-reps"
                 name="reps"
                 value={data.reps || ""}
                 onChange={handleInputChange}
-                label="Reps"
+                label="Reps:"
               />
             </div>
           )}
@@ -66,7 +66,7 @@ export default function Exercise(props) {
             value={data.note || ""}
             onChange={handleInputChange}
             rows="3"
-            label="Note"
+            label="Note:"
           />
         </form>
         {error && <p>{error}</p>}

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SmallButton from "../../buttons_toggles/SmallButton";
 import Exercise from "./Exercise";
 import Rest from "./Rest";
+import '../styles.scss'
 
 export default function Show(props) {
   const {
@@ -15,6 +16,7 @@ export default function Show(props) {
     note,
     onEdit,
     onDelete,
+    onAdd,
   } = { ...props };
 
   const exerciseProps =
@@ -28,10 +30,11 @@ export default function Show(props) {
         {name === "rest" && <Rest duration={duration}/>}
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
-      {onEdit && onDelete && (
-        <section className="exercise__card-editcancel">
-          <SmallButton onClick={onEdit} type="edit" />
-          <SmallButton onClick={onDelete} type="delete" />
+      {(onEdit && onDelete) || onAdd && (
+        <section className="exercise__card-editcanceladd">
+          {onEdit && <SmallButton onClick={onEdit} type="edit" />}
+          {onDelete && <SmallButton onClick={onDelete} type="delete" />}
+          {onAdd && <SmallButton type="add"/>}
         </section>
       )}
     </div>

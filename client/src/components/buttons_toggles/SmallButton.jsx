@@ -11,7 +11,8 @@ export default function SmallButton(props) {
     "small_button--edit": type === "edit",
     "small_button--destroy": type === "delete" || type === "cancel",
     "small_button--save": type === "save" || type === "add",
-    "small_button--move": type === "moveup" || type === "movedown"
+    "small_button--move": type === "moveup" || type === "movedown",
+    "small_button--add": type === "add"
   });
 
   return (

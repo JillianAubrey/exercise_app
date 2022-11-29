@@ -10,6 +10,7 @@
 
 
 .exercise__container {
+  margin-top: 0.9rem;
   display: flex;
   gap: 10px;
 }
@@ -71,7 +72,7 @@
   }
  }
 
- &-editcancel {
+ &-editcanceladd {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -181,7 +182,7 @@
     }
 
     input {
-      background-color: #1d7f1093;
+      background: #1d7f1093 40%;
       color: white;
       padding-left: 1em;
     }
