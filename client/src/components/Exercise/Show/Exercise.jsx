@@ -1,6 +1,7 @@
 import React, {useState, Fragment} from "react";
 import CardLeft from "../CardLeft";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import '../styles.scss'
 
 export default function Exercise(props) {
   const { name, category, duration, reps, sets, gif_url, note, id } = props;

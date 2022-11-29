@@ -6,8 +6,9 @@ export default function WorkoutShow(props) {
   console.log("loading the WorkoutShow page")
   console.log("workout_exercises", exerciseList.workout_exercises )
   const exercise = exerciseList.workout_exercises.map((item) => {
-    const { id, name, category, gif_url } = item;
-    const { duration, reps, sets, note } = item.exercise;
+    console.log({item})
+    const { duration, reps, sets, note } = item;
+    const { id, name, category, gif_url } = item.exercise;
     
     return (
         <Exercise
