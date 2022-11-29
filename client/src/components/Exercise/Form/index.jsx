@@ -26,11 +26,16 @@ export default function Form(props) {
     duration,
     note,
     id,
+    name
   });
   const { data } = formFunctions;
 
   const [timed, setTimed] = useState(duration ? true : false);
   const [error, setError] = useState(null);
+
+  const handleTimed = () => {
+    setTimed(prev => !prev)
+  }
 
   const exerciseProps =
     name === "rest"
@@ -41,6 +46,8 @@ export default function Form(props) {
           gif_url,
           ...formFunctions,
           timed,
+          handleTimed,
+          error
         };
 
   const restProps =
@@ -49,6 +56,8 @@ export default function Form(props) {
       : {
           timed,
           ...formFunctions,
+          handleTimed,
+          error
         };
 
   const handleSubmit = () => {
@@ -66,19 +75,6 @@ export default function Form(props) {
         <SmallButton onClick={() => onReorder("up", id)} type="moveup" />
         <SmallButton onClick={() => onReorder("down", id)} type="movedown" />
         <SmallButton onClick={onCancel} type="cancel" />
-      </section>
-
-      <section className="exercise__card-bottom">
-        {error && <p className="exercise__card-error"> {error} </p>}
-        <button className="exercise__card-timed" onClick={() => setTimed(true)}>
-          {name === "rest" ? "Timed Rest" : "Timed Exercise"}
-        </button>
-        <button
-          className="exercise__card-untimed"
-          onClick={() => setTimed(false)}
-        >
-          {name === "rest" ? "Untimed Rest" : "Sets Based Exercise"}
-        </button>
       </section>
     </div>
   );

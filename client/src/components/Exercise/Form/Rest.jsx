@@ -1,9 +1,17 @@
 import React from "react";
 import NumberInput from "../../form_elements/NumberInput";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FormControlLabel, Switch } from "@mui/material";
 
 export default function Rest(props) {
-  const { timed, data, handleFormSubmit, handleInputChange } = props;
+  const {
+    timed,
+    data,
+    handleFormSubmit,
+    handleInputChange,
+    handleTimed,
+    error,
+  } = props;
 
   return (
     <section className="exercise__card-rest">
@@ -24,6 +32,18 @@ export default function Rest(props) {
           />
         </form>
       )}
+      {error && <p>{error}</p>}
+      <FormControlLabel
+        className="switch"
+        control={
+          <Switch
+            onClick={handleTimed}
+            defaultChecked={timed}
+            color="default"
+          />
+        }
+        label={timed ? "Timed" : "Untimed"}
+      />
     </section>
   );
 }
