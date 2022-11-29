@@ -28,13 +28,13 @@ export default function useApplicationData() {
 
   useEffect(() => {
     getUserWorkouts(state.user) 
-  }, [state.user]);
+  }, []);
   
   async function getUserWorkouts(userId) { // should this call get all exercise data for workouts that user is a member of?
     try {
       const response = await axios.get(`/workouts?user=${userId}`);
       console.log(response);
-      setState((prev) => ({ ...prev, workoutList: response.data }));
+      setState((prev) => ({ ...prev, workouts: response.data }));
     } catch (error) {
       console.error("getUserWorkouts error: ", error);
     }
