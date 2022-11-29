@@ -18,23 +18,18 @@ const dummyState = {
 }
 
 export default function useApplicationData() {
-  const [state, setState] = useState({
-    //can I store userId in the state in a safe way?
-    user: 1,
-    workouts: []
-  });
-
-  const setUser = user => setState({ ...state, user });
+  const [user, setUser] = useState(1); //can i store the userID in state or need it be garbled
+  const [workoutList, setWorkoutList] = useState([]);
 
   useEffect(() => {
-    getUserWorkouts(state.user) 
+    getUserWorkouts(user) 
   }, []);
   
   async function getUserWorkouts(userId) { // should this call get all exercise data for workouts that user is a member of?
     try {
       const response = await axios.get(`/workouts?user=${userId}`);
       console.log(response);
-      setState((prev) => ({ ...prev, workouts: response.data }));
+      setWorkoutList((prev) => response.data );
     } catch (error) {
       console.error("getUserWorkouts error: ", error);
     }
@@ -52,5 +47,5 @@ export default function useApplicationData() {
 
   }
 
-  return {state, setUser, submitWorkout}
+  return {user, workoutList}
 }
