@@ -21,6 +21,7 @@ export default function User(props) {
           setWorkoutShow={setWorkoutShow}
           workoutList={workoutList}
           getWorkoutExercises={getWorkoutExercises}
+          exerciseList={exerciseList}
         />}
       {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} /> }
     </Fragment>

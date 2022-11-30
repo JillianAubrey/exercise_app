@@ -1,0 +1,35 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100;200;300;400;500;600&display=swap');
+
+.workout__container {
+  display: flex;
+  gap: 10px;
+}
+
+.workout__card {
+  @include card-base-styling;
+
+  &--empty {
+    border-radius: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    align-items: center;
+    font-size: 4.5rem;
+    color: white;
+    background-color: $theme-green;
+    transition: 0.2s ease-in-out;
+
+
+    .icon:active {
+      animation: 0.1s linear 1 spin_90deg;
+    }
+  }
+
+  button {
+    background-color: white;
+    border: none;
+    font-size: 30px;
+  }
+}
