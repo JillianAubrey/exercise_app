@@ -5,6 +5,7 @@ axios.defaults.baseURL = 'http://localhost:1234';
 
 export default function useApplicationData() {
   const [user, setUser] = useState(null); //can i store the userID in state or need it be garbled
+  const [userName, setUserName] = useState(null);
   const [workoutShow, setWorkoutShow] = useState(null);
   const [workoutList, setWorkoutList] = useState([]);
   const [exerciseList, setExerciseList] = useState({});
@@ -19,9 +20,46 @@ export default function useApplicationData() {
       const response = await axios.get('/logged_in')
       console.log(response)
       console.log("setting the current user")
-      setUser(response.data.user)
+      setUser(response.data.user_id)
+      setUserName(response.data.user_name)
     } catch (error) {
-      console.error("gettSession error: ", error)
+      console.error("getSession error: ", error)
+    }
+  }
+
+  async function onLogin(params) { 
+    try {
+      console.log("logging in")
+      const response = await axios.post('/login')
+      console.log(response)
+      setUser(response.data.user_id)
+      setUserName(response.data.user_name)
+    } catch (error) {
+      console.error("logout error: ", error)
+    }
+  }
+
+  async function onRegister(params) {
+    try {
+      console.log("registering")
+      const response = await axios.post('/users')
+      console.log(response)
+      setUser(response.data.user_id)
+      setUserName(response.data.user_name)
+    } catch (error) {
+      console.error("logout error: ", error)
+    }
+  }
+
+  async function onLogout() {
+    try {
+      console.log("logging out")
+      const response = await axios.post('/logout')
+      console.log(response)
+      setUser(null)
+      setUserName(null)
+    } catch (error) {
+      console.error("logout error: ", error)
     }
   }
 
@@ -75,5 +113,5 @@ export default function useApplicationData() {
 
   // }
 
-  return {user, setUser, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
+  return {user, userName, onLogin, onRegister, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
 }

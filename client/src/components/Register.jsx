@@ -1,13 +1,13 @@
 import React, { Fragment } from "react";
 import classnames from "classnames";
-import './Login.scss';
+import './Register.scss';
 
-export default function Login(props) {
+export default function Register(props) {
   const { onSubmit } = props
 
   return  (
     <Fragment >
-      This is the login page
+      This is the register page
     </Fragment>
   )
 }

@@ -4,13 +4,22 @@ import User from "./components/User";
 import { useEffect } from "react";
 
 function App() {
-  const { user, setUser, workoutList, setWorkoutShow, exerciseList, workoutShow, getWorkoutExercises } = useApplicationData();
+  const { user, userName, onLogin, onRegister, onLogout, workoutList, setWorkoutShow, exerciseList, workoutShow, getWorkoutExercises } = useApplicationData();
   console.log("rendering the App component")
 
   return (
     <div className="App">
-      {!user && <Guest setUser={setUser}/>}
-      {user && <User workoutList={workoutList} workoutShow={workoutShow} setWorkoutShow={setWorkoutShow} exerciseList={exerciseList} getWorkoutExercises={getWorkoutExercises} />}
+      {!user && <Guest 
+        onLogin={onLogin}
+        onRegister={onRegister}
+      />}
+      {user && <User 
+        workoutList={workoutList} 
+        workoutShow={workoutShow} 
+        setWorkoutShow={setWorkoutShow} 
+        exerciseList={exerciseList} 
+        getWorkoutExercises={getWorkoutExercises}
+      />}
     </div>
   );
 }
