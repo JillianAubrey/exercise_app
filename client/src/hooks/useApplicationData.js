@@ -1,17 +1,37 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'http://localhost:1234';
 
 export default function useApplicationData() {
-  const [user, setUser] = useState(1); //can i store the userID in state or need it be garbled
+  const [user, setUser] = useState(null); //can i store the userID in state or need it be garbled
   const [workoutShow, setWorkoutShow] = useState(null);
   const [workoutList, setWorkoutList] = useState([]);
   const [exerciseList, setExerciseList] = useState({});
 
   useEffect(() => {
-    getUserWorkouts(user) 
+    getSession()
   }, []);
+
+  async function getSession() {
+    try {
+      console.log("checking if there is an active session")
+      const response = await axios.get('/logged_in')
+      console.log(response)
+      console.log("setting the current user")
+      setUser(response.data.user)
+    } catch (error) {
+      console.error("gettSession error: ", error)
+    }
+  }
+
+  useEffect(() => {
+    if (user) {
+      getUserWorkouts(user)
+      return
+    }
+    setWorkoutList([])
+  }, [user]);
   
   async function getUserWorkouts(userId) { // should this call get all exercise data for workouts that user is a member of?
     try {
@@ -19,7 +39,7 @@ export default function useApplicationData() {
       const response = await axios.get(`/workouts?user=${userId}`);
       console.log(response);
       console.log("setting the WorkoutList")
-      setWorkoutList((prev) => response.data );
+      setWorkoutList(response.data);
     } catch (error) {
       console.error("getUserWorkouts error: ", error);
     }
@@ -37,7 +57,7 @@ export default function useApplicationData() {
       const response = await axios.get(`/workouts/${workoutId}`);
       console.log(response);
       console.log("setting the ExerciseList")
-      setExerciseList((prev) => response.data);
+      setExerciseList(response.data);
     } catch (error) {
       console.error("getExercises error: ", error);
     }
@@ -55,5 +75,5 @@ export default function useApplicationData() {
 
   // }
 
-  return {user, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
+  return {user, setUser, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
 }
