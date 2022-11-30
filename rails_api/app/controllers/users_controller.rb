@@ -25,9 +25,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     if @user
-        render json: @user
+      render json: @user
     else
-        render json: {'user not found'}, status: :not_found
+      render json: {error: 'user not found'}, status: :not_found
     end
   end
 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   private
   # Only allow a list of trusted parameters through.
   def user_params
-    params.require(:user).permit(
+    params.permit(
       #index params
       :q,
       :not_in_workout,
