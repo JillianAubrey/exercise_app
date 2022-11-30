@@ -3,6 +3,7 @@ import useForm from "../hooks/useForm";
 import TextInput from "./form_elements/TextInput";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
+import Error from "./Error";
 import classnames from "classnames";
 import './Register.scss';
 
@@ -19,6 +20,7 @@ export default function Register(props) {
   return  (
     <form onSubmit={handleSubmit}>
       This is the regstration form
+      {error && <Error>{String(error)}</Error>}
       <TextInput
         name="name"
         label="Username"

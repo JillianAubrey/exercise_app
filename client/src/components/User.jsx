@@ -3,11 +3,19 @@ import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 
 export default function User(props) {
-  const { workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises } = props
+  const { userName, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises } = props
   console.log("Rendering the User component")
   console.log("exerciseList.length: ", exerciseList.length)
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    onLogout();
+  }
+
   return (
     <Fragment>
+      <button onClick={handleLogout}>Logout</button>
+      <p>Logged in as {userName}</p>
       {!exerciseList.workout_exercises &&
         <WorkoutList
           setWorkoutShow={setWorkoutShow}

@@ -15,7 +15,15 @@ export default function App() {
         onLogin={onLogin}
         onRegister={onRegister}
       />}
-      {user && <User workoutList={workoutList} workoutShow={workoutShow} setWorkoutShow={setWorkoutShow} exerciseList={exerciseList} getWorkoutExercises={getWorkoutExercises} />}
+      {user && <User 
+        userName={userName} 
+        onLogout={onLogout} 
+        workoutList={workoutList} 
+        workoutShow={workoutShow} 
+        setWorkoutShow={setWorkoutShow} 
+        exerciseList={exerciseList} 
+        getWorkoutExercises={getWorkoutExercises} 
+      />}
       {user && <Exercise empty user_id={1} />}
     </div>
   );

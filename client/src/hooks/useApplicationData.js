@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:1234';
+axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 axios.defaults.withCredentials = true;
 
 export default function useApplicationData() {
@@ -28,7 +28,7 @@ export default function useApplicationData() {
     }
   }
 
-  async function onLogin(params, errorCallback) { 
+  async function onLogin(params, handleError) { 
     try {
       console.log("logging in")
       const response = await axios({
@@ -42,11 +42,11 @@ export default function useApplicationData() {
       setUserName(response.data.user_name)
     } catch (error) {
       console.error("login error: ", error)
-      errorCallback(error)
+      handleError(error)
     }
   }
 
-  async function onRegister(params, errorCallback) {
+  async function onRegister(params, handleError) {
     try {
       console.log("registering")
       const response = await axios({
@@ -60,11 +60,11 @@ export default function useApplicationData() {
       setUserName(response.data.user_name)
     } catch (error) {
       console.error("registration error: ", error)
-      errorCallback(error)
+      handleError(error)
     }
   }
 
-  async function onLogout(errorCallback) {
+  async function onLogout(handleError) {
     try {
       console.log("logging out")
       const response = await axios.post('/logout')
@@ -73,7 +73,7 @@ export default function useApplicationData() {
       setUserName(null)
     } catch (error) {
       console.error("logout error: ", error)
-      errorCallback(error)
+      handleError(error)
     }
   }
 
