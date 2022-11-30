@@ -4,14 +4,9 @@ class User < ApplicationRecord
   has_many :exercises, :dependent => :destroy
   has_many :walkthroughs, :dependent => :destroy
 
+  validates :name, presence: true
+  validates :name, uniqueness: true
+  validates :email, presence: true
+  validates :email, uniqueness: true
   has_secure_password
-
-  def create
-    User.new(user_params)
-  end
-
-  private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
-  end
 end

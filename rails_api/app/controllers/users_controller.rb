@@ -22,9 +22,38 @@ class UsersController < ApplicationController
     render json: @users, only: [:id, :name]
   end
 
+  def show
+    @user = User.find(params[:id])
+    if @user
+        render json: @user
+    else
+        render json: {'user not found'}, status: :not_found
+    end
+  end
+
+  def create
+    @user = User.new(user_params)
+
+    if @user.save
+      login!
+      render json: @user, status: :created, location: nil
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
+
   private
   # Only allow a list of trusted parameters through.
-  def workout_params
-    params.require(:user).permit(:q, :not_in_workout)
+  def user_params
+    params.require(:user).permit(
+      #index params
+      :q,
+      :not_in_workout,
+      #create params
+      :name, 
+      :email, 
+      :password, 
+      :password_confirmation
+    )
   end
 end
