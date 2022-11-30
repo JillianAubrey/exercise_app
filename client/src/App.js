@@ -5,7 +5,7 @@ import Exercise from "./components/Exercise";
 import Guest from "./components/Guest";
 import User from "./components/User";
 
-function App() {
+export default function App() {
   const { user, userName, onLogin, onRegister, onLogout, workoutList, setWorkoutShow, exerciseList, workoutShow, getWorkoutExercises } = useApplicationData();
   console.log("rendering the App component")
 

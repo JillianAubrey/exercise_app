@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:1234';
+axios.defaults.withCredentials = true;
 
 export default function useApplicationData() {
   const [user, setUser] = useState(null); //can i store the userID in state or need it be garbled
@@ -30,12 +31,17 @@ export default function useApplicationData() {
   async function onLogin(params, errorCallback) { 
     try {
       console.log("logging in")
-      const response = await axios.post('/login')
+      const response = await axios({
+        method: 'post',
+        url: '/login',
+        credentials: true,
+        data: {...params}
+      })
       console.log(response)
       setUser(response.data.user_id)
       setUserName(response.data.user_name)
     } catch (error) {
-      console.error("logout error: ", error)
+      console.error("login error: ", error)
       errorCallback(error)
     }
   }
@@ -43,12 +49,17 @@ export default function useApplicationData() {
   async function onRegister(params, errorCallback) {
     try {
       console.log("registering")
-      const response = await axios.post('/users')
+      const response = await axios({
+        method: 'post',
+        url: '/users',
+        credentials: true,
+        data: {...params}
+      })
       console.log(response)
       setUser(response.data.user_id)
       setUserName(response.data.user_name)
     } catch (error) {
-      console.error("logout error: ", error)
+      console.error("registration error: ", error)
       errorCallback(error)
     }
   }

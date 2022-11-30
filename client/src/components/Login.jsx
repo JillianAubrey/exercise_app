@@ -1,34 +1,37 @@
 import React, { Fragment, useState } from "react";
+import useForm from "../hooks/useForm";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import classnames from "classnames";
 import './Login.scss';
+import { useEffect } from "react";
 
 export default function Login(props) {
   const { onLogin } = props
-  const [ params, setParams ] = useState({email: '', password: ''})
-  const [ errors, setErrors ] = useState('')
+  const { handleInputChange, data} = useForm({email: '', password: ''})
+  const [ error, setError ] = useState('')
 
-  const handleChange = (event) => {
-    const { value, name } = event.target
-    this.setState(prev => {
-      return {
-        ...prev, 
-        [name]: value
-      }
-    })
-    event.target.value = value
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    onLogin(data, setError)
   }
 
   return  (
-    <form >
+    <form onSubmit={handleSubmit}>
       This is the login form
       <EmailInput
         name="email"
         label="Email"
-        value={params.email}
-        onChange={handleChange}
+        value={data.email}
+        onChange={handleInputChange}
       />
+      <PasswordInput
+        name="password"
+        label="Password"
+        value={data.password}
+        onChange={handleInputChange}
+      />
+      <button>Submit</button>
     </form>
   )
 }

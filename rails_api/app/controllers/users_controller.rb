@@ -22,22 +22,19 @@ class UsersController < ApplicationController
     render json: @users, only: [:id, :name]
   end
 
-  def show
-    @user = User.find(params[:id])
-    if @user
-      render json: @user
-    else
-      render json: {error: 'user not found'}, status: :not_found
-    end
-  end
-
   def create
-    @user = User.new(user_params)
+    @user = User.new(
+      name: params[:name], 
+      email: params[:email], 
+      password: params[:password], 
+      password_confirmation: params[:password_confirmation]
+    )
 
     if @user.save
       login!
       render json: {user_id: @user.id, user_name: @user.name}, status: :created, location: nil
     else
+      puts @user.errors.inspect
       render json: @user.errors, status: :unprocessable_entity
     end
   end
@@ -45,7 +42,7 @@ class UsersController < ApplicationController
   private
   # Only allow a list of trusted parameters through.
   def user_params
-    params.permit(
+    params.require(:user).permit(
       #index params
       :q,
       :not_in_workout,
