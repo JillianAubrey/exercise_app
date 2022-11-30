@@ -3,7 +3,7 @@ import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 
 export default function User(props) {
-  const { userName, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises } = props
+  const { userName, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises, user } = props
   console.log("Rendering the User component")
   console.log("exerciseList.length: ", exerciseList.length)
 
@@ -22,8 +22,9 @@ export default function User(props) {
           workoutList={workoutList}
           getWorkoutExercises={getWorkoutExercises}
           exerciseList={exerciseList}
+          user={user}
         />}
-      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} /> }
+      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} />}
     </Fragment>
   );
 }

@@ -1,11 +1,12 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import WorkoutItem from './WorkoutItem'
+import filterWorkoutList from "../helpers/selectors";
 
 export default function WorkoutList(props) {
-  const { workoutList, getWorkoutExercises, exerciseList } = props;
-  
+  const [byOthers, setByOthers] = useState(false)
+  const { workoutList, getWorkoutExercises, exerciseList, user } = props;
 
-  const workout = workoutList.map((workout) => {
+  const workout = filterWorkoutList(workoutList, user, byOthers).map((workout) => {
     return (
       <WorkoutItem
         key={workout.id}

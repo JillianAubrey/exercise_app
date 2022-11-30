@@ -23,6 +23,7 @@ export default function App() {
         setWorkoutShow={setWorkoutShow} 
         exerciseList={exerciseList} 
         getWorkoutExercises={getWorkoutExercises} 
+        user={user}
       />}
       {user && <Exercise empty user_id={1} />}
     </div>
