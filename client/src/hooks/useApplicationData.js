@@ -69,6 +69,7 @@ export default function useApplicationData() {
       console.log("logging out")
       const response = await axios.post('/logout')
       console.log(response)
+      setWorkoutList([])
       setUser(null)
       setUserName(null)
     } catch (error) {
