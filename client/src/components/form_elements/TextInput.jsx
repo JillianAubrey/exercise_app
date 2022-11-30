@@ -7,7 +7,7 @@ export default function TextInput(props) {
 
   return (
     <div className={className}>
-    {label && <label for={name}>{label}</label>}
+    {label && <label htmlFor={name}>{label}</label>}
     <input
       name={name}
       type="text"

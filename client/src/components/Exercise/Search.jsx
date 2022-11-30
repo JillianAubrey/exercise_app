@@ -2,11 +2,12 @@ import React, { useState, useEffect, Fragment } from "react";
 import useSearchData from "../../hooks/useSearchData";
 import useForm from "../../hooks/useForm";
 import TextInput from "../form_elements/TextInput";
+import SmallButton from "../buttons_toggles/SmallButton";
 import Toggle from "../buttons_toggles/Toggle";
 import Show from "./Show";
 
 export default function Search(props) {
-  const { user } = props;
+  const { user, onAdd, onCancel, onCreate } = props;
   const {
     searchData,
     searchCustomExercises,
@@ -43,7 +44,7 @@ export default function Search(props) {
           name={name}
           category={category}
           gif_url={gif_url}
-          onAdd="true"
+          onAdd={onAdd}
         />
       );
     });
@@ -69,6 +70,10 @@ export default function Search(props) {
           label="Search"
         />
       </form>
+      <div className="search__buttons">
+        <SmallButton type="rest">Add Rest</SmallButton>&nbsp;&nbsp;
+         <SmallButton type="edit">Create Exercise</SmallButton>
+      </div>
       <div className="search__results">{resultsList}</div>
     </article>
   );

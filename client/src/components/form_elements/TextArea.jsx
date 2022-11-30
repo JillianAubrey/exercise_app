@@ -7,7 +7,7 @@ export default function TextArea(props) {
 
   return (
     <div className={className}>
-      {label && <label for={name}>{label}</label>}
+      {label && <label htmlFor={name}>{label}</label>}
       <textarea
         name={name}
         rows={rows}

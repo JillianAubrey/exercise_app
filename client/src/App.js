@@ -1,7 +1,7 @@
 import useApplicationData from "./hooks/useApplicationData";
 import { useEffect } from "react";
 import axios from 'axios'
-import Search from "./components/Exercise/Search";
+import Exercise from "./components/Exercise";
 import Guest from "./components/Guest";
 import User from "./components/User";
 
@@ -11,8 +11,8 @@ export default function App() {
   return (
     <div className="App">
       {!user && <Guest />}
-      {/* {user && <User workoutList={workoutList} workoutShow={workoutShow} setWorkoutShow={setWorkoutShow} exerciseList={exerciseList} getWorkoutExercises={getWorkoutExercises} />} */}
-      {user && <Search user={user} />}
+      {user && <User workoutList={workoutList} workoutShow={workoutShow} setWorkoutShow={setWorkoutShow} exerciseList={exerciseList} getWorkoutExercises={getWorkoutExercises} />}
+      {user && <Exercise empty user_id={1} />}
     </div>
   );
 }

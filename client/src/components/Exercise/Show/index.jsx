@@ -36,7 +36,7 @@ export default function Show(props) {
           {onDelete && <SmallButton onClick={onDelete} type="delete" />}
         </section>
       )}
-      {onAdd && <SmallButton type="add"/>}
+      {onAdd && <SmallButton type="add" onClick={() => onAdd(props)}/>}
     </div>
   );
 }

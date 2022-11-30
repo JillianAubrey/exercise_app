@@ -19,7 +19,7 @@ export default function Toggle(props) {
   };
 
   return (
-    <div class="toggle">
+    <div className="toggle">
       <ToggleButton onClick={onLeftClick} selected={selected === "left"}>
         {leftLabel}
       </ToggleButton>
