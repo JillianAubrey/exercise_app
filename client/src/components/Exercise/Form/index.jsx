@@ -41,7 +41,7 @@ export default function Form(props) {
   }
 
   const exerciseProps =
-    name === "rest"
+    exercise_id === 1
       ? null
       : {
           name,
@@ -54,7 +54,7 @@ export default function Form(props) {
         };
 
   const restProps =
-    name !== "rest"
+    exercise_id !== 1
       ? null
       : {
           timed,
@@ -70,8 +70,8 @@ export default function Form(props) {
   return (
     <div className="exercise__container">
       <article className="exercise__card exercise__card--form">
-        {name !== "rest" && <Exercise {...exerciseProps} />}
-        {name === "rest" && <Rest {...restProps} />}
+        {exercise_id !== 1 && <Exercise {...exerciseProps} />}
+        {exercise_id === 1 && <Rest {...restProps} />}
       </article>
       <section className="exercise__card-editcancel">
         <SmallButton onClick={handleSubmit} type="save" />

@@ -5,6 +5,7 @@ import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
 import Search from "./Search";
+import New from "./New";
 import { useState } from "react";
 
 const EMPTY = "EMPTY";
@@ -16,16 +17,27 @@ const NEW = "NEW";
 export default function Exercise(props) {
 
   const { empty, edit, onDelete, user_id, setExercise} = {...props}
-  const [ editSearch, setEditSearch ] = useState()
+  const [ addNewProps, setAddNewProps ] = useState()
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
   const onEdit = () => setMode(FORM);
 
   const handleSearchAdd = (exercise) => {
-    console.log(exercise);
-    setEditSearch(exercise);
+    setAddNewProps(exercise)
     setTimeout(() => {
       setMode(FORM)
+    }, 100)
+  }
+
+  const handleCustomAdd = (exercise) => {
+    setAddNewProps(exercise)
+    setTimeout(() => {
+      setMode(FORM)
+    }, 100)
+  }
+  const handleCustomMode = () => {
+    setTimeout(() => {
+      setMode(NEW)
     }, 100)
   }
 
@@ -35,7 +47,7 @@ export default function Exercise(props) {
     }, 100)
   }
 
-  const formProps = editSearch ? {...editSearch, onCancel : () => back()} : {...props, onCancel : () => back()}
+  const formProps = addNewProps ? {...addNewProps, onCancel : () => back()} : {...props, onCancel : () => back()}
   const showProps = edit ? {...props, onEdit, onDelete } : props;
 
   return (
@@ -43,7 +55,8 @@ export default function Exercise(props) {
       {mode === SHOW && !empty && <Show {...showProps} />}
       {mode === FORM && <Form {...formProps} />}
       {mode === EMPTY && empty && <Empty onClick={handleSearchMode}/>}
-      {mode === SEARCH && <Search onCancel={back} onAdd={handleSearchAdd} user={user_id}/>}
+      {mode === SEARCH && <Search onCancel={back} onAdd={handleSearchAdd} user_id={user_id} onCustom={handleCustomMode}/>}
+      {mode === NEW && <New user_id={user_id} onCancel={back} onAdd={handleCustomAdd}/>}
     </Fragment>
   );
 }

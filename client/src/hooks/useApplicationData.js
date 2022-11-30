@@ -116,6 +116,22 @@ export default function useApplicationData() {
     }
   }
 
+  const saveExercise = async (data, handleError) => {
+    try {
+      const response = await axios.post("/exercises", data);
+      return response.data;
+    } catch (badReq) {
+      const errorMessages = badReq.response.data;
+      const errorsArray =
+        errorMessages &&
+        Object.keys(errorMessages).map((key) => {
+          return `${key} ${errorMessages[key]}`;
+        });
+      handleError(errorsArray);
+      return false;
+    }
+  };
+
   // function submitWorkout(workout) { // need to decide the form of this workout object, needs to include workout_exercises info
   //   return axios.put(`/workouts`, { workout })
   //     .then((res) => {
@@ -128,5 +144,5 @@ export default function useApplicationData() {
 
   // }
 
-  return {user, userName, onLogin, onRegister, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
+  return {user, userName, onLogin, onRegister, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises, saveExercise}
 }

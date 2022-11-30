@@ -13,14 +13,15 @@ export default function WorkoutShow(props) {
 
   const exercise = exerciseList.workout_exercises.map((item, index) => {
     console.log({item})
-    const { duration, reps, sets, note } = item;
-    const { id, name, category, gif_url } = item.exercise;
+    const { duration, reps, sets, note, id: workout_exercise_id } = item;
+    const { id: exercise_id, name, category, gif_url } = item.exercise;
     
     return (
         <Exercise
           key={index}
           name={name}
-          id={id}
+          workout_exercise_id={workout_exercise_id}
+          exercise_id={exercise_id}
           category={category}
           duration={duration}
           reps={reps}

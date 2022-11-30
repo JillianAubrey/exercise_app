@@ -8,9 +8,9 @@ import Show from "./Show";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Search(props) {
-  const { user, onAdd, onCancel} = props;
+  const { user_id, onAdd, onCancel, onCustom} = props;
   const { searchData, searchCustomExercises, searchDatabaseExercises } =
-    useSearchData(user);
+    useSearchData(user_id);
   const { handleInputChange, handleFormSubmit, data } = useForm({});
   const [custom, setCustom] = useState(true);
   const query = data.search || null;
@@ -72,8 +72,8 @@ export default function Search(props) {
           />
         </form>
         <div className="search__buttons">
-          <SmallButton type="rest" onClick={() => onAdd({id: 1, name: 'rest', category: 'rest'})}>Add Rest</SmallButton>&nbsp;&nbsp;
-          <SmallButton type="edit">Create Exercise</SmallButton>
+          <SmallButton type="rest" onClick={() => onAdd({exercise_id: 1, name: 'rest', category: 'rest'})}>Add Rest</SmallButton>&nbsp;&nbsp;
+          <SmallButton type="edit" onClick={onCustom}>Create Exercise</SmallButton>
         </div>
         <div className="search__results">{resultsList}</div>
       </article>
