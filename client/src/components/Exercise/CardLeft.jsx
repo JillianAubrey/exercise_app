@@ -10,7 +10,7 @@ export default function CardLeft(props) {
     {/* in the left section of the card, render the gif. if there is no gif, render an icon. which icon depends on whether it is cardio based */}
     {gif_url ? (
       <img src={gif_url} alt={name} />
-    ) : category === "Cardio" || category === "cardio" ? (
+    ) : category && category === "Cardio" || category && category === "cardio" ? (
       <FontAwesomeIcon
         className="icon"
         icon="person-running"

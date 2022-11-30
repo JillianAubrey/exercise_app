@@ -1,16 +1,15 @@
 import { Fragment, useState } from "react";
 import useForm from "../../hooks/useForm";
 import TextInput from "../form_elements/TextInput";
-import useApplicationData from "../../hooks/useApplicationData";
+import saveExercise from "../../helpers/saveExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
+import SmallButton from "../buttons_toggles/SmallButton";
 
 export default function New(props) {
-  const { user_id, back, onAdd } = props;
+  const { user_id, onCancel, onAdd } = props;
   const { handleFormSubmit, handleInputChange, data } = useForm({ user_id });
   const [errors, setErrors] = useState(null);
-
-  const { saveExercise } = useApplicationData();
 
   const handleExerciseAdd = (data) => {
     if (validateNewExercise(data, setErrors)) {
@@ -31,25 +30,11 @@ export default function New(props) {
     });
 
 
-    // <div className="exercise__container">
-    //   <article className={cardClasses}>
-    //     {exercise_id === 1 && <Rest duration={duration}/>}
-    //     {exercise_id !== 1 && <Exercise {...exerciseProps} />}
-    //   </article>
-    //   {onEdit && onDelete && (
-    //     <section className="exercise__card-editcancel">
-    //       {onEdit && <SmallButton onClick={onEdit} type="edit" />}
-    //       {onDelete && <SmallButton onClick={onDelete} type="delete" />}
-    //     </section>
-    //   )}
-    //   {onAdd && <SmallButton type="add" onClick={() => onAdd(props)}/>}
-    // </div>
-
   return (
      <div className="custom__container">
       <article className="custom__card">
 
-        <CardLeft /> 
+        <CardLeft gif_url={data.gif_url} category={data.category} name={data.name}/> 
 
       <form
         autoComplete="off"
@@ -91,9 +76,8 @@ export default function New(props) {
         </div>
       )}
       </article>
-      <button onClick={() => handleExerciseAdd(data)}>
-          Save Custom Exercise
-        </button>
+      <SmallButton onClick={() => handleExerciseAdd(data)} type="save"/>
+      <SmallButton onClick={onCancel} type="cancel"/>
     </div>
   );
 }
