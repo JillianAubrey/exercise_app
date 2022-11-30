@@ -1,4 +1,6 @@
+@use '../../styles/animations.scss';
 @import '../../styles/variables.scss';
+
 
 
 .small_button {
@@ -31,5 +33,25 @@
     background-color: rgb(255, 255, 255);
     color: $theme-green;
     font-size: 1em;
+  }
+
+  &--add {
+    align-self: center;
+    text-align: center;
+    margin: 0;
+    box-shadow: none;
+    background-color: white;
+    color: $theme-green;
+    align-self: flex-start;
+    padding: 0;
+    height: 5vh;
+    width: 5vh;
+    font-size: 5.1vh;
+    border-radius: 50%;
+    transition: 0.2s ease-in-out;
+
+    .icon:active {
+      animation: 0.1s linear 1 spin_90deg;
+    }
   }
 }

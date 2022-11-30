@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import validateExerciseEdit from "../../../helpers/validateExerciseEdit";
-import useForm from "../../../useForm";
+import useForm from "../../../hooks/useForm";
 import SmallButton from "../../buttons_toggles/SmallButton";
 import Exercise from "./Exercise";
 import Rest from "./Rest";

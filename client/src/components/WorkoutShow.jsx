@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import Exercise from './Exercise/Show/index'
+import Exercise from './Exercise'
 
 export default function WorkoutShow(props) {
   const { exerciseList } = props;
@@ -21,8 +21,8 @@ export default function WorkoutShow(props) {
           sets={sets}
           gif_url={gif_url}
           note={note}
-        // onEdit={}
-        // onDelete={}
+          edit={true}
+          onDelete={() => console.log("hi")}
         />
     )
   })

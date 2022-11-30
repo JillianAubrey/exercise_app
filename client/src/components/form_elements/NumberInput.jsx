@@ -6,11 +6,11 @@ export default function NumberInput(props) {
 
   return (
     <div className={className}>
-    {label && <label for={name}>{label}</label>}
+    {label && <label htmlFor={name}>{label}</label>}
     <input
       name={name}
       type="number"
-      min="0"
+      min="1"
       placeholder={placeHolder ? placeHolder : ""}
       value={value}
       onChange={onChange}

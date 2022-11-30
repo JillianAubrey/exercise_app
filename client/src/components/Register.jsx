@@ -3,7 +3,7 @@ import classnames from "classnames";
 import './Register.scss';
 
 export default function Register(props) {
-  const { onSubmit } = props
+  const { onRegister } = props
 
   return  (
     <Fragment >

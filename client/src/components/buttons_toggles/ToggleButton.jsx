@@ -8,7 +8,7 @@ function ToggleButton(props) {
   const buttonClasses = classnames('toggle__button', {'toggle__button--selected': selected})
 
   return (
-    <button onClick={onClick} class={buttonClasses}>
+    <button onClick={onClick} className={buttonClasses}>
       {children}
     </button>
   );

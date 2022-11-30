@@ -4,14 +4,15 @@ import './SmallButton.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SmallButton(props) {
-  const { onClick, type } = props;
+  const { onClick, type, children } = {...props};
 
   //display of button changes depending on the type attribute passed in. typically the same text as the button label but lowercase
   const buttonClasses = classnames("small_button", {
     "small_button--edit": type === "edit",
     "small_button--destroy": type === "delete" || type === "cancel",
-    "small_button--save": type === "save" || type === "add",
-    "small_button--move": type === "moveup" || type === "movedown"
+    "small_button--save": type === "save" || type === "add" || type === "rest",
+    "small_button--move": type === "moveup" || type === "movedown",
+    "small_button--add": type === "add"
   });
 
   return (
@@ -23,6 +24,8 @@ export default function SmallButton(props) {
       {type === 'add' && <FontAwesomeIcon className="icon" icon="circle-plus"/>}
       {type === 'moveup' && <FontAwesomeIcon className="icon" icon="chevron-up"/>}
       {type === 'movedown' && <FontAwesomeIcon className="icon" icon="chevron-down"/>}
+      {type === 'rest' && <FontAwesomeIcon className="icon moon" icon="moon" />}
+     {children && ` ${children}`}
     </button>
   );
 }

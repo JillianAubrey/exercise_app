@@ -38,10 +38,10 @@ export default function Guest(props) {
         </Fragment>
       )}
       {view === LOGIN && (
-        <Login onSubmit={onLogin}/>
+        <Login onLogin={onLogin}/>
       )}
       {view === REGISTER && (
-        <Register onSubmit={onRegister}/>
+        <Register onRegister={onRegister}/>
       )}
       {view === ABOUT && (
         <About />

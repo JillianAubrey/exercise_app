@@ -1,16 +1,16 @@
 import React from "react";
 
 
-export default function TextInput(props) {
+export default function PasswordInput(props) {
 
-  const {name, className, value, onChange, placeHolder, label} = { ...props };
+  const {name, className, value, onChange, placeHolder, label} = props;
 
   return (
     <div className={className}>
-    {label && <label htmlFor={name}>{label}</label>}
+    {label && <label for={name}>{label}</label>}
     <input
       name={name}
-      type="text"
+      type="password"
       placeholder={placeHolder ? placeHolder : ""}
       value={value}
       onChange={onChange}

@@ -27,7 +27,7 @@ export default function useApplicationData() {
     }
   }
 
-  async function onLogin(params) { 
+  async function onLogin(params, errorCallback) { 
     try {
       console.log("logging in")
       const response = await axios.post('/login')
@@ -36,10 +36,11 @@ export default function useApplicationData() {
       setUserName(response.data.user_name)
     } catch (error) {
       console.error("logout error: ", error)
+      errorCallback(error)
     }
   }
 
-  async function onRegister(params) {
+  async function onRegister(params, errorCallback) {
     try {
       console.log("registering")
       const response = await axios.post('/users')
@@ -48,10 +49,11 @@ export default function useApplicationData() {
       setUserName(response.data.user_name)
     } catch (error) {
       console.error("logout error: ", error)
+      errorCallback(error)
     }
   }
 
-  async function onLogout() {
+  async function onLogout(errorCallback) {
     try {
       console.log("logging out")
       const response = await axios.post('/logout')
@@ -60,6 +62,7 @@ export default function useApplicationData() {
       setUserName(null)
     } catch (error) {
       console.error("logout error: ", error)
+      errorCallback(error)
     }
   }
 

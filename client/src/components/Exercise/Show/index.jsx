@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import SmallButton from "../../buttons_toggles/SmallButton";
 import Exercise from "./Exercise";
 import Rest from "./Rest";
+import '../styles.scss'
+import classNames from "classnames";
 
 export default function Show(props) {
   const {
@@ -15,7 +17,10 @@ export default function Show(props) {
     note,
     onEdit,
     onDelete,
+    onAdd,
   } = { ...props };
+
+  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search' : onAdd})
 
   const exerciseProps =
     name === "rest"
@@ -24,16 +29,17 @@ export default function Show(props) {
 
   return (
     <div className="exercise__container">
-      <article className="exercise__card exercise__card--show">
+      <article className={cardClasses}>
         {name === "rest" && <Rest duration={duration}/>}
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
       {onEdit && onDelete && (
         <section className="exercise__card-editcancel">
-          <SmallButton onClick={onEdit} type="edit" />
-          <SmallButton onClick={onDelete} type="delete" />
+          {onEdit && <SmallButton onClick={onEdit} type="edit" />}
+          {onDelete && <SmallButton onClick={onDelete} type="delete" />}
         </section>
       )}
+      {onAdd && <SmallButton type="add" onClick={() => onAdd(props)}/>}
     </div>
   );
 }
