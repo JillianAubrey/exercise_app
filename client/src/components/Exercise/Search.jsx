@@ -5,14 +5,12 @@ import TextInput from "../form_elements/TextInput";
 import SmallButton from "../buttons_toggles/SmallButton";
 import Toggle from "../buttons_toggles/Toggle";
 import Show from "./Show";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Search(props) {
-  const { user, onAdd, onCancel, onCreate } = props;
-  const {
-    searchData,
-    searchCustomExercises,
-    searchDatabaseExercises,
-  } = useSearchData(user);
+  const { user, onAdd, onCancel} = props;
+  const { searchData, searchCustomExercises, searchDatabaseExercises } =
+    useSearchData(user);
   const { handleInputChange, handleFormSubmit, data } = useForm({});
   const [custom, setCustom] = useState(true);
   const query = data.search || null;
@@ -38,43 +36,48 @@ export default function Search(props) {
       const { id, name, category, gif_url } = { ...exercise };
 
       return (
-        name !== "rest" && <Show
-          key={id}
-          id={id}
-          name={name}
-          category={category}
-          gif_url={gif_url}
-          onAdd={onAdd}
-        />
+        name !== "rest" && (
+          <Show
+            key={id}
+            id={id}
+            name={name}
+            category={category}
+            gif_url={gif_url}
+            onAdd={onAdd}
+          />
+        )
       );
     });
 
   return (
-    <article className="search__container">
-      <Toggle
-        leftLabel="Custom Exercises"
-        rightLabel="Exercise Database"
-        leftClick={() => setCustom(true)}
-        rightClick={() => setCustom(false)}
-      />
-      <form
-        autoComplete="off"
-        className="search__form"
-        onSubmit={handleFormSubmit}
-      >
-        <TextInput
-          className="search__input"
-          name="search"
-          value={data?.search || ""}
-          onChange={handleInputChange}
-          label="Search"
+    <div className="search__container">
+      <article className="search__card">
+        <Toggle
+          leftLabel="Custom Exercises"
+          rightLabel="Exercise Database"
+          leftClick={() => setCustom(true)}
+          rightClick={() => setCustom(false)}
         />
-      </form>
-      <div className="search__buttons">
-        <SmallButton type="rest">Add Rest</SmallButton>&nbsp;&nbsp;
-         <SmallButton type="edit">Create Exercise</SmallButton>
-      </div>
-      <div className="search__results">{resultsList}</div>
-    </article>
+        <form
+          autoComplete="off"
+          className="search__form"
+          onSubmit={handleFormSubmit}
+        >
+          <TextInput
+            className="search__input"
+            name="search"
+            value={data?.search || ""}
+            onChange={handleInputChange}
+            label="Search"
+          />
+        </form>
+        <div className="search__buttons">
+          <SmallButton type="rest" onClick={() => onAdd({id: 1, name: 'rest', category: 'rest'})}>Add Rest</SmallButton>&nbsp;&nbsp;
+          <SmallButton type="edit">Create Exercise</SmallButton>
+        </div>
+        <div className="search__results">{resultsList}</div>
+      </article>
+      <FontAwesomeIcon className="search__cancel" onClick={onCancel} icon="circle-plus" />
+    </div>
   );
 }

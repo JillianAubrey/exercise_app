@@ -22,6 +22,7 @@ export default function Exercise(props) {
   const onEdit = () => setMode(FORM);
 
   const handleSearchAdd = (exercise) => {
+    console.log(exercise);
     setEditSearch(exercise);
     setTimeout(() => {
       setMode(FORM)

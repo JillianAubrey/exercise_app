@@ -224,6 +224,23 @@
 }
 
 .search__container {
+  width: 95%;
+  margin: 0 auto;
+  .search__cancel {
+    margin-top: 0.6rem;
+    height: 2.3rem;
+    width: 2.3rem;
+    font-size: 2.3rem;
+    margin-left: 88%;
+    color: $danger-color;
+    transform: rotate(45deg);
+    border-radius: 50%;
+    box-shadow: 5px 2px 4px rgba(128, 128, 128, 0.598);
+    
+  }
+}
+
+.search__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -233,11 +250,11 @@
   border-radius: 10px;
   box-shadow: 2px 2px 10px grey;
   padding: 1em;
-  padding-top: 4.3rem;
+  padding-top: 4.6rem;
 
   .toggle {
     position: absolute;
-    font-size: 0.8em;
+    font-size: 0.75em;
     top: 0;
     left: 0;
     width: 100%;
