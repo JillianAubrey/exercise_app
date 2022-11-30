@@ -5,7 +5,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3000
 axios.defaults.withCredentials = true;
 
 export default function useApplicationData() {
-  const [user, setUser] = useState(null); //can i store the userID in state or need it be garbled
+  const [user, setUser] = useState(null);
   const [userName, setUserName] = useState(null);
   const [workoutShow, setWorkoutShow] = useState(null);
   const [workoutList, setWorkoutList] = useState([]);
@@ -69,7 +69,7 @@ export default function useApplicationData() {
       console.log("logging out")
       const response = await axios.post('/logout')
       console.log(response)
-      setWorkoutList([])
+      setWorkoutList({})
       setUser(null)
       setUserName(null)
     } catch (error) {
@@ -86,7 +86,7 @@ export default function useApplicationData() {
     setWorkoutList([])
   }, [user]);
   
-  async function getUserWorkouts(userId) { // should this call get all exercise data for workouts that user is a member of?
+  async function getUserWorkouts(userId) { 
     try {
       console.log("getting the workoutList")
       const response = await axios.get(`/workouts?user=${userId}`);
@@ -97,12 +97,6 @@ export default function useApplicationData() {
       console.error("getUserWorkouts error: ", error);
     }
   }
-
-  // useEffect(() => {
-  //   if (workoutShow) {
-  //     getWorkoutExercises(workoutShow)
-  //   }
-  // }, [workoutShow])
 
   async function getWorkoutExercises(workoutId) {
     try {
@@ -116,17 +110,5 @@ export default function useApplicationData() {
     }
   }
 
-  // function submitWorkout(workout) { // need to decide the form of this workout object, needs to include workout_exercises info
-  //   return axios.put(`/workouts`, { workout })
-  //     .then((res) => {
-      
-  //   })
-
-  // }
-
-  // function completeWorkout(sessionInfo) {
-
-  // }
-
-  return {user, userName, onLogin, onRegister, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, getWorkoutExercises}
+  return {user, userName, onLogin, onRegister, onLogout, workoutList, workoutShow, setWorkoutShow, exerciseList, setExerciseList, getWorkoutExercises}
 }
