@@ -5,8 +5,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(session_params[:password])
       login!
       render json: {
-        logged_in: true,
-        user: @user
+        user: @user.id
       }
     else
       render json: {errors: ['no such user, please try again']}, status: :unauthorized
@@ -16,12 +15,11 @@ class SessionsController < ApplicationController
   def show
     if logged_in? && current_user
       render json: {
-        logged_in: true,
-        user: current_user
+        user: current_user.id
       }
     else
       render json: {
-        logged_in: false
+        user: nil
       }
     end
   end
