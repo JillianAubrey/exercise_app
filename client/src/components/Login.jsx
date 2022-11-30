@@ -16,11 +16,18 @@ export default function Login(props) {
     event.preventDefault()
     onLogin(data, setError)
   }
-
+  let errors = ''
+  if (error) {
+    errors = Object.entries(error.response.data).map((error) => {
+      const errorMessage = `${error[1][0]}`
+      return (
+        <Error>{errorMessage}</Error>
+      )
+    })
+  }
   return  (
     <form onSubmit={handleSubmit}>
-      This is the login form
-      {error && <Error>{String(error)}</Error>}
+      {error && <Fragment>{errors}</Fragment>}
       <EmailInput
         name="email"
         label="Email"

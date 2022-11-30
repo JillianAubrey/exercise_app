@@ -16,11 +16,18 @@ export default function Register(props) {
     event.preventDefault()
     onRegister(data, setError)
   }
-
+  let errors = ''
+  if (error) {
+    errors = Object.entries(error.response.data).map((error) => {
+      const errorMessage = `${error[0]} ${error[1][0]}`
+      return (
+        <Error>{errorMessage}</Error>
+      )
+    })
+  }
   return  (
     <form onSubmit={handleSubmit}>
-      This is the regstration form
-      {error && <Error>{String(error)}</Error>}
+      {error && <Fragment>{errors}</Fragment>}
       <TextInput
         name="name"
         label="Username"
