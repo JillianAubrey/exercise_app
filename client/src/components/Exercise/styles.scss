@@ -80,7 +80,8 @@
   &-editcancel {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 5px;
     padding: 0.6rem 0;
   }
 
