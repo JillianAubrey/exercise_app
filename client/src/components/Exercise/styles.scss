@@ -37,6 +37,12 @@
     }
   }
 
+  &--search {
+    h1 {
+      font-size: 1em;
+    }
+  }
+
   &-setbased,
   &-timebased {
     display: flex;

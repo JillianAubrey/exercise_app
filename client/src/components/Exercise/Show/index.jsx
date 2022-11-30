@@ -3,6 +3,7 @@ import SmallButton from "../../buttons_toggles/SmallButton";
 import Exercise from "./Exercise";
 import Rest from "./Rest";
 import '../styles.scss'
+import classNames from "classnames";
 
 export default function Show(props) {
   const {
@@ -19,6 +20,8 @@ export default function Show(props) {
     onAdd,
   } = { ...props };
 
+  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search' : onAdd})
+
   const exerciseProps =
     name === "rest"
       ? null
@@ -26,7 +29,7 @@ export default function Show(props) {
 
   return (
     <div className="exercise__container">
-      <article className="exercise__card exercise__card--show">
+      <article className={cardClasses}>
         {name === "rest" && <Rest duration={duration}/>}
         {name !== "rest" && <Exercise {...exerciseProps} />}
       </article>
