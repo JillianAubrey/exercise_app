@@ -1,9 +1,10 @@
 import React, { useState, Fragment } from "react";
 import Exercise from './Exercise/Show/index'
 import WorkoutItem from "./WorkoutItem";
+import Member from './Member/'
 
 export default function WorkoutShow(props) {
-  const { exerciseList } = props;
+  const { exerciseList, user } = props;
   console.log("loading the WorkoutShow page")
   console.log("workout_exercises", exerciseList.workout_exercises)
 
@@ -35,6 +36,7 @@ export default function WorkoutShow(props) {
   return (
     <Fragment>
       <WorkoutItem name={workoutName} gif_url={first_gif} owner={ownerName} exerciseList={exerciseList} />
+      <Member user={user} />
       {exercise}
     </Fragment>
   );
