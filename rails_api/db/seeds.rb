@@ -35,6 +35,8 @@ puts "Creating Workouts..."
 workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
 workout2 = user2.owned_workouts.create!({name: 'Cardio'})
 workout3 = user1.owned_workouts.create!({name: 'Cool Down'})
+workout4 = user1.owned_workouts.create!({name: 'Full Body'})
+workout5 = user3.owned_workouts.create!({name: 'HIIT'})
 
 puts "Adding Users to Workouts..."
 workout1.users << user1
@@ -42,6 +44,11 @@ workout2.users << user1
 workout2.users << user2
 workout2.users << user3
 workout3.users << user1
+workout4.users << user1
+workout4.users << user2
+workout5.users << user1
+workout5.users << user2
+workout5.users << user3
 
 ## Exercises
 puts "Creating Exercises..."
@@ -123,6 +130,20 @@ end
 for exercise in custom_exercises do
   workout3.workout_exercises.create({exercise_id: exercise.id, duration: 30})
 end
+
+workout4.workout_exercises.create({exercise_id: 2, reps: 8, sets: 3})
+workout4.workout_exercises.create({exercise_id: 13,reps: 8, sets: 3})
+workout4.workout_exercises.create({exercise_id: 21, reps: 8, sets: 3})
+workout4.workout_exercises.create({exercise_id: 22, reps: 8, sets: 3})
+workout4.workout_exercises.create({exercise_id: 26, reps: 8, sets: 3})
+
+workout5.workout_exercises.create({exercise_id: 3, duration: 30})
+workout5.workout_exercises.create({exercise_id: 5, duration: 30})
+workout5.workout_exercises.create({exercise_id: 6, duration: 30})
+workout5.workout_exercises.create({exercise_id: 17, duration: 30})
+workout5.workout_exercises.create({exercise_id: 18, duration: 30})
+
+
 
 ## Walkthroughs
 puts "Adding Walkthroughs..."
