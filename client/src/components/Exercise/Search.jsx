@@ -39,7 +39,7 @@ export default function Search(props) {
         name !== "rest" && (
           <Show
             key={id}
-            id={id}
+            exercise_id={id}
             name={name}
             category={category}
             gif_url={gif_url}

@@ -5,6 +5,7 @@ import filterWorkoutList from "../helpers/selectors";
 export default function WorkoutList(props) {
   const { workoutList, getWorkoutExercises, exerciseList, user, byOthers } = props;
 
+
   const workout = filterWorkoutList(workoutList, user, byOthers).map((workout) => {
     return (
       <WorkoutItem

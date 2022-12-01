@@ -16,10 +16,12 @@ export default function Form(props) {
     sets,
     gif_url,
     note,
-    onConfirm,
     onCancel,
     onReorder,
+    handleWorkoutEdit
   } = { ...props };
+
+  console.log(handleWorkoutEdit)
 
   const formFunctions = useForm({
     reps,
@@ -64,7 +66,9 @@ export default function Form(props) {
         };
 
   const handleSubmit = () => {
-    validateExerciseEdit(data, setError, timed) && onConfirm(data);
+    if (validateExerciseEdit(data, setError, timed)) {
+      handleWorkoutEdit(data)
+    }
   };
 
   return (
