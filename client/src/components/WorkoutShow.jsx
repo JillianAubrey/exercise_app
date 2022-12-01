@@ -1,11 +1,14 @@
 import React, { useState, Fragment } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
+import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
 import saveWorkout from "../helpers/saveWorkout";
 
 export default function WorkoutShow(props) {
   const { exerciseList, user_id } = props;
+  console.log("loading the WorkoutShow page")
+  console.log("workout_exercises", exerciseList.workout_exercises)
 
   const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
 
@@ -102,6 +105,7 @@ export default function WorkoutShow(props) {
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
       />
+      <Member userId={user_id} />
       {exercises}
       {editMode && (
         <Exercise
