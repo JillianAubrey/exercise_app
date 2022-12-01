@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
+import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
 import saveWorkout from "../helpers/saveWorkout";
 
@@ -102,6 +103,7 @@ export default function WorkoutShow(props) {
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
       />
+      <Member userId={user_id} />
       {exercises}
       {editMode && (
         <Exercise
