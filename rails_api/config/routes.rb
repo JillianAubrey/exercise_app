@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
     member do
       get 'statistics'
+      get 'members'
     end
   end
 
