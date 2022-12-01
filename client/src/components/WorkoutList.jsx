@@ -3,8 +3,7 @@ import WorkoutItem from './WorkoutItem'
 import filterWorkoutList from "../helpers/selectors";
 
 export default function WorkoutList(props) {
-  const [byOthers, setByOthers] = useState(false)
-  const { workoutList, getWorkoutExercises, exerciseList, user } = props;
+  const { workoutList, getWorkoutExercises, exerciseList, user, byOthers } = props;
 
   const workout = filterWorkoutList(workoutList, user, byOthers).map((workout) => {
     return (
