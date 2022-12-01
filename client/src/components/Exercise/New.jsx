@@ -5,6 +5,7 @@ import saveExercise from "../../helpers/saveExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
+import errorDisplay from "../../helpers/errorDisplay";
 
 export default function New(props) {
   const { user_id, onCancel, onAdd } = props;
@@ -21,14 +22,7 @@ export default function New(props) {
     }
   };
 
-  let key = 0;
-  const errorDisplay =
-    errors &&
-    errors.map((error) => {
-      key++
-      return <p className="error custom__error" key={key}> {error} </p>;
-    });
-
+  const errorElements = errorDisplay(errors)
 
   return (
      <div className="custom__container">
@@ -67,7 +61,7 @@ export default function New(props) {
         />
       </form>
 
-      {errors && <div> {errorDisplay} </div>}
+      {errorElements && <div> {errorElements} </div>}
 
       {data.gif_url && (
         <div className="image__preview">

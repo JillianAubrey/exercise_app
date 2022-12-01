@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import saveWorkout from "../helpers/saveWorkout";
 
 
-const useWorkoutEdit = function(exerciseData, name, workoutId) {
+const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
 
   const exercisesCopy = exerciseData.map(
     (workout_exercise) => {
@@ -65,14 +65,31 @@ const useWorkoutEdit = function(exerciseData, name, workoutId) {
     });
   };
 
+  const handleExerciseDelete = function(id) {
+    setWorkoutEdit((prev) => {
+      const newEdit = prev.map((el) => ({ ...el }));
+      const index = prev.findIndex((el) => el.id === id);
+      newEdit.splice(index, 1)
+
+      return newEdit
+
+    })
+  }
+
   const saveEdited = function() {
-    saveWorkout({ workout_exercises: workoutEdit, name }, workoutId)
+    return saveWorkout({ workout_exercises: workoutEdit, name }, workoutId, handleError).then((saved) => {
+      if (saved) {
+        return true
+      }
+      return false
+    })
   }
 
   return {
     saveEdited,
     handleReorder,
-    handleWorkoutEdit
+    handleWorkoutEdit,
+    handleExerciseDelete
   }
 
 

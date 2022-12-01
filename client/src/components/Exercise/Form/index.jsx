@@ -21,8 +21,6 @@ export default function Form(props) {
     handleReorder
   } = { ...props };
 
-  console.log(handleWorkoutEdit)
-
   const formFunctions = useForm({
     reps,
     sets,
@@ -66,9 +64,9 @@ export default function Form(props) {
         };
 
   const handleSubmit = () => {
-    if (validateExerciseEdit(data, setError, timed)) {
-      handleWorkoutEdit(data)
-    }
+    const validatedData = validateExerciseEdit(data, setError, timed) 
+    validatedData && handleWorkoutEdit(validatedData)
+
   };
 
   return (

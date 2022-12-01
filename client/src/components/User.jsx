@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
-import Exercise from "./Exercise";
 import Toggle from "./buttons_toggles/Toggle";
 
 export default function User(props) {
@@ -39,7 +38,6 @@ export default function User(props) {
           byOthers={byOthers}
         />}
       {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} user_id={user} />}
-      {exerciseList.workout_exercises && <Exercise empty user_id={1} />}
       <Toggle
         exerciseList={exerciseList}
         leftLabel="My Workouts"

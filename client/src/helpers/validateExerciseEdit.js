@@ -24,7 +24,7 @@ export default function validateExerciseEdit(data, errorSetter, timed) {
     }
     data.duration = null;
     data.sets = Number(data.sets)
-    data.reps = Number(data.sets)
+    data.reps = Number(data.reps)
   }
 
   if (rest && !timed) {
@@ -32,5 +32,5 @@ export default function validateExerciseEdit(data, errorSetter, timed) {
     data.reps = 1;
     data.sets = 1;
   }
-  return true;
+  return data;
 };

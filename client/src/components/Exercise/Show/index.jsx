@@ -10,6 +10,7 @@ export default function Show(props) {
     name,
     exercise_id,
     workout_exercise_id,
+    handleExerciseDelete,
     category,
     duration,
     reps,
@@ -37,7 +38,7 @@ export default function Show(props) {
       {onEdit && onDelete && (
         <section className="exercise__card-editcancel">
           {onEdit && <SmallButton onClick={onEdit} type="edit" />}
-          {onDelete && <SmallButton onClick={onDelete} type="delete" />}
+          {onDelete && <SmallButton onClick={handleExerciseDelete} type="delete" />}
         </section>
       )}
       {onAdd && <SmallButton type="add" onClick={() => onAdd({...props})}/>}
