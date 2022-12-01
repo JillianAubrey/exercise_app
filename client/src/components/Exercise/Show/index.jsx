@@ -8,7 +8,8 @@ import classNames from "classnames";
 export default function Show(props) {
   const {
     name,
-    id,
+    exercise_id,
+    workout_exercise_id,
     category,
     duration,
     reps,
@@ -23,15 +24,15 @@ export default function Show(props) {
   const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search' : onAdd})
 
   const exerciseProps =
-    name === "rest"
+    exercise_id === 1
       ? null
-      : { name, category, duration, reps, sets, gif_url, note, id };
+      : { name, category, duration, reps, sets, gif_url, note, exercise_id };
 
   return (
     <div className="exercise__container">
       <article className={cardClasses}>
-        {name === "rest" && <Rest duration={duration}/>}
-        {name !== "rest" && <Exercise {...exerciseProps} />}
+        {exercise_id === 1 && <Rest duration={duration}/>}
+        {exercise_id !== 1 && <Exercise {...exerciseProps} />}
       </article>
       {onEdit && onDelete && (
         <section className="exercise__card-editcancel">
@@ -39,7 +40,7 @@ export default function Show(props) {
           {onDelete && <SmallButton onClick={onDelete} type="delete" />}
         </section>
       )}
-      {onAdd && <SmallButton type="add" onClick={() => onAdd(props)}/>}
+      {onAdd && <SmallButton type="add" onClick={() => onAdd({...props})}/>}
     </div>
   );
 }

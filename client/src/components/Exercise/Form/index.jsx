@@ -16,10 +16,12 @@ export default function Form(props) {
     sets,
     gif_url,
     note,
-    onConfirm,
     onCancel,
-    onReorder,
+    handleWorkoutEdit,
+    handleReorder
   } = { ...props };
+
+  console.log(handleWorkoutEdit)
 
   const formFunctions = useForm({
     reps,
@@ -41,7 +43,7 @@ export default function Form(props) {
   }
 
   const exerciseProps =
-    name === "rest"
+    exercise_id === 1
       ? null
       : {
           name,
@@ -54,7 +56,7 @@ export default function Form(props) {
         };
 
   const restProps =
-    name !== "rest"
+    exercise_id !== 1
       ? null
       : {
           timed,
@@ -64,19 +66,21 @@ export default function Form(props) {
         };
 
   const handleSubmit = () => {
-    validateExerciseEdit(data, setError, timed) && onConfirm(data);
+    if (validateExerciseEdit(data, setError, timed)) {
+      handleWorkoutEdit(data)
+    }
   };
 
   return (
     <div className="exercise__container">
       <article className="exercise__card exercise__card--form">
-        {name !== "rest" && <Exercise {...exerciseProps} />}
-        {name === "rest" && <Rest {...restProps} />}
+        {exercise_id !== 1 && <Exercise {...exerciseProps} />}
+        {exercise_id === 1 && <Rest {...restProps} />}
       </article>
       <section className="exercise__card-editcancel">
         <SmallButton onClick={handleSubmit} type="save" />
-        <SmallButton onClick={() => onReorder("up", workout_exercise_id)} type="moveup" />
-        <SmallButton onClick={() => onReorder("down", workout_exercise_id)} type="movedown" />
+        <SmallButton onClick={() => handleReorder(1, workout_exercise_id)} type="moveup" />
+        <SmallButton onClick={() => handleReorder(0, workout_exercise_id)} type="movedown" />
         <SmallButton onClick={onCancel} type="cancel" />
       </section>
     </div>

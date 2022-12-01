@@ -35,10 +35,10 @@ export default function User(props) {
           workoutList={workoutList}
           getWorkoutExercises={getWorkoutExercises}
           exerciseList={exerciseList}
-        user={user}
-        byOthers={byOthers}
+          user={user}
+          byOthers={byOthers}
         />}
-      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} />}
+      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} user_id={user} />}
       {exerciseList.workout_exercises && <Exercise empty user_id={1} />}
       <Toggle
         exerciseList={exerciseList}
