@@ -37,7 +37,7 @@ export default function Guest(props) {
           <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
           <button onClick={(event) => changeView(event, ABOUT)} >About</button>
 
-          <Walkthrough user="1" workoutId="2"/>
+          <Walkthrough user="1" workout={{id:"2", name:"cardio"}}/>
         </Fragment>
       )}
       {view === LOGIN && (
