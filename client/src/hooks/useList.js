@@ -1,29 +1,33 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef } from 'react'
 
-export default function useList(list, initialIndex, onLast) {
+export default function useList(list, initialIndex) {
   const index = useRef(initialIndex || 0);
   const [value, setValue] = useState(list[index.current])
 
 
   const previous = () => {
-    if (index.current > 0) {
+    if (!isFirst()) {
       index.current = index.current - 1;
       setValue(list[index.current]);
     }
   }
 
   const next = () => {
-    if (index.current < list.length - 1) {
+    if (!isLast()) {
       index.current = index.current + 1;
       setValue(list[index.current]);
-    } else {
-      onLast();
     }
   }
+
+  const isFirst = () => index.current === 0
+
+  const isLast = () => index.current === list.length - 1
  
   return [
     value,
     previous,
-    next
+    next,
+    isFirst,
+    isLast
   ];
 };

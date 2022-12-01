@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import getWorkout from "../../helpers/getWorkout";
-import WalkthoughShow from "./WalkthroughShow";
+import ExerciseList from "./ExerciseList";
 import postWalkthrough from "../../helpers/postWalkthrough";
 import './Walkthrough.scss';
 
@@ -18,8 +18,8 @@ export default function WalkthroughContainer(props) {
   const onComplete = () => postWalkthrough(user, workoutId)
 
   return (
-    <main className="walkthrough walkthrough--container">
-      {exerciseList && <WalkthoughShow exerciseList={exerciseList} onComplete={onComplete} />}
+    <main className="walkthrough--container">
+      {exerciseList && <ExerciseList exerciseList={exerciseList} onComplete={onComplete} />}
     </main>
   )
 }

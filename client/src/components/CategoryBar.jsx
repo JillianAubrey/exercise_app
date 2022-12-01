@@ -12,7 +12,7 @@ export default function CategoryBar(props) {
     const count = counts[key]
 
     if (!count) return;
-    if (count < totalCount * 0.1) {
+    if (count < totalCount * 0.10) {
       extra += count
       return
     }
