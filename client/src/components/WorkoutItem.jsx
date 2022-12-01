@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import CardLeft from "./Exercise/CardLeft";
 import SmallButton from "./buttons_toggles/SmallButton";
+import CategoryBar from "./CategoryBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './WorkoutItem.scss'
 
@@ -28,6 +29,7 @@ export default function WorkoutItem(props) {
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>
           </div>
+          <CategoryBar {...categoryCounts} />
         </section>
       </article>
       {ownWorkout && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}

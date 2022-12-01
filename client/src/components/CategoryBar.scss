@@ -1,0 +1,67 @@
+.category-bar {
+  width: 100%;
+  display: flex;
+
+  .bar-container{
+    display:flex;
+    flex-direction: column;
+    width: 0px;
+  }
+  
+  .bar-label{
+    font-size: 0.75em;
+    flex: 1;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-left: 1px;
+  }
+
+  .bar {
+    height: 5px;
+    width: 100%;
+    border: 0.5px solid white;
+  }
+
+  .arms-bar {
+    background-color: #D078F5;
+  }
+
+  .back-bar{
+    background-color: #FFA200;
+  }
+
+  .chest-bar{
+    background-color: #008CC0;
+  }
+
+  .core-bar{
+    background-color: #39BE81;
+  }
+
+  .legs-bar{
+    background-color: #00C6FF;
+  }
+
+  .shoulders-bar{
+    background-color: #FF7200;
+  }
+
+  .cardio-bar{
+    background-color: #D11C4C;
+  }
+
+  .stretch-bar{
+    background-color: #537DE7;
+  }
+
+  .other-bar{
+    background-color: #E7E7E7;
+  }
+
+  .extra-bar{
+    background-color: black;
+  }
+
+}
