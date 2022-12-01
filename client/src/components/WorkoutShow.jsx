@@ -7,13 +7,10 @@ import saveWorkout from "../helpers/saveWorkout";
 export default function WorkoutShow(props) {
   const { exerciseList, user_id } = props;
 
-  console.log(props);
-
   const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
 
   const workout_owner = exerciseList.owner.id;
 
-  console.log("workout exercises:", exerciseList.workout_exercises);
 
   const exercisesCopy = exerciseList.workout_exercises.map(
     (workout_exercise) => {
@@ -23,7 +20,6 @@ export default function WorkoutShow(props) {
       return exerciseCopy;
     }
   );
-  console.log("exercisescopy", exercisesCopy);
 
   const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
   const [editMode, setEditMode] = useState(false);
@@ -50,20 +46,29 @@ export default function WorkoutShow(props) {
     });
   };
 
-  const move = (array, from, to) => {
-    array.splice(to, 0, array.splice(from, 1)[0])
-  }
-
-  const handleReorder = function (upOrDown, id) {
+  const handleReorder = function (up, id) {
     setWorkoutEdit((prev) => {
-      index = prev.findIndex((el) => el.id = id)
-      move(prev, index, upOrDown === 'up' ? index + 1 : index -1)
-      const newEdit = prev.map((el) => ({...el}))
-      console.log(newEdit)
-      return newEdit;
-    })
-  }
+      const newEdit = prev.map((el) => ({ ...el }));
+      const index = prev.findIndex((el) => el.id === id);
 
+      if (up) {
+        if (newEdit[index - 1]) {
+          const current = newEdit[index];
+          newEdit[index] = newEdit[index - 1];
+          newEdit[index - 1] = current;
+        }
+      }
+
+      if (!up) {
+        if (newEdit[index + 1]) {
+          const current = newEdit[index];
+          newEdit[index] = newEdit[index + 1];
+          newEdit[index + 1] = current;
+        }
+      }
+      return newEdit;
+    });
+  };
 
   const exercises = exerciseList.workout_exercises.map((item, index) => {
     const { duration, reps, sets, note, id: workout_exercise_id } = item;

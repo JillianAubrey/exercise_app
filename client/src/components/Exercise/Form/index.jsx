@@ -17,8 +17,8 @@ export default function Form(props) {
     gif_url,
     note,
     onCancel,
-    onReorder,
-    handleWorkoutEdit
+    handleWorkoutEdit,
+    handleReorder
   } = { ...props };
 
   console.log(handleWorkoutEdit)
@@ -79,8 +79,8 @@ export default function Form(props) {
       </article>
       <section className="exercise__card-editcancel">
         <SmallButton onClick={handleSubmit} type="save" />
-        <SmallButton onClick={() => onReorder("up", workout_exercise_id)} type="moveup" />
-        <SmallButton onClick={() => onReorder("down", workout_exercise_id)} type="movedown" />
+        <SmallButton onClick={() => handleReorder(1, workout_exercise_id)} type="moveup" />
+        <SmallButton onClick={() => handleReorder(0, workout_exercise_id)} type="movedown" />
         <SmallButton onClick={onCancel} type="cancel" />
       </section>
     </div>

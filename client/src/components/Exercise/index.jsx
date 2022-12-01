@@ -50,9 +50,9 @@ export default function Exercise(props) {
 
   const formProps = addNewProps
     ? { ...addNewProps, onCancel: () => back(), handleWorkoutEdit }
-    : { ...props, onCancel: () => back(), handleWorkoutEdit };
+    : { ...props, onCancel: () => back() };
 
-  const showProps = editMode ? { ...props, onEdit, onDelete } : props;
+  const showProps = editMode ? { ...props, onEdit } : props;
 
   return (
     <Fragment>
