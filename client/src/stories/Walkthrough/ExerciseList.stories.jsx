@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { action } from "@storybook/addon-actions"
-import library from "../../helpers/fontAwesomeLibrary";
+import "../../helpers/fontAwesomeLibrary";
 import ExerciseList from '../../components/Walkthrough/ExerciseList';
+import "../../components/Walkthrough/Walkthrough.scss"
 
 
 export default {
@@ -35,7 +36,7 @@ TimeBasedOnly.args = {
 export const IncludesRest = Template.bind({});
 IncludesRest.args = {
   onComplete: action("walkthrough complete"),
-	exercistList: [
+	exerciseList: [
 		{ id: 7, reps: null, sets: null, duration: 300, note: null, exercise: { id: 14, user_id: null, name: "jumping jack", category: "cardio", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/3220.gif" } },
 		{ id: 8, reps: null, sets: null, duration: 30, note: null, exercise: { id: 1, user_id: null, name: "rest", category: "rest", gif_url: null } },
 		{ id: 9, reps: null, sets: null, duration: 300, note: null, exercise: { id: 15, user_id: null, name: "burpee", category: "cardio", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/1160.gif" } }
@@ -45,9 +46,19 @@ IncludesRest.args = {
 export const AllTogether = Template.bind({});
 AllTogether.args = {
   onComplete: action("walkthrough complete"),
-	exercistList: [
+	exerciseList: [
 		{ id: 18, reps: 10, sets: 3, duration: null, note: null, exercise: { id: 2, user_id: null, name: "push-up", category: "chest", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0662.gif" } },
 		{ id: 19, reps: null, sets: null, duration: 60, note: null, exercise: { id: 3, user_id: null, name: "bench press", category: "chest", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0025.gif" } },
 		{ id: 20, reps: null, sets: null, duration: 30, note: null, exercise: { id: 1, user_id: null, name: "rest", category: "rest", gif_url: null } }
+	]
+}
+
+export const AllTogetherWithNotes = Template.bind({});
+AllTogetherWithNotes.args = {
+  onComplete: action("walkthrough complete"),
+	exerciseList: [
+		{ id: 18, reps: 10, sets: 3, duration: null, note: "Last set go to failure", exercise: { id: 2, user_id: null, name: "push-up", category: "chest", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0662.gif" } },
+		{ id: 19, reps: null, sets: null, duration: 60, note: "As many reps as possible in the time limit", exercise: { id: 3, user_id: null, name: "bench press", category: "chest", gif_url: "http://d205bpvrqc9yn1.cloudfront.net/0025.gif" } },
+		{ id: 20, reps: null, sets: null, duration: 30, note: "Drink lots of water", exercise: { id: 1, user_id: null, name: "rest", category: "rest", gif_url: null } }
 	]
 }

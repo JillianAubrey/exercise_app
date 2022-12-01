@@ -1,6 +1,6 @@
 import Empty from "../components/Exercise/Empty";
 import { action } from "@storybook/addon-actions";
-import library from "../helpers/fontAwesomeLibrary";
+import "../helpers/fontAwesomeLibrary";
 
 export default {
   component: Empty,

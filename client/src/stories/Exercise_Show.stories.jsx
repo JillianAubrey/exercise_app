@@ -1,6 +1,6 @@
 import React from "react";
 import Show from "../components/Exercise/Show";
-import library from "../helpers/fontAwesomeLibrary";
+import "../helpers/fontAwesomeLibrary";
 import { action } from "@storybook/addon-actions";
 
 

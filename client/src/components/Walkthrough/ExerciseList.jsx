@@ -19,7 +19,7 @@ export default function ExerciseList(props) {
 
   return (
     <div className="walkthrough">
-      {!isFirstExercise() && <SmallButton type="previous" onClick={previousExercise}/>}
+      <SmallButton type="previous" onClick={previousExercise} disabled={isFirstExercise()}/>
       <ExerciseListItem exercise={exercise} onNext={nextExercise} />
       {isLastExercise() 
        ? <SmallButton type="next" onClick={onComplete}>Finish</SmallButton>

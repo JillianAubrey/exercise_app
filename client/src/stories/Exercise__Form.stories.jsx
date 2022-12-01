@@ -1,6 +1,6 @@
 import Form from "../components/Exercise/Form";
 import { action } from "@storybook/addon-actions";
-import library from "../helpers/fontAwesomeLibrary";
+import "../helpers/fontAwesomeLibrary";
 
 export default {
   component: Form,

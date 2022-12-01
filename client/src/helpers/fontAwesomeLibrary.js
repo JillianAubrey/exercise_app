@@ -1,5 +1,5 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-//import { } from "@fortawesome/free-regular-svg-icons";
+
 import {
   faFloppyDisk,
   faFilePen,
@@ -33,5 +33,3 @@ library.add(
   faPlay,
   faChildReaching
 );
-
-export default library;

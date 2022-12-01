@@ -1,7 +1,7 @@
 import React from 'react'
 import { action } from "@storybook/addon-actions"
 import SmallButton from '../components/buttons_toggles/SmallButton';
-import library from "../helpers/fontAwesomeLibrary";
+import "../helpers/fontAwesomeLibrary";
 
 export default {
   component: SmallButton,
