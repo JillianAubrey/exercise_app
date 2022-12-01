@@ -29,7 +29,7 @@
     background-color: $theme-green;
   }
 
-  &--move {
+  &--move, &--navigate{
     background-color: rgb(255, 255, 255);
     color: $theme-green;
     font-size: 1em;

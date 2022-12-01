@@ -12,7 +12,8 @@ export default function SmallButton(props) {
     "small_button--destroy": type === "delete" || type === "cancel",
     "small_button--save": type === "save" || type === "add" || type === "rest",
     "small_button--move": type === "moveup" || type === "movedown",
-    "small_button--add": type === "add"
+    "small_button--add": type === "add",
+    "small_button--navigate": type === "previous" || type === "next"
   });
 
   return (
@@ -25,6 +26,8 @@ export default function SmallButton(props) {
       {type === 'moveup' && <FontAwesomeIcon className="icon" icon="chevron-up"/>}
       {type === 'movedown' && <FontAwesomeIcon className="icon" icon="chevron-down"/>}
       {type === 'rest' && <FontAwesomeIcon className="icon moon" icon="moon" />}
+      {type === 'previous' && <FontAwesomeIcon className="icon" icon="chevron-left" />}
+      {type === 'next' && <FontAwesomeIcon className="icon" icon="chevron-right" />}
      {children && ` ${children}`}
     </button>
   );

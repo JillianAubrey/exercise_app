@@ -1,13 +1,45 @@
-import React, { Fragment } from "react";
-import './Walkthrough.scss';
+import React, { Fragment, useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useList from "../../hooks/useList";
+import getWorkout from "../../helpers/getWorkout";
+import postWalkthrough from "../../helpers/postWalkthrough";
 
-export default function Walkthrough() {
-  return (
-    <Fragment >
-      <h1>About Us</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-    </Fragment>
+import Timer from "./Timer";
+import CardLeft from "../Exercise/CardLeft";
+import './Walkthrough.scss';
+import SmallButton from "../buttons_toggles/SmallButton";
+
+export default function Walkthrough(props) {
+  const { user, workoutId } = props
+  const [exerciseList, setExerciseList] = useState([])
+  const [
+    exercise, 
+    previousExercise, 
+    nextExercise
+  ] = useList(
+    exerciseList, 
+    0, 
+    () => postWalkthrough(user, workoutId)
   )
+
+  useEffect(() => {
+    getWorkout(
+      workoutId,
+      (response) => setExerciseList(response.data.workout_exercises)
+    )
+  }, [workoutId])
+
+  if (exercise) {
+    const { reps, sets, duration, note, exercise:{ name, category, gif_url }} = exercise
+
+    return (
+      <main className="walkthrough">
+        <SmallButton type="previous" onClick={previousExercise}>Previous</SmallButton>
+        <CardLeft name={name} category={category} gif_url={gif_url}/>
+        {duration && <Timer duration={duration} onComplete={nextExercise}/>}
+        <SmallButton type="next" onClick={nextExercise}>Next</SmallButton>
+      </main>
+    )
+  }
+
 }

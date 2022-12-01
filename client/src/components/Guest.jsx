@@ -3,6 +3,7 @@ import Login from "./Login"
 import Register from "./Register"
 import About from "./About"
 import classnames from "classnames";
+import Walkthrough from "./Walkthrough";
 import './Guest.scss';
 
 export default function Guest(props) {
@@ -35,6 +36,8 @@ export default function Guest(props) {
           <button onClick={(event) => changeView(event, LOGIN)} >Login</button>
           <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
           <button onClick={(event) => changeView(event, ABOUT)} >About</button>
+
+          <Walkthrough user="1" workoutId="3"/>
         </Fragment>
       )}
       {view === LOGIN && (
