@@ -3,8 +3,6 @@ class MembersController < ApplicationController
   # GET /workouts/:id/members => all members of workout
   def index
     @workout = Workout.find(params[:workout_id])
-    puts '@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@'
-    puts @workout
     render json: @workout.users
   end
 
