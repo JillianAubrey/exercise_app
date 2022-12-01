@@ -14,6 +14,7 @@ export default function WorkoutList(props) {
         gif_url={workout.first_gif}
         owner={workout.owner.name}
         exerciseList={exerciseList}
+        categoryCounts={workout.category_counts}
         onClick={() => {
           console.log("calling getWorkoutExercises")
           getWorkoutExercises(workout.id)

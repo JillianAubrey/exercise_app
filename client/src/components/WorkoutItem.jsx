@@ -1,10 +1,11 @@
 import React, { Fragment } from "react";
 import CardLeft from "./Exercise/CardLeft";
+import CategoryBar from "./CategoryBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './WorkoutItem.scss'
 
 export default function WorkoutItem(props) {
-  const { exerciseList, name, gif_url } = props
+  const { exerciseList, name, gif_url, categoryCounts } = props
   return (
     <Fragment>
       <article className="workout__card workout__card--show" onClick={props.onClick}>
@@ -23,6 +24,7 @@ export default function WorkoutItem(props) {
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>
           </div>
+          <CategoryBar {...categoryCounts} />
         </section>
       </article>
     </Fragment>
