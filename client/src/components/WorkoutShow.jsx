@@ -6,8 +6,8 @@ import saveWorkout from "../helpers/saveWorkout";
 
 export default function WorkoutShow(props) {
   const { exerciseList, user_id } = props;
-
   const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
+  const { error, setError } = useState(null)
 
   const workout_owner = exerciseList.owner.id;
 
