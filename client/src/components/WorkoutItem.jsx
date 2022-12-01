@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './WorkoutItem.scss'
 
 export default function WorkoutItem(props) {
-  const { exerciseList, name, gif_url, onEdit, ownWorkout, onClick } = {...props}
+  const { exerciseList, name, gif_url, onEdit, ownWorkout, onClick, categoryCounts} = {...props}
 
 
 
