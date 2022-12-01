@@ -14,6 +14,8 @@ import {
   faPersonRunning,
   faChevronDown,
   faChevronUp,
+  faChevronLeft,
+  faChevronRight,
   faMoon,
   faPlay
 } from "@fortawesome/free-solid-svg-icons";
@@ -27,6 +29,8 @@ library.add(
   faPersonRunning,
   faChevronDown,
   faChevronUp,
+  faChevronLeft,
+  faChevronRight,
   faMoon,
   faPlay
 );

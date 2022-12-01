@@ -34,10 +34,10 @@ export default function Walkthrough(props) {
 
     return (
       <main className="walkthrough">
-        <SmallButton type="previous" onClick={previousExercise}>Previous</SmallButton>
+        <SmallButton type="previous" onClick={previousExercise}></SmallButton>
         <CardLeft name={name} category={category} gif_url={gif_url}/>
         {duration && <Timer duration={duration} onComplete={nextExercise}/>}
-        <SmallButton type="next" onClick={nextExercise}>Next</SmallButton>
+        <SmallButton type="next" onClick={nextExercise}></SmallButton>
       </main>
     )
   }

@@ -25,11 +25,11 @@
     background-color: $edit-color;
   }
 
-  &--save {
+  &--save, &--navigate {
     background-color: $theme-green;
   }
 
-  &--move, &--navigate{
+  &--move {
     background-color: rgb(255, 255, 255);
     color: $theme-green;
     font-size: 1em;
