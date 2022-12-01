@@ -1,32 +1,8 @@
 import React from "react";
 import Show from "../components/Exercise/Show";
-import { library } from "@fortawesome/fontawesome-svg-core";
-//import { } from "@fortawesome/free-regular-svg-icons";
-import {
-  faFloppyDisk,
-  faFilePen,
-  faTrash,
-  faCirclePlus,
-  faXmark,
-  faDumbbell,
-  faPersonRunning,
-  faChevronDown,
-  faChevronUp,
-  faMoon
-} from "@fortawesome/free-solid-svg-icons";
+import library from "../helpers/fontAwesomeLibrary";
 import { action } from "@storybook/addon-actions";
-library.add(
-  faFloppyDisk,
-  faFilePen,
-  faTrash,
-  faCirclePlus,
-  faXmark,
-  faDumbbell,
-  faPersonRunning,
-  faChevronDown,
-  faChevronUp,
-  faMoon
-);
+
 
 export default {
   component: Show,

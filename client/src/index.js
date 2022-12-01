@@ -2,38 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { library } from "@fortawesome/fontawesome-svg-core";
-//import { } from "@fortawesome/free-regular-svg-icons";
-import {
-  faFloppyDisk,
-  faFilePen,
-  faTrash,
-  faCirclePlus,
-  faXmark,
-  faDumbbell,
-  faPersonRunning,
-  faChevronDown,
-  faChevronUp,
-  faChevronLeft,
-  faChevronRight,
-  faMoon,
-  faPlay
-} from "@fortawesome/free-solid-svg-icons";
-library.add(
-  faFloppyDisk,
-  faFilePen,
-  faTrash,
-  faCirclePlus,
-  faXmark,
-  faDumbbell,
-  faPersonRunning,
-  faChevronDown,
-  faChevronUp,
-  faChevronLeft,
-  faChevronRight,
-  faMoon,
-  faPlay
-);
+import library from "./helpers/fontAwesomeLibrary";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

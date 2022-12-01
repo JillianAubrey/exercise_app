@@ -1,8 +1,6 @@
 import Empty from "../components/Exercise/Empty";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCirclePlus } from "@fortawesome/free-solid-svg-icons";
 import { action } from "@storybook/addon-actions";
-library.add(faCirclePlus);
+import library from "../helpers/fontAwesomeLibrary";
 
 export default {
   component: Empty,

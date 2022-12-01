@@ -13,17 +13,17 @@ const Template = args => <Timer {...args} />
 export const ThirtySeconds = Template.bind({});
 ThirtySeconds.args = {
     onComplete: action("timer done"),
-    duration: 30
+    duration: {seconds: 30}
 }
 
 export const TenSeconds = Template.bind({});
 TenSeconds.args = {
     onComplete: action("timer done"),
-    duration: 10
+    duration: {seconds: 10}
 }
 
 export const FiveMinutes = Template.bind({});
 FiveMinutes.args = {
     onComplete: action("timer done"),
-    duration: 300
+    duration: {seconds: 300}
 }

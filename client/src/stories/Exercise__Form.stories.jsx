@@ -1,9 +1,6 @@
 import Form from "../components/Exercise/Form";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faChevronDown, faChevronUp, faFloppyDisk, faXmark} from "@fortawesome/free-solid-svg-icons";
 import { action } from "@storybook/addon-actions";
-library.add(faFloppyDisk, faXmark, faChevronUp, faChevronDown);
-
+import library from "../helpers/fontAwesomeLibrary";
 
 export default {
   component: Form,
