@@ -6,6 +6,8 @@ import Toggle from "./buttons_toggles/Toggle";
 export default function User(props) {
   const [byOthers, setByOthers] = useState(false)
 
+  
+
   const { userName, onLogout, workoutList, setWorkoutShow, exerciseList, setExerciseList, getWorkoutExercises, user } = props
   console.log("Rendering the User component")
   console.log("exerciseList.exercises: ", exerciseList.workout_exercises)

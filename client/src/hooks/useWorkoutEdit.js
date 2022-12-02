@@ -82,6 +82,8 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
     return saveWorkout({ workout_exercises: workoutEdit, name }, workoutId, handleError).then((saved) => {
       if (saved) {
         const newExercises = saved.workout_exercises;
+
+        console.log("newExercises", newExercises)
         
         let indexes = [];
         let addedExercises = newExercises.filter((el) => el.id < 1)
@@ -117,7 +119,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
         });
         
 
-        console.log(editCopy)
+        console.log("edit copy afterwards", editCopy)
         return editCopy
         
       }

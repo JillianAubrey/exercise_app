@@ -12,7 +12,7 @@ export default function WorkoutShow(props) {
   const [errors, setErrors] = useState(null);
   const [editMode, setEditMode] = useState(false);
   const [editedCopy, setEditedCopy] = useState(exerciseList.workout_exercises.map((el) => ({...el})))
-  console.log("edited copy", editedCopy)
+ 
   const workout_owner = exerciseList.owner.id;
   const { handleWorkoutEdit, handleReorderData, saveEdited, handleExerciseDelete } =
     useWorkoutEdit(exerciseList.workout_exercises, name, workout_id, setErrors);
@@ -79,10 +79,7 @@ export default function WorkoutShow(props) {
     return exercises;
   };
 
-  
-
-  const exercises = editedCopy ? createExercises(editedCopy)
-  : createExercises(exerciseList.workout_exercises);
+  const exercises = editedCopy? createExercises(editedCopy) : createExercises(exerciseList.workout_exercises);
 
   return (
     <Fragment>
