@@ -7,14 +7,9 @@ import Toggle from "./buttons_toggles/Toggle";
 export default function User(props) {
   const [byOthers, setByOthers] = useState(false)
 
-  const { userName, onLogout, workoutList, setWorkoutShow, exerciseList, setExerciseList, getWorkoutExercises, user } = props
+  const { workoutList, setWorkoutShow, exerciseList, setExerciseList, getWorkoutExercises, user } = props
   console.log("Rendering the User component")
   console.log("exerciseList.exercises: ", exerciseList.workout_exercises)
-
-  const handleLogout = (event) => {
-    event.preventDefault();
-    onLogout();
-  }
 
   const handleWorkoutsFilter = function(exerciseList, byOthers = false) {
     if (exerciseList.workout_exercises) {
@@ -27,8 +22,6 @@ export default function User(props) {
 
   return (
     <Fragment>
-      <button onClick={handleLogout}>Logout</button>
-      <p>Logged in as {userName}</p>
       {!exerciseList.workout_exercises &&
         <WorkoutList
           setWorkoutShow={setWorkoutShow}

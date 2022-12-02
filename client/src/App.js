@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Guest from "./components/Guest";
 import User from "./components/User";
+import NavBar from "./components/NavBar";
 import useUserData from "./hooks/useUserData";
 import getSession from "./helpers/api_requests/getSession";
 
@@ -18,7 +19,10 @@ export default function App() {
   return (
     <div className="App">
       {userId
-        ? <p>Logged in!</p> //<User/>
+        ? (
+          <NavBar userName={userName} setUser={setUser} /> 
+          //<User/>
+        )
         : <Guest setUser={setUser}/>
       }
     </div>
