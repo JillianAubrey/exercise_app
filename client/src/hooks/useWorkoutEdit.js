@@ -64,11 +64,6 @@ const useWorkoutEdit = function(workout) {
     setEditedExercises((prev) => {
       const newEdit = [...prev]
       newEdit.splice(index, 1)
-      console.log('index', index)
-      console.log('prev')
-      console.table(prev)
-      console.log('new')
-      console.table(newEdit)
       return newEdit
     })
   }

@@ -23,7 +23,6 @@ export default function WorkoutEdit(props) {
   const handleSave = () => {
     saveEdited(
       (res) => {
-        console.log(res)
         onSave(editedExercises)
       },
       (err) => setErrors(err)

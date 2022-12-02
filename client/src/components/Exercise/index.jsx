@@ -15,7 +15,7 @@ const SEARCH = "SEARCH";
 const NEW = "NEW";
 
 export default function Exercise(props) {
-  const { index, empty, editMode, user_id, handleWorkoutEdit, handleExerciseDelete } = {
+  const { index, empty, editMode, user_id, handleWorkoutEdit, onDelete } = {
     ...props,
   };
   const [addNewProps, setAddNewProps] = useState();
@@ -30,10 +30,6 @@ export default function Exercise(props) {
     }
 
   },[editMode])
-
-  const onDelete = () => {
-    handleExerciseDelete(index)
-  }
 
   const handleSearchAdd = (exercise) => {
     setAddNewProps(exercise);
@@ -74,7 +70,7 @@ export default function Exercise(props) {
     ? { ...addNewProps, onCancel: () => back(), handleFormSave, workout_exercise_id : Math.random() }
     : { ...props, onCancel: () => back(), handleFormSave };
 
-  const showProps = addNewProps ? { ...addNewProps, onEdit, mode, onDelete, editMode } : editMode ? {...props, onEdit, onDelete, mode, editMode} : {...props, mode }
+  const showProps = addNewProps ? { ...addNewProps, onEdit, mode, editMode } : editMode ? {...props, onEdit, mode, editMode} : {...props, mode }
 
   return (
     <Fragment>

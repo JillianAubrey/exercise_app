@@ -32,9 +32,7 @@ export default function ExerciseListEdit(props) {
         editMode={true}
         handleWorkoutEdit={handleWorkoutEdit}
         handleReorder={handleReorder}
-        handleExerciseDelete={() => {
-          handleExerciseDelete(index);
-        }}
+        onDelete={() => handleExerciseDelete(index)}
       />
     );
   });

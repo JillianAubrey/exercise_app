@@ -78,7 +78,11 @@ export default function User(props) {
           onCancel={() => setView(WORKOUT_SHOW)}
           onSave={(editedExercises)=> {
             setSelectedWorkout(prev => {
-              return {...prev, workout_exercises: editedExercises}
+              return {
+                ...prev,
+                first_gif: editedExercises[0].exercise.gif_url,
+                workout_exercises: editedExercises
+              }
             })
             setView(WORKOUT_SHOW)
           }}
