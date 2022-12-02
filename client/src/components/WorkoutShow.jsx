@@ -10,9 +10,9 @@ export default function WorkoutShow(props) {
   console.log("loading the WorkoutShow page")
   console.log("workout_exercises", exerciseList.workout_exercises)
 
-  const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
-
-  const workout_owner = exerciseList.owner.id;
+  const { name, first_gif, owner, id: workout_id } = { ...exerciseList };
+  console.log('owner name', owner.name)
+  const workout_owner = owner.id;
 
 
   const exercisesCopy = exerciseList.workout_exercises.map(
@@ -101,11 +101,11 @@ export default function WorkoutShow(props) {
       <WorkoutItem
         name={name}
         gif_url={first_gif}
-        ownerName={ownerName}
+        ownerName={owner.name}
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
       />
-      <Member userId={user_id} />
+      <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
       {editMode && (
         <Exercise
