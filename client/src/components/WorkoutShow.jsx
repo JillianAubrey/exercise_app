@@ -3,26 +3,15 @@ import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from "./Member/";
 import Toggle from "./buttons_toggles/Toggle";
-import postWorkout from "../helpers/api_requests/postWorkout";
-import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 import useWorkoutEdit from "../hooks/useWorkoutEdit";
 import errorDisplay from "../helpers/errorDisplay";
 
 export default function WorkoutShow(props) {
   const { workout, user_id, onPlay } = props;
   const [editMode, setEditMode] = useState(false);
-  const [exerciseList, setExerciseList] = useState([])
   const [editedCopy, setEditedCopy] = useState(null)
   const [errors, setErrors] = useState(null)
-
-
-  
-  useEffect(() => {
-    getDetailedWorkout(
-      workout.id,
-      (res) => setExerciseList([...res.data.workout_exercises])
-    )
-  }, [workout])
+  const exerciseList = workout.workout_exercises
 
   const {  saveEdited,
     handleReorderData,
