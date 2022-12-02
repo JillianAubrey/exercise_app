@@ -4,7 +4,6 @@ import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import Error from "./Error";
 import postLogin from "../helpers/api_requests/postLogin";
-import useUserData from "../hooks/useUserData";
 import './Login.scss';
 
 export default function Login(props) {
@@ -17,8 +16,8 @@ export default function Login(props) {
     postLogin(
       params,
       (res) => {
-        console.log(res.data)
-        setUser({...res.data})
+        setUser({...res.data});
+        setError('');
       },
       (err) => setError(err)
     )
