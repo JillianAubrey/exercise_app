@@ -107,7 +107,7 @@ export default function WorkoutShow(props) {
         onEdit={() => setEditMode(true)}
         onPlay={onPlay}
       />
-      {workout_owner === user_id && <Statistics workoutId = {workout_id}/>}
+      {workout_owner === user_id && <Statistics workoutId={workout_id}/>}
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
       {editMode && (
