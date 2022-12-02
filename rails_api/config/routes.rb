@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get '/logged_in', to: 'sessions#show'
 
   resources :workouts do
+    resources :members, only: [:index, :create, :destroy]
+
     member do
       get 'statistics'
     end

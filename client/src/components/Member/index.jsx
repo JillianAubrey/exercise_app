@@ -4,7 +4,7 @@ import './styles.scss'
 
 export default function Member(props) {
   const [listShow, setListShow] = useState(false)
-  const { user, exerciseList } = props
+  const { owner, workoutId, userId } = props
 
   const toggleState = function(stateFunc) {
     stateFunc((prev) => !prev)
@@ -14,9 +14,9 @@ export default function Member(props) {
     <Fragment>
       <article className="member__card" onClick={() => toggleState(setListShow)}>
         <div className="member__card-header">
-          <h1> See Workout Members </h1>
+          <h1>Workout Members</h1>
         </div>
-        { listShow && <MembersList />}
+        {listShow && <MembersList owner={owner} workoutId={ workoutId} userId={userId} />}
       </article>
     </Fragment>
   );

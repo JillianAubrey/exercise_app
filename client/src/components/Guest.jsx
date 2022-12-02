@@ -3,6 +3,7 @@ import Login from "./Login"
 import Register from "./Register"
 import About from "./About"
 import classnames from "classnames";
+import Walkthrough from "./Walkthrough";
 import './Guest.scss';
 
 export default function Guest(props) {

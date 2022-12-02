@@ -79,11 +79,11 @@ export default function WorkoutShow(props) {
       <WorkoutItem
         name={name}
         gif_url={first_gif}
-        ownerName={ownerName}
+        ownerName={owner.name}
         ownWorkout={workout_owner === user_id}
         onEdit={handleEditMode}
       />
-      <Member userId={user_id} />
+      <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
 
 

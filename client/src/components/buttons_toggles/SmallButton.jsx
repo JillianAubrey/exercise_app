@@ -4,7 +4,7 @@ import './SmallButton.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SmallButton(props) {
-  const { onClick, type, children } = {...props};
+  const { onClick, type, disabled, children } = {...props};
 
   //display of button changes depending on the type attribute passed in. typically the same text as the button label but lowercase
   const buttonClasses = classnames("small_button", {
@@ -12,11 +12,12 @@ export default function SmallButton(props) {
     "small_button--destroy": type === "delete" || type === "cancel",
     "small_button--save": type === "save" || type === "add" || type === "rest",
     "small_button--move": type === "moveup" || type === "movedown",
-    "small_button--add": type === "add"
+    "small_button--add": type === "add",
+    "small_button--navigate": type === "previous" || type === "next"
   });
 
   return (
-    <button onClick={onClick} className={buttonClasses}>
+    <button onClick={onClick} className={buttonClasses} disabled={disabled}>
       {type === 'edit' && <FontAwesomeIcon className="icon" icon="file-pen"/>}
       {type === 'delete' && <FontAwesomeIcon className="icon" icon="trash"/>}
       {type === 'cancel' && <FontAwesomeIcon className="icon" icon="xmark"/>}
@@ -25,6 +26,8 @@ export default function SmallButton(props) {
       {type === 'moveup' && <FontAwesomeIcon className="icon" icon="chevron-up"/>}
       {type === 'movedown' && <FontAwesomeIcon className="icon" icon="chevron-down"/>}
       {type === 'rest' && <FontAwesomeIcon className="icon moon" icon="moon" />}
+      {type === 'previous' && <FontAwesomeIcon className="icon" icon="chevron-left" />}
+      {type === 'next' && <FontAwesomeIcon className="icon" icon="chevron-right" />}
      {children && ` ${children}`}
     </button>
   );

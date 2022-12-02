@@ -103,6 +103,12 @@ class WorkoutsController < ApplicationController
     render json: @workout.statistics
   end
 
+  # GET /workout/members/1
+  def members
+    @workout = Workout.find(params[:id])
+    render json: @workout.users
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_workout
