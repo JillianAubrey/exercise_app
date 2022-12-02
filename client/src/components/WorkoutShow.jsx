@@ -1,31 +1,56 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from "./Member/";
 import Toggle from "./buttons_toggles/Toggle";
+import postWorkout from "../helpers/api_requests/postWorkout";
+import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 import useWorkoutEdit from "../hooks/useWorkoutEdit";
 import errorDisplay from "../helpers/errorDisplay";
 
 export default function WorkoutShow(props) {
-  const { exerciseList, user_id } = props;
-  const { name, first_gif, owner, id: workout_id } = { ...exerciseList };
-  const [errors, setErrors] = useState(null);
+  const { workout, user_id, onPlay } = props;
   const [editMode, setEditMode] = useState(false);
-  const [editedCopy, setEditedCopy] = useState(exerciseList.workout_exercises.map((el) => ({...el})))
- 
-  const workout_owner = exerciseList.owner.id;
-  const { handleWorkoutEdit, handleReorderData, saveEdited, handleExerciseDelete } =
-    useWorkoutEdit(exerciseList.workout_exercises, name, workout_id, setErrors);
-
-  const errorElements = errorDisplay(errors);
-
-
-  const handleReorderComponents = (up, data) => {
-
+  const [exerciseList, setExerciseList] = useState([])
+  
+  useEffect(() => {
+    getDetailedWorkout(
+      workout.id,
+      (res) => setExerciseList([...res.data.workout_exercises])
+    )
+  }, [workout])
+  
+  const { name, first_gif, id: workout_id, owner } = workout;
+  const workout_owner = owner.id;
+  
+  console.log("loading the WorkoutShow page")
+  
+  const exercisesCopy = exerciseList.map(
+    (workout_exercise) => {
+      const exerciseCopy = { ...workout_exercise };
+      exerciseCopy.exercise_id = exerciseCopy.exercise.id;
+      delete exerciseCopy.exercise;
+      return exerciseCopy;
+  });
     
-    
-    handleReorderData(up, data)
-  }
+  const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
+
+  const handleWorkoutEdit = function (workout_exercise) {
+    setWorkoutEdit((prev) => {
+      delete workout_exercise.name;
+      workout_exercise.id = workout_exercise.workout_exercise_id;
+      delete workout_exercise.workout_exercise_id;
+
+      let newEdit = prev.map((el) => {
+        if (el.id === workout_exercise.id) {
+          return workout_exercise;
+        }
+        return { ...el };
+      });
+
+      if (!workout_exercise.id) {
+        newEdit.push(workout_exercise);
+      }
 
   const handleEditMode = () => {
     setEditMode(prev => !prev);
@@ -89,6 +114,7 @@ export default function WorkoutShow(props) {
         ownerName={owner.name}
         ownWorkout={workout_owner === user_id}
         onEdit={handleEditMode}
+        onPlay={onPlay}
       />
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}

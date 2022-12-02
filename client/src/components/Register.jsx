@@ -4,13 +4,25 @@ import TextInput from "./form_elements/TextInput";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import Error from "./Error";
-import classnames from "classnames";
+import postUser from "../helpers/api_requests/postUser";
 import './Register.scss';
 
 export default function Register(props) {
-  const { onRegister } = props
+  const { setUser } = props
   const { handleInputChange, data} = useForm({name: '', email: '', password: '', password_confirmation: ''})
   const [ error, setError ] = useState('')
+
+  const onRegister = (params) => {
+    console.log('onLogin called')
+    postUser(
+      params,
+      (res) => {
+        setUser({...res.data});
+        setError('');
+      },
+      (err) => setError(err)
+    )
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()

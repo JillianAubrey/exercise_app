@@ -6,10 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './WorkoutItem.scss'
 
 export default function WorkoutItem(props) {
-  const { exerciseList, name, gif_url, onEdit, ownWorkout, onClick, categoryCounts} = {...props}
-
-
-
+  const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, categoryCounts} = {...props}
 
   return (
     <Fragment>
@@ -24,7 +21,12 @@ export default function WorkoutItem(props) {
             <button
               type="button"
               className="workout__card-btn"
-              onClick={console.log("click")}
+              onClick={event => {
+                console.log("clicked play!")
+                event.preventDefault();
+                event.stopPropagation();
+                onPlay();
+              }}
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>

@@ -1,28 +1,30 @@
-import useApplicationData from "./hooks/useApplicationData";
+import React, { useEffect, Fragment } from "react";
 import Guest from "./components/Guest";
 import User from "./components/User";
+import NavBar from "./components/NavBar";
+import useUserData from "./hooks/useUserData";
+import getSession from "./helpers/api_requests/getSession";
 
 export default function App() {
-  const { user, userName, onLogin, onRegister, onLogout, workoutList, setWorkoutShow, exerciseList, setExerciseList, workoutShow, getWorkoutExercises } = useApplicationData();
+  const {userId, userName, setUser} = useUserData();
   console.log("rendering the App component")
+
+  useEffect(() => {
+    getSession(
+      (res) => setUser({...res.data}),
+      (err) => console.error('Error fetching current session', err)
+    )
+  }, [])
 
   return (
     <div className="App">
-      {!user && <Guest 
-        onLogin={onLogin}
-        onRegister={onRegister}
-      />}
-      {user && <User 
-        userName={userName} 
-        onLogout={onLogout} 
-        workoutList={workoutList} 
-        workoutShow={workoutShow} 
-        setWorkoutShow={setWorkoutShow} 
-        exerciseList={exerciseList} 
-        getWorkoutExercises={getWorkoutExercises} 
-        user={user}
-        setExerciseList={setExerciseList}
-      />}
+      {userId
+        ? <Fragment>
+            <NavBar userName={userName} setUser={setUser} /> 
+            <User user={userId} />
+          </Fragment>
+        : <Guest setUser={setUser}/>
+      }
     </div>
   );
 }

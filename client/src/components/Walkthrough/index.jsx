@@ -1,21 +1,24 @@
 import React, { useState, useEffect, Fragment } from "react";
-import getWorkout from "../../helpers/getWorkout";
+import getDetailedWorkout from "../../helpers/api_requests/getDetailedWorkout";
 import ExerciseList from "./ExerciseList";
-import postWalkthrough from "../../helpers/postWalkthrough";
+import postWalkthrough from "../../helpers/api_requests/postWalkthrough";
 import './Walkthrough.scss';
 
 export default function WalkthroughContainer(props) {
-  const { user, workout } = props
+  const { user, workout, onFinish } = props
   const [exerciseList, setExerciseList] = useState()
 
   useEffect(() => {
-    getWorkout(
+    getDetailedWorkout(
       workout.id,
       (response) => setExerciseList(response.data.workout_exercises)
     )
   }, [workout])
 
-  const onComplete = () => postWalkthrough(user, workout.id)
+  const onComplete = () => {
+    postWalkthrough(user, workout.id)
+    onFinish();
+  }
 
   return (
     <main className="walkthrough--container">

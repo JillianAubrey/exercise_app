@@ -1,31 +1,38 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useMemo } from "react";
 import WorkoutItem from './WorkoutItem'
 import filterWorkoutList from "../helpers/selectors";
+import Toggle from "./buttons_toggles/Toggle";
 
 export default function WorkoutList(props) {
-  const { workoutList, getWorkoutExercises, exerciseList, user, byOthers } = props;
+  const { user, userWorkouts, onShow, onPlay } = props;
+  const [byOthers, setByOthers] = useState(false)
+  const workoutList = useMemo(
+    () => filterWorkoutList( userWorkouts, user, byOthers),  
+    [userWorkouts, byOthers, user]
+  );
 
-
-  const workout = filterWorkoutList(workoutList, user, byOthers).map((workout) => {
+  const workouts = workoutList.map((workout) => {
     return (
       <WorkoutItem
         key={workout.id}
         name={workout.name}
         gif_url={workout.first_gif}
         owner={workout.owner.name}
-        exerciseList={exerciseList}
         categoryCounts={workout.category_counts}
-        onClick={() => {
-          console.log("calling getWorkoutExercises")
-          getWorkoutExercises(workout.id)
-        }
-        }
+        onClick={() => onShow(workout)}
+        onPlay={() => onPlay(workout)}
       />
     )
   })
   return (
     <Fragment>
-      <ul>{workout}</ul>
+      <ul>{workouts}</ul>
+      <Toggle
+        leftLabel="My Workouts"
+        leftClick={() => setByOthers(false)}
+        rightLabel="Shared Workouts"
+        rightClick={() => setByOthers(true)}
+      />
     </Fragment>
   );
 }

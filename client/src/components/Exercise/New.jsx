@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import useForm from "../../hooks/useForm";
 import TextInput from "../form_elements/TextInput";
-import saveExercise from "../../helpers/saveExercise"
+import postExercise from "../../helpers/api_requests/postExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
@@ -14,7 +14,7 @@ export default function New(props) {
 
   const handleExerciseAdd = (data) => {
     if (validateNewExercise(data, setErrors)) {
-      saveExercise(data, setErrors).then((responseData) => {
+      postExercise(data, setErrors).then((responseData) => {
         if (responseData) {
           onAdd(responseData);
         }
