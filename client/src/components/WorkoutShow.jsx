@@ -4,6 +4,7 @@ import WorkoutItem from "./WorkoutItem";
 import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
 import postWorkout from "../helpers/api_requests/postWorkout";
+import Statistics from "./Statistics";
 
 export default function WorkoutShow(props) {
   const { workout, user_id, onPlay } = props;
@@ -106,6 +107,7 @@ export default function WorkoutShow(props) {
         onEdit={() => setEditMode(true)}
         onPlay={onPlay}
       />
+      {workout_owner === user_id && <Statistics workoutId = {workout_id}/>}
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
       {editMode && (
