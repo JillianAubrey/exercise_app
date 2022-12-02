@@ -4,19 +4,11 @@ import WorkoutItem from "./WorkoutItem";
 import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
 import postWorkout from "../helpers/api_requests/postWorkout";
-import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 
 export default function WorkoutShow(props) {
   const { workout, user_id, onPlay } = props;
   const [editMode, setEditMode] = useState(false);
-  const [exerciseList, setExerciseList] = useState([])
-  
-  useEffect(() => {
-    getDetailedWorkout(
-      workout.id,
-      (res) => setExerciseList([...res.data.workout_exercises])
-    )
-  }, [workout])
+  const exerciseList = workout.workout_exercises
   
   const { name, first_gif, id: workout_id, owner } = workout;
   const workout_owner = owner.id;

@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import WalkthroughContainer from "./Walkthrough";
-import Exercise from "./Exercise";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
+import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
@@ -39,6 +39,17 @@ export default function User(props) {
     )
   }, [user])
 
+  const onSelect = (workoutId, view) => {
+    getDetailedWorkout(
+      workoutId,
+      (res) => {
+        setSelectedWorkout(res.data)
+        setView(view)
+      },
+      (err) => console.error("Error fetching workout data", err)
+    )
+  }
+
   return (
     <Fragment>
       {view !== WORKOUT_LIST && homeButton}
@@ -46,23 +57,16 @@ export default function User(props) {
         <WorkoutList 
           user={user} 
           userWorkouts={userWorkouts} 
-          onShow={(workout) => {
-            setSelectedWorkout(workout)
-            setView(WORKOUT_SHOW)
-          }}
-          onPlay={(workout) => {
-            setSelectedWorkout(workout)
-            setView(WALKTHROUGH)
-          }}
+          onShow={(workout) => onSelect(workout.id, WORKOUT_SHOW)}
+          onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
         />
       }
       {view === WORKOUT_SHOW && 
         <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)}/>
       }
       {view === WALKTHROUGH && 
-        <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={setView(WORKOUT_LIST)}/>
+        <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={() => setView(WORKOUT_LIST)}/>
       }
-      {/* <Exercise empty user_id={1} /> */}
     </Fragment>
   );
 }
