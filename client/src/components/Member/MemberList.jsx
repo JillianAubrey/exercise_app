@@ -1,33 +1,35 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import MemberSearch from './MemberSearch.jsx'
 import MemberListItem from "./MemberListItem.jsx";
+import getMembers from "../../helpers/api_requests/getMembers.js";
 import './styles.scss'
-
 export default function MemberList(props) {
-  const { user, exerciseList, show } = props
-  
-  const memberList = [
-    { id: 1, name: 'john' },
-    {id: 2, name: 'jane' }
-  ]
+  const { owner, memberList } = props
 
-  const members = memberList.map((member) => {
-    return (
-      <MemberListItem
-        key={member.id}
-        name={member.name}
-      />
-    )
-  })
+  let members = []
+  if (memberList.length > 0) {
+    members = memberList.map((member) => {
+      return (
+          <MemberListItem
+            key={member.id}
+            name={member.name}
+          />
+      )
+    })
+  }
 
   return (
     <Fragment>
       <div className="member__card-divider"></div>
       <div className="member__card-note">
+        Workout Owner
+        <ul>
+          <MemberListItem name={owner} />
+        </ul>
+        Workout Members
+        <ul>
         {members}
-      </div>
-      <div className="member__card-note">
-        Search button, component here!
+      </ul>
       </div>
     </Fragment>
   );

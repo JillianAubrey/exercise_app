@@ -18,8 +18,8 @@ export default function WorkoutShow(props) {
     )
   }, [workout])
   
-  const { name, first_gif, ownerName, id: workout_id } = workout;
-  const workout_owner = workout.owner.id;
+  const { name, first_gif, id: workout_id, owner } = workout;
+  const workout_owner = owner.id;
   
   console.log("loading the WorkoutShow page")
   
@@ -109,12 +109,12 @@ export default function WorkoutShow(props) {
       <WorkoutItem
         name={name}
         gif_url={first_gif}
-        ownerName={ownerName}
+        ownerName={owner.name}
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
         onPlay={onPlay}
       />
-      <Member userId={user_id} />
+      <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
       {editMode && (
         <Exercise
