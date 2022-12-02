@@ -8,7 +8,6 @@ export default function CardLeft(props) {
   return (
     <section className="exercise__card-left">
     {/* in the left section of the card, render the gif. if there is no gif, render an icon. which icon depends on teh category */}
-    {console.log(gif_url)}
     {gif_url ? (
       <img src={gif_url} alt={name} />
     ) : category === "cardio" ? (

@@ -5,7 +5,7 @@ import postWalkthrough from "../../helpers/api_requests/postWalkthrough";
 import './Walkthrough.scss';
 
 export default function WalkthroughContainer(props) {
-  const { user, workout } = props
+  const { user, workout, onFinish } = props
   const [exerciseList, setExerciseList] = useState()
 
   useEffect(() => {
@@ -15,7 +15,10 @@ export default function WalkthroughContainer(props) {
     )
   }, [workout])
 
-  const onComplete = () => postWalkthrough(user, workout.id)
+  const onComplete = () => {
+    postWalkthrough(user, workout.id)
+    onFinish();
+  }
 
   return (
     <main className="walkthrough--container">

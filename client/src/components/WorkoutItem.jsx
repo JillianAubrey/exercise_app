@@ -8,8 +8,6 @@ import './WorkoutItem.scss'
 export default function WorkoutItem(props) {
   const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, categoryCounts} = {...props}
 
-
-
   return (
     <Fragment>
       <article className="workout__card workout__card--show" onClick={onClick} disabled>
@@ -24,9 +22,10 @@ export default function WorkoutItem(props) {
               type="button"
               className="workout__card-btn"
               onClick={event => {
+                console.log("clicked play!")
                 event.preventDefault();
-                onPlay()
                 event.stopPropagation();
+                onPlay();
               }}
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />

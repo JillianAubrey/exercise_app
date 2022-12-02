@@ -17,10 +17,16 @@ export default function ExerciseList(props) {
     0
   )
 
+  const onNext = (
+    isLastExercise()
+    ? onComplete
+    : nextExercise
+  )
+
   return (
     <div className="walkthrough">
       <SmallButton type="previous" onClick={previousExercise} disabled={isFirstExercise()}/>
-      <ExerciseListItem exercise={exercise} onNext={nextExercise} />
+      <ExerciseListItem exercise={exercise} onNext={onNext} />
       {isLastExercise() 
        ? <SmallButton type="next" onClick={onComplete}>Finish</SmallButton>
        : <SmallButton type="next" onClick={nextExercise} />

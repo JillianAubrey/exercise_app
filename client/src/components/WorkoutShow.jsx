@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment, useEffect, useRef } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from './Member/'
@@ -7,35 +7,31 @@ import postWorkout from "../helpers/api_requests/postWorkout";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 
 export default function WorkoutShow(props) {
-  const { workout, user_id } = props;
+  const { workout, user_id, onPlay } = props;
+  const [editMode, setEditMode] = useState(false);
   const [exerciseList, setExerciseList] = useState([])
-
+  
   useEffect(() => {
     getDetailedWorkout(
       workout.id,
-      (res) => setExerciseList(res.data.workout_exercises)
+      (res) => setExerciseList([...res.data.workout_exercises])
     )
   }, [workout])
-
-  console.log("loading the WorkoutShow page")
-  console.log("workout_exercises", exerciseList)
-
+  
   const { name, first_gif, ownerName, id: workout_id } = workout;
-
   const workout_owner = workout.owner.id;
-
-
+  
+  console.log("loading the WorkoutShow page")
+  
   const exercisesCopy = exerciseList.map(
     (workout_exercise) => {
       const exerciseCopy = { ...workout_exercise };
       exerciseCopy.exercise_id = exerciseCopy.exercise.id;
       delete exerciseCopy.exercise;
       return exerciseCopy;
-    }
-  );
-
+  });
+    
   const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
-  const [editMode, setEditMode] = useState(false);
 
   const handleWorkoutEdit = function (workout_exercise) {
     setWorkoutEdit((prev) => {
@@ -84,8 +80,10 @@ export default function WorkoutShow(props) {
   };
 
   const exercises = exerciseList.map((item, index) => {
-    const { duration, reps, sets, note, id: workout_exercise_id } = item;
-    const { id: exercise_id, name, category, gif_url } = item.exercise;
+    const { 
+      duration, reps, sets, note, id: workout_exercise_id, 
+      exercise: { id: exercise_id, name, category, gif_url }
+    } = item;
 
     return (
       <Exercise
@@ -114,6 +112,7 @@ export default function WorkoutShow(props) {
         ownerName={ownerName}
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
+        onPlay={onPlay}
       />
       <Member userId={user_id} />
       {exercises}
@@ -131,6 +130,7 @@ export default function WorkoutShow(props) {
           leftClick={() =>
             postWorkout({ workout_exercises: workoutEdit, name }, workout_id)
           }
+          rightClick={() => setEditMode(false)}
         />
       )}
     </Fragment>

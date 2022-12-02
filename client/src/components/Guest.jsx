@@ -38,7 +38,7 @@ export default function Guest(props) {
         <Login setUser={setUser}/>
       )}
       {view === REGISTER && (
-        <Register/>
+        <Register setUser={setUser} />
       )}
       {view === ABOUT && (
         <About />

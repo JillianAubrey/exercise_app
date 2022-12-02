@@ -57,10 +57,10 @@ export default function User(props) {
         />
       }
       {view === WORKOUT_SHOW && 
-        <WorkoutShow user_id={user} workout={selectedWorkout} />
+        <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)}/>
       }
       {view === WALKTHROUGH && 
-        <WalkthroughContainer user_id={user} workout={selectedWorkout} />
+        <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={setView(WORKOUT_LIST)}/>
       }
       {/* <Exercise empty user_id={1} /> */}
     </Fragment>
