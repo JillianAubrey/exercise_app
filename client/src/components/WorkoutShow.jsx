@@ -12,6 +12,10 @@ export default function WorkoutShow(props) {
   const { workout, user_id, onPlay } = props;
   const [editMode, setEditMode] = useState(false);
   const [exerciseList, setExerciseList] = useState([])
+  const [editedCopy, setEditedCopy] = useState(null)
+  const [errors, setErrors] = useState(null)
+
+
   
   useEffect(() => {
     getDetailedWorkout(
@@ -19,38 +23,16 @@ export default function WorkoutShow(props) {
       (res) => setExerciseList([...res.data.workout_exercises])
     )
   }, [workout])
+
+  const {  saveEdited,
+    handleReorderData,
+    handleWorkoutEdit,
+    handleExerciseDelete } = useWorkoutEdit(exerciseList, workout.name, workout.id, setErrors)
   
   const { name, first_gif, id: workout_id, owner } = workout;
   const workout_owner = owner.id;
   
-  console.log("loading the WorkoutShow page")
-  
-  const exercisesCopy = exerciseList.map(
-    (workout_exercise) => {
-      const exerciseCopy = { ...workout_exercise };
-      exerciseCopy.exercise_id = exerciseCopy.exercise.id;
-      delete exerciseCopy.exercise;
-      return exerciseCopy;
-  });
-    
-  const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
 
-  const handleWorkoutEdit = function (workout_exercise) {
-    setWorkoutEdit((prev) => {
-      delete workout_exercise.name;
-      workout_exercise.id = workout_exercise.workout_exercise_id;
-      delete workout_exercise.workout_exercise_id;
-
-      let newEdit = prev.map((el) => {
-        if (el.id === workout_exercise.id) {
-          return workout_exercise;
-        }
-        return { ...el };
-      });
-
-      if (!workout_exercise.id) {
-        newEdit.push(workout_exercise);
-      }
 
   const handleEditMode = () => {
     setEditMode(prev => !prev);
@@ -58,10 +40,12 @@ export default function WorkoutShow(props) {
 
 
   const handleSave = () => {
-    saveEdited(exerciseList.workout_exercises).then((saved) => {
+    saveEdited(editedCopy).then((saved) => {
+      console.log("saved", saved)
       if (saved) {
+        console.log("hello")
         setEditedCopy(saved);
-        handleEditMode();
+        setEditMode(false);
       }
     });
   };
@@ -93,7 +77,7 @@ export default function WorkoutShow(props) {
             note={note}
             editMode={editMode}
             handleWorkoutEdit={handleWorkoutEdit}
-            handleReorder={handleReorderComponents}
+            handleReorder={handleReorderData}
             handleExerciseDelete={() => {
               handleExerciseDelete(workout_exercise_id);
             }}
@@ -104,7 +88,7 @@ export default function WorkoutShow(props) {
     return exercises;
   };
 
-  const exercises = editedCopy? createExercises(editedCopy) : createExercises(exerciseList.workout_exercises);
+  const exercises = editedCopy? createExercises(editedCopy) : createExercises(exerciseList);
 
   return (
     <Fragment>
@@ -135,7 +119,7 @@ export default function WorkoutShow(props) {
   
       {editMode && (
         
-        <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave} />
+        <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave}  />
         
       )}
        
