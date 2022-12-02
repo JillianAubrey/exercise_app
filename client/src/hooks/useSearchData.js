@@ -1,39 +1,26 @@
 import { useState } from "react"
-import axios from 'axios';
+import getExercises from "../helpers/api_requests/getExercises";
 
-export default function useSearchData(user) {
+export default function useSearchData(userId) {
   const [searchData, setSearchData] = useState();
 
 
   const searchCustomExercises = async (searchString) => {
-
-    try {
-      if (searchString) {
-        const response = await axios.get(`/exercises?user=${user}&q=${searchString}`)
-        setSearchData(response.data)
-      } else {
-        const response = await axios.get(`/exercises?user=${user}`)
-        setSearchData(response.data)
-      }
-    }
-    catch(error) {
-      console.log("searchCustomExercises error", error)
-    }
+    getExercises(
+      userId, 
+      searchString,
+      (res) => setSearchData(res.data),
+      (err) => console.error("searchUserExercises error", err)
+    )
   }
 
   const searchDatabaseExercises = async (searchString) => {
-    try {
-      if (searchString) {
-        const response = await axios.get(`/exercises?q=${searchString}`)
-        setSearchData(response.data)
-      } else {
-        const response = await axios.get(`/exercises`)
-        setSearchData(response.data)
-      }
-    }
-    catch(error) {
-      console.log("searchDatabaseExercises error", error)
-    }
+    getExercises(
+      null, 
+      searchString,
+      (res) => setSearchData(res.data),
+      (err) => console.error("searchDatabaseExercises error", err)
+    )
   }
 
   return { searchData, searchCustomExercises, searchDatabaseExercises }
