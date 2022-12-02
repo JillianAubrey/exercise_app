@@ -2,82 +2,34 @@ import React, { useState, Fragment, useEffect, useRef } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from "./Member/";
-import Toggle from "./buttons_toggles/Toggle";
-import useWorkoutEdit from "../hooks/useWorkoutEdit";
-import errorDisplay from "../helpers/errorDisplay";
+import ExerciseList from "./ExerciseList";
 
 export default function WorkoutShow(props) {
-  const { workout, user_id, onPlay } = props;
-  const [editMode, setEditMode] = useState(false);
-  const [editedCopy, setEditedCopy] = useState(null)
-  const [errors, setErrors] = useState(null)
-  const exerciseList = workout.workout_exercises
+  const { workout, user_id, onPlay, onEdit } = props;
 
-  const {  saveEdited,
-    handleReorderData,
-    handleWorkoutEdit,
-    handleExerciseDelete } = useWorkoutEdit(exerciseList, workout.name, workout.id, setErrors)
-  
-  const { name, first_gif, id: workout_id, owner } = workout;
+  const { name, first_gif, id: workout_id, owner, workout_exercises: exerciseList } = workout;
   const workout_owner = owner.id;
-  
 
+  const exercises = exerciseList.map((item, index) => {
+    const {
+      duration, reps, sets, note,
+      exercise: {name, category, gif_url}
+    } = item;
 
-  const handleEditMode = () => {
-    setEditMode(prev => !prev);
-  };
-
-
-  const handleSave = () => {
-    saveEdited(editedCopy).then((saved) => {
-      console.log("saved", saved)
-      if (saved) {
-        console.log("hello")
-        setEditedCopy(saved);
-        setEditMode(false);
-      }
-    });
-  };
-
-  const createExercises = (exerciseData) => {
-    const exercises =
-      exerciseData &&
-      exerciseData.map((item, index) => {
-        const {
-          duration,
-          reps,
-          sets,
-          note,
-          id: workout_exercise_id,
-        } = { ...item };
-        const { id: exercise_id, name, category, gif_url } = item.exercise;
-
-        return (
-          <Exercise
-            key={index}
-            name={name}
-            workout_exercise_id={workout_exercise_id || 0}
-            exercise_id={exercise_id}
-            category={category}
-            duration={duration}
-            reps={reps}
-            sets={sets}
-            gif_url={gif_url}
-            note={note}
-            editMode={editMode}
-            handleWorkoutEdit={handleWorkoutEdit}
-            handleReorder={handleReorderData}
-            handleExerciseDelete={() => {
-              handleExerciseDelete(workout_exercise_id);
-            }}
-          />
-        );
-      });
-
-    return exercises;
-  };
-
-  const exercises = editedCopy? createExercises(editedCopy) : createExercises(exerciseList);
+    return (
+      <Exercise
+        key={index}
+        name={name}
+        category={category}
+        duration={duration}
+        reps={reps}
+        sets={sets}
+        gif_url={gif_url}
+        note={note}
+        editMode={false}
+      />
+    );
+  });
 
   return (
     <Fragment>
@@ -86,33 +38,11 @@ export default function WorkoutShow(props) {
         gif_url={first_gif}
         ownerName={owner.name}
         ownWorkout={workout_owner === user_id}
-        onEdit={handleEditMode}
+        onEdit={onEdit}
         onPlay={onPlay}
       />
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       {exercises}
-
-
-     
-      {editMode && (
-        <Fragment>
-        <Exercise
-          empty={true}
-          handleWorkoutEdit={handleWorkoutEdit}
-          user_id={user_id}
-          editMode={editMode}
-          handleExerciseDelete={handleExerciseDelete}
-        />
-         </Fragment>
-      )}
-  
-      {editMode && (
-        
-        <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave}  />
-        
-      )}
-       
-
     </Fragment>
   );
 }

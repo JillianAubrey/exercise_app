@@ -8,6 +8,7 @@ import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
   const WORKOUT_SHOW = "WORKOUT_SHOW"
+  const WORKOUT_EDIT = "WORKOUT_EDIT"
   const WALKTHROUGH = "WALKTHROUGH"
 
   const [userWorkouts, setUserWorkouts] = useState([]);
@@ -62,7 +63,7 @@ export default function User(props) {
         />
       }
       {view === WORKOUT_SHOW && 
-        <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)}/>
+        <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)} onEdit={() => setView(WORKOUT_EDIT)}/>
       }
       {view === WALKTHROUGH && 
         <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={() => setView(WORKOUT_LIST)}/>
