@@ -17,7 +17,7 @@ export default function Form(props) {
     gif_url,
     note,
     onCancel,
-    handleWorkoutEdit,
+    handleFormSave,
     handleReorder
   } = { ...props };
 
@@ -28,7 +28,9 @@ export default function Form(props) {
     note,
     workout_exercise_id,
     exercise_id,
-    name
+    name,
+    gif_url,
+    category
   });
   const { data } = formFunctions;
 
@@ -50,7 +52,7 @@ export default function Form(props) {
           ...formFunctions,
           timed,
           handleTimed,
-          error
+          error,
         };
 
   const restProps =
@@ -60,13 +62,12 @@ export default function Form(props) {
           timed,
           ...formFunctions,
           handleTimed,
-          error
+          error,
         };
 
   const handleSubmit = () => {
     const validatedData = validateExerciseEdit(data, setError, timed) 
-    validatedData && handleWorkoutEdit(validatedData)
-
+    validatedData && handleFormSave(validatedData)
   };
 
   return (

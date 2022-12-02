@@ -101,11 +101,12 @@ export default function useApplicationData() {
   async function getWorkoutExercises(workoutId) {
     try {
       console.log("getting the exerciseList")
+      console.log("exercise list original", exerciseList)
       const response = await axios.get(`/workouts/${workoutId}`);
       console.log("exercise list response data", response.data);
-      const workoutExercises = response.data.workout_exercises.map((el) => ({...el}))
+      const workout_exercises = response.data.workout_exercises
       console.log("setting the ExerciseList")
-      setExerciseList((prev) => ({...response.data, workout_exercises : workoutExercises}));
+      setExerciseList(response.data, workout_exercises);
     } catch (error) {
       console.error("getExercises error: ", error);
     }

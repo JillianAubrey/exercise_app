@@ -14,13 +14,13 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
   );
 
   const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
+  const [newExercises, saveNewExercises ] = useState([])
 
 
   const handleWorkoutEdit = function (workout_exercise) {
 
     workout_exercise = {...workout_exercise}
 
-    delete workout_exercise.name;
     workout_exercise.id = workout_exercise.workout_exercise_id;
     delete workout_exercise.workout_exercise_id;
 
@@ -34,8 +34,10 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
       });
 
       if (!workout_exercise.id) {
-        newEdit.push(workout_exercise);
-      }
+          workout_exercise.exercise = {gif_url: workout_exercise.gif_url, name: workout_exercise.name, category: workout_exercise.category, id: workout_exercise.exercise_id}
+          newEdit.push(workout_exercise);
+        }
+        
       return newEdit;
     });
   };
@@ -71,25 +73,64 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
       const index = prev.findIndex((el) => el.id === id);
       newEdit.splice(index, 1)
 
+      console.log(newEdit)
       return newEdit
 
     })
   }
 
-  const saveEdited = function() {
+  const saveEdited = function(originalExercises) {
     return saveWorkout({ workout_exercises: workoutEdit, name }, workoutId, handleError).then((saved) => {
       if (saved) {
-        return true
+        const newExercises = saved.workout_exercises;
+        
+        let indexes = [];
+        let addedExercises = newExercises.filter((el) => !el.id)
+
+        let editCopy = originalExercises.map((oldExercise, index) => {
+
+         
+          const newExercise = newExercises.find(
+            (el) => el.exercise_id === oldExercise.exercise.id
+          );
+
+          if (!newExercise) {
+            indexes.push(index)
+          }
+
+          if (newExercise) {
+            oldExercise.reps = newExercise.reps;
+            oldExercise.sets = newExercise.sets;
+            oldExercise.note = newExercise.note;
+            oldExercise.duration = newExercise.duration;
+          }
+
+          return oldExercise;
+        });
+
+        indexes = indexes.reverse();
+        indexes.forEach((index) => {
+          editCopy.splice(index, 1)
+        })
+
+        console.log('this is the edit copy', editCopy)
+        console.log('added addedExercises', addedExercises)
+        addedExercises && addedExercises.forEach((el) => editCopy.push(el))
+        
+        return editCopy
       }
       return false
     })
   }
 
+    
+
+
   return {
     saveEdited,
     handleReorder,
     handleWorkoutEdit,
-    handleExerciseDelete
+    handleExerciseDelete,
   }
 
 

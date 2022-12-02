@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import Toggle from "./buttons_toggles/Toggle";
@@ -23,6 +23,10 @@ export default function User(props) {
     console.log()
     setByOthers(byOthers)
   }
+
+  useEffect(() => {
+    console.log("exercise list has changed")
+  }, [exerciseList])
 
   return (
     <Fragment>

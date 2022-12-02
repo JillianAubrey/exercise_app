@@ -18,11 +18,17 @@ export default function Show(props) {
     gif_url,
     note,
     onEdit,
-    onDelete,
     onAdd,
+    setVisible,
+    mode
   } = { ...props };
 
-  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search' : onAdd})
+  const onDelete = () => {
+    handleExerciseDelete()
+    setVisible(false)
+  }
+
+  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search': mode === 'SEARCH'})
 
   const exerciseProps =
     exercise_id === 1
@@ -35,10 +41,10 @@ export default function Show(props) {
         {exercise_id === 1 && <Rest duration={duration}/>}
         {exercise_id !== 1 && <Exercise {...exerciseProps} />}
       </article>
-      {onEdit && onDelete && (
+      {onEdit && handleExerciseDelete && (
         <section className="exercise__card-editcancel">
           {onEdit && <SmallButton onClick={onEdit} type="edit" />}
-          {onDelete && <SmallButton onClick={handleExerciseDelete} type="delete" />}
+          {handleExerciseDelete && <SmallButton onClick={onDelete} type="delete" />}
         </section>
       )}
       {onAdd && <SmallButton type="add" onClick={() => onAdd({...props})}/>}
