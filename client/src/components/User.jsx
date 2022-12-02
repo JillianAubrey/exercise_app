@@ -28,7 +28,7 @@ export default function User(props) {
 
   return (
     <Fragment>
-      {view === WORKOUT_LIST && (
+      {view === WORKOUT_LIST && 
         <WorkoutList 
           user={user} 
           userWorkouts={userWorkouts} 
@@ -41,12 +41,11 @@ export default function User(props) {
             setView(WALKTHROUGH)
           }}
         />
-      )}
-      {/* {!exerciseList.workout_exercises &&
-        
       }
-      {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} user_id={user} />}
-      {exerciseList.workout_exercises && <Exercise empty user_id={1} />} */}
+      {view === WORKOUT_SHOW && 
+        <WorkoutShow user_id={user} workout={selectedWorkout} />
+      }
+      {/* <Exercise empty user_id={1} /> */}
     </Fragment>
   );
 }

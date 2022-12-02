@@ -1,21 +1,31 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
 import postWorkout from "../helpers/api_requests/postWorkout";
+import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 
 export default function WorkoutShow(props) {
-  const { exerciseList, user_id } = props;
+  const { workout, user_id } = props;
+  const [exerciseList, setExerciseList] = useState([])
+
+  useEffect(() => {
+    getDetailedWorkout(
+      workout.id,
+      (res) => setExerciseList(res.data.workout_exercises)
+    )
+  }, [workout])
+
   console.log("loading the WorkoutShow page")
-  console.log("workout_exercises", exerciseList.workout_exercises)
+  console.log("workout_exercises", exerciseList)
 
-  const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
+  const { name, first_gif, ownerName, id: workout_id } = workout;
 
-  const workout_owner = exerciseList.owner.id;
+  const workout_owner = workout.owner.id;
 
 
-  const exercisesCopy = exerciseList.workout_exercises.map(
+  const exercisesCopy = exerciseList.map(
     (workout_exercise) => {
       const exerciseCopy = { ...workout_exercise };
       exerciseCopy.exercise_id = exerciseCopy.exercise.id;
@@ -73,7 +83,7 @@ export default function WorkoutShow(props) {
     });
   };
 
-  const exercises = exerciseList.workout_exercises.map((item, index) => {
+  const exercises = exerciseList.map((item, index) => {
     const { duration, reps, sets, note, id: workout_exercise_id } = item;
     const { id: exercise_id, name, category, gif_url } = item.exercise;
 
