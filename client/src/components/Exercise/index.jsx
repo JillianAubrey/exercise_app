@@ -54,8 +54,10 @@ export default function Exercise(props) {
     }, 100);
   };
 
+
   const handleFormSave = (workout_exercise) => {
-    setAddNewProps(workout_exercise)
+    setAddNewProps({...workout_exercise})
+   
     handleWorkoutEdit(workout_exercise)
     setMode(SHOW)
   }
@@ -64,11 +66,11 @@ export default function Exercise(props) {
     ? { ...addNewProps, onCancel: () => back(), handleFormSave }
     : { ...props, onCancel: () => back(), handleFormSave };
 
-  const showProps = editMode && addNewProps ? { ...addNewProps, onEdit, mode, onDelete } : editMode ? {...props, onEdit, onDelete, mode} : {...props, mode }
+  const showProps = addNewProps ? { ...addNewProps, onEdit, mode, onDelete, editMode } : editMode ? {...props, onEdit, onDelete, mode, editMode} : {...props, mode }
 
   return (
     <Fragment>
-      {mode === SHOW && visible && !empty && <Show {...showProps} />}
+      {mode === SHOW && visible && !(empty && !addNewProps) && <Show {...showProps} />}
       {mode === FORM && <Form {...formProps} />}
       {mode === EMPTY && empty && <Empty onClick={handleSearchMode} />}
       {mode === SEARCH && (

@@ -19,8 +19,9 @@ export default function WorkoutShow(props) {
   const errorElements = errorDisplay(errors);
 
   const handleEditMode = () => {
-    setEditMode((prev) => !prev)
-  }
+    setEditMode((prev) => !prev);
+  };
+
 
   const handleSave = () => {
     saveEdited(exerciseList.workout_exercises).then((saved) => {
@@ -28,42 +29,50 @@ export default function WorkoutShow(props) {
         setEditedCopy(saved);
         handleEditMode();
       }
-    })
-  }
-
+    });
+  };
 
   const createExercises = (exerciseData) => {
-    const exercises =  exerciseData && exerciseData.map((item, index) => {
-      const { duration, reps, sets, note, id: workout_exercise_id } = {...item};
-      const { id: exercise_id, name, category, gif_url } = item.exercise;
+    const exercises =
+      exerciseData &&
+      exerciseData.map((item, index) => {
+        const {
+          duration,
+          reps,
+          sets,
+          note,
+          id: workout_exercise_id,
+        } = { ...item };
+        const { id: exercise_id, name, category, gif_url } = item.exercise;
 
-      return (
-        <Exercise
-          key={index}
-          name={name}
-          workout_exercise_id={workout_exercise_id || 0}
-          exercise_id={exercise_id}
-          category={category}
-          duration={duration}
-          reps={reps}
-          sets={sets}
-          gif_url={gif_url}
-          note={note}
-          editMode={editMode}
-          handleWorkoutEdit={handleWorkoutEdit}
-          handleReorder={handleReorder}
-          handleExerciseDelete={() => {
-            handleExerciseDelete(workout_exercise_id || 0);
-          }}
-        />
-      );
-    }) 
+        return (
+          <Exercise
+            key={index}
+            name={name}
+            workout_exercise_id={workout_exercise_id || 0}
+            exercise_id={exercise_id}
+            category={category}
+            duration={duration}
+            reps={reps}
+            sets={sets}
+            gif_url={gif_url}
+            note={note}
+            editMode={editMode}
+            handleWorkoutEdit={handleWorkoutEdit}
+            handleReorder={handleReorder}
+            handleExerciseDelete={() => {
+              handleExerciseDelete(workout_exercise_id);
+            }}
+          />
+        );
+      });
 
     return exercises;
-  }
+  };
 
-  const exercises = editedCopy ? createExercises(editedCopy) : createExercises(exerciseList.workout_exercises)
-    
+  const exercises = editedCopy
+    ? createExercises(editedCopy)
+    : createExercises(exerciseList.workout_exercises);
 
   return (
     <Fragment>
@@ -76,17 +85,24 @@ export default function WorkoutShow(props) {
       />
       <Member userId={user_id} />
       {exercises}
+
+
+     
       {editMode && (
         <Exercise
           empty={true}
           handleWorkoutEdit={handleWorkoutEdit}
           user_id={user_id}
+          editMode={editMode}
+          handleExerciseDelete={handleExerciseDelete}
         />
       )}
       {errorElements && <div> {errorElements} </div>}
       {editMode && (
         <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave} />
       )}
+       
+
     </Fragment>
   );
 }
