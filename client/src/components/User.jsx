@@ -1,45 +1,52 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import Exercise from "./Exercise";
-import Toggle from "./buttons_toggles/Toggle";
+import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 
 export default function User(props) {
-  const [byOthers, setByOthers] = useState(false)
+  const WORKOUT_LIST = "WORKOUT_LIST"
+  const WORKOUT_SHOW = "WORKOUT_SHOW"
+  const WALKTHROUGH = "WALKTHROUGH"
 
-  const { workoutList, setWorkoutShow, exerciseList, setExerciseList, getWorkoutExercises, user } = props
+  const [userWorkouts, setUserWorkouts] = useState([]);
+  const [selectedWorkout, setSelectedWorkout] = useState(null);
+  const [view, setView] = useState('');
+
+  const { user } = props
   console.log("Rendering the User component")
-  console.log("exerciseList.exercises: ", exerciseList.workout_exercises)
 
-  const handleWorkoutsFilter = function(exerciseList, byOthers = false) {
-    if (exerciseList.workout_exercises) {
-      console.log("setting exercise list to empty")
-      setExerciseList({})
-    }
-    console.log()
-    setByOthers(byOthers)
-  }
+  useEffect(() => {
+    getUserWorkouts(
+      user,
+      (res) => {
+        setUserWorkouts([...res.data])
+        setView(WORKOUT_LIST)
+      }
+    )
+  }, [user])
 
   return (
     <Fragment>
-      {!exerciseList.workout_exercises &&
-        <WorkoutList
-          setWorkoutShow={setWorkoutShow}
-          workoutList={workoutList}
-          getWorkoutExercises={getWorkoutExercises}
-          exerciseList={exerciseList}
-          user={user}
-          byOthers={byOthers}
-        />}
+      {view === WORKOUT_LIST && (
+        <WorkoutList 
+          user={user} 
+          userWorkouts={userWorkouts} 
+          onShow={(workout) => {
+            setSelectedWorkout(workout)
+            setView(WORKOUT_SHOW)
+          }}
+          onPlay={(workout) => {
+            setSelectedWorkout(workout)
+            setView(WALKTHROUGH)
+          }}
+        />
+      )}
+      {/* {!exerciseList.workout_exercises &&
+        
+      }
       {exerciseList.workout_exercises && <WorkoutShow exerciseList={exerciseList} user_id={user} />}
-      {exerciseList.workout_exercises && <Exercise empty user_id={1} />}
-      <Toggle
-        exerciseList={exerciseList}
-        leftLabel="My Workouts"
-        leftClick={() => handleWorkoutsFilter(exerciseList)}
-        rightLabel="Shared Workouts"
-        rightClick={() => handleWorkoutsFilter(exerciseList, true)}
-      />
+      {exerciseList.workout_exercises && <Exercise empty user_id={1} />} */}
     </Fragment>
   );
 }

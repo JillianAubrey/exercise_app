@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import Guest from "./components/Guest";
 import User from "./components/User";
 import NavBar from "./components/NavBar";
@@ -19,10 +19,10 @@ export default function App() {
   return (
     <div className="App">
       {userId
-        ? (
-          <NavBar userName={userName} setUser={setUser} /> 
-          //<User/>
-        )
+        ? <Fragment>
+            <NavBar userName={userName} setUser={setUser} /> 
+            <User user={userId} />
+          </Fragment>
         : <Guest setUser={setUser}/>
       }
     </div>
