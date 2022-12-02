@@ -15,7 +15,7 @@ const SEARCH = "SEARCH";
 const NEW = "NEW";
 
 export default function Exercise(props) {
-  const { empty, editMode, onDelete, user_id, handleWorkoutEdit } = {
+  const { empty, editMode, user_id, handleWorkoutEdit, handleExerciseDelete } = {
     ...props,
   };
   const [addNewProps, setAddNewProps] = useState();
@@ -23,6 +23,11 @@ export default function Exercise(props) {
   const [ visible, setVisible ] = useState(true)
 
   const onEdit = () => setMode(FORM);
+
+  const onDelete = () => {
+    handleExerciseDelete()
+    setVisible(false)
+  }
 
   const handleSearchAdd = (exercise) => {
     setAddNewProps(exercise);
@@ -59,7 +64,7 @@ export default function Exercise(props) {
     ? { ...addNewProps, onCancel: () => back(), handleFormSave }
     : { ...props, onCancel: () => back(), handleFormSave };
 
-  const showProps = editMode && addNewProps ? { ...addNewProps, onEdit, mode } : editMode ? {...props, onEdit, mode} : {...props, mode}
+  const showProps = editMode && addNewProps ? { ...addNewProps, onEdit, mode, onDelete } : editMode ? {...props, onEdit, onDelete, mode} : {...props, mode }
 
   return (
     <Fragment>

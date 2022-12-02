@@ -14,7 +14,6 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
   );
 
   const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
-  const [newExercises, saveNewExercises ] = useState([])
 
 
   const handleWorkoutEdit = function (workout_exercise) {
@@ -73,7 +72,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
       const index = prev.findIndex((el) => el.id === id);
       newEdit.splice(index, 1)
 
-      console.log(newEdit)
+      console.log("this is the new edit being sent" , newEdit)
       return newEdit
 
     })
@@ -108,16 +107,20 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
           return oldExercise;
         });
 
-        indexes = indexes.reverse();
+        indexes.reverse();
         indexes.forEach((index) => {
-          editCopy.splice(index, 1)
+          editCopy.splice(index, -1)
         })
 
-        console.log('this is the edit copy', editCopy)
-        console.log('added addedExercises', addedExercises)
-        addedExercises && addedExercises.forEach((el) => editCopy.push(el))
+        addedExercises && addedExercises.forEach((el) => {
+          el.id = (Math.random() * 10)
+          editCopy.push(el)
+        });
         
+
+        console.log(editCopy)
         return editCopy
+        
       }
       return false
     })

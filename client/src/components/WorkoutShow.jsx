@@ -18,11 +18,15 @@ export default function WorkoutShow(props) {
 
   const errorElements = errorDisplay(errors);
 
+  const handleEditMode = () => {
+    setEditMode((prev) => !prev)
+  }
+
   const handleSave = () => {
     saveEdited(exerciseList.workout_exercises).then((saved) => {
       if (saved) {
         setEditedCopy(saved);
-        setEditMode(false);
+        handleEditMode();
       }
     })
   }
@@ -68,7 +72,7 @@ export default function WorkoutShow(props) {
         gif_url={first_gif}
         ownerName={ownerName}
         ownWorkout={workout_owner === user_id}
-        onEdit={() => setEditMode(true)}
+        onEdit={handleEditMode}
       />
       <Member userId={user_id} />
       {exercises}
