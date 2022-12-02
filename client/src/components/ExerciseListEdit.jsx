@@ -3,25 +3,37 @@ import Exercise from "./Exercise";
 import './ExerciseList.scss';
 
 export default function ExerciseListEdit(props) {
-  const { exerciseList } = props;
+  const { 
+    exerciseList, 
+    handleWorkoutEdit, 
+    handleReorderData, 
+    handleExerciseDelete 
+  } = props;
 
   const exercises = exerciseList.map((item, index) => {
     const {
-      duration, reps, sets, note,
-      exercise: {name, category, gif_url}
+      id: workout_exercise_id, duration, reps, sets, note,
+      exercise: {id: exercise_id, name, category, gif_url}
     } = item;
 
     return (
       <Exercise
         key={index}
         name={name}
+        workout_exercise_id={workout_exercise_id || 0}
+        exercise_id={exercise_id}
         category={category}
         duration={duration}
         reps={reps}
         sets={sets}
         gif_url={gif_url}
         note={note}
-        editMode={false}
+        editMode={true}
+        handleWorkoutEdit={handleWorkoutEdit}
+        handleReorder={handleReorderData}
+        handleExerciseDelete={() => {
+          handleExerciseDelete(workout_exercise_id);
+        }}
       />
     );
   });

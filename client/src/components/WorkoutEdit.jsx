@@ -6,43 +6,45 @@ import Toggle from "./buttons_toggles/Toggle";
 import errorDisplay from "../helpers/errorDisplay";
 import ExerciseListEdit from "./ExerciseListEdit";
 
-export default function WorkoutShow(props) {
+export default function WorkoutEdit(props) {
   const { workout, user_id, onSave, onCancel } = props;
-  const { name, first_gif, owner, workout_exercises: exerciseList } = workout;
+  const { name, first_gif, owner } = workout;
   
-  const [editedCopy, setEditedCopy] = useState([...exerciseList])
   const [errors, setErrors] = useState(null)
 
-  const {  saveEdited,
+  const {
+    editedExercises,
+    saveEdited,
     handleReorderData,
     handleWorkoutEdit,
-    handleExerciseDelete } = useWorkoutEdit(exerciseList, workout.name, workout.id, setErrors)
-  
-  const workout_owner = owner.id;
-
+    handleExerciseDelete 
+  } = useWorkoutEdit(workout)
 
   const handleSave = () => {
-    saveEdited(editedCopy).then((saved) => {
-      console.log("saved", saved)
-      if (saved) {
-        console.log("hello")
-        setEditedCopy(saved);
-        onSave();
-      }
-    });
+    saveEdited(
+      (res) => {
+        console.log(res)
+        onSave(editedExercises)
+      },
+      (err) => setErrors(err)
+    )
   };
-
-  const exercises = editedCopy? createExercises(editedCopy) : createExercises(exerciseList);
 
   return (
     <Fragment>
+      <h1>WORKOUT EDIT</h1>
       <WorkoutItem
         name={name}
         gif_url={first_gif}
         ownerName={owner.name}
-        ownWorkout={workout_owner === user_id}
+        ownWorkout={owner.id === user_id}
       />
-      <ExerciseListEdit exerciseList={editedCopy} />
+      <ExerciseListEdit 
+        exerciseList={editedExercises}
+        handleWorkoutEdit={handleWorkoutEdit}
+        handleReorder={handleReorderData}
+        handleExerciseDelete={handleExerciseDelete}
+      />
       <Exercise
         empty={true}
         handleWorkoutEdit={handleWorkoutEdit}
@@ -50,7 +52,12 @@ export default function WorkoutShow(props) {
         editMode={true}
         handleExerciseDelete={handleExerciseDelete}
       />
-      <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave}  />
+      <Toggle 
+        leftLabel="Save" 
+        rightLabel="Cancel" 
+        leftClick={handleSave}
+        rightClick={onCancel}
+      />
     </Fragment>
   );
 }

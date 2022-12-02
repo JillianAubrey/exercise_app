@@ -8,6 +8,8 @@ import './WorkoutItem.scss'
 export default function WorkoutItem(props) {
   const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, categoryCounts} = {...props}
 
+  const editable = onEdit && ownWorkout;
+
   return (
     <Fragment>
       <article className="workout__card workout__card--show" onClick={onClick} disabled>
@@ -17,7 +19,7 @@ export default function WorkoutItem(props) {
             <h1> {name} </h1>
             <div className="workout__card-divider"></div>
           </div>
-          <div className="workout__card-note">
+          {onPlay && <div className="workout__card-note">
             <button
               type="button"
               className="workout__card-btn"
@@ -30,11 +32,11 @@ export default function WorkoutItem(props) {
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>
-          </div>
+          </div>}
           <CategoryBar {...categoryCounts} />
         </section>
       </article>
-      {ownWorkout && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}
+      {editable && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}
     </Fragment>
   );
 }

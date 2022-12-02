@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
+import WorkoutEdit from "./WorkoutEdit";
 import WalkthroughContainer from "./Walkthrough";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
@@ -63,10 +64,32 @@ export default function User(props) {
         />
       }
       {view === WORKOUT_SHOW && 
-        <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)} onEdit={() => setView(WORKOUT_EDIT)}/>
+        <WorkoutShow 
+          user_id={user}
+          workout={selectedWorkout}
+          onPlay={() => setView(WALKTHROUGH)}
+          onEdit={() => setView(WORKOUT_EDIT)}
+        />
+      }
+      {view === WORKOUT_EDIT && 
+        <WorkoutEdit 
+          user_id={user} 
+          workout={selectedWorkout}
+          onCancel={() => setView(WORKOUT_SHOW)}
+          onSave={(editedExercises)=> {
+            setSelectedWorkout(prev => {
+              return {...prev, workout_exercises: editedExercises}
+            })
+            setView(WORKOUT_SHOW)
+          }}
+        />
       }
       {view === WALKTHROUGH && 
-        <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={() => setView(WORKOUT_LIST)}/>
+        <WalkthroughContainer 
+          user_id={user} 
+          workout={selectedWorkout} 
+          onFinish={() => setView(WORKOUT_LIST)}
+        />
       }
     </Fragment>
   );

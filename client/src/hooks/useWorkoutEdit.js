@@ -1,20 +1,19 @@
 import React, { useState } from "react";
-import saveWorkout from "../helpers/saveWorkout";
+import postWorkout from "../helpers/api_requests/postWorkout";
 
 
-const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
+const useWorkoutEdit = function(workout) {
 
-  const exercisesCopy = exerciseData.map(
+  const exercisesCopy = workout.workout_exercises.map(
     (workout_exercise) => {
       const exerciseCopy = { ...workout_exercise };
       exerciseCopy.exercise_id = exerciseCopy.exercise.id;
-      delete exerciseCopy.exercise;
+      exerciseCopy.exercise = {...workout_exercise.exercise};
       return exerciseCopy;
     }
   );
 
-  const [workoutEdit, setWorkoutEdit] = useState(exercisesCopy);
-
+  const [editedExercises, setEditedExercises] = useState(exercisesCopy);
 
   const handleWorkoutEdit = function (workout_exercise) {
 
@@ -23,7 +22,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
     workout_exercise.id = workout_exercise.workout_exercise_id;
     delete workout_exercise.workout_exercise_id;
 
-    setWorkoutEdit((prev) => {
+    setEditedExercises((prev) => {
       let newEdit = prev.map((el) => {
         if (el.id === workout_exercise.id) {
           workout_exercise.id = el.id;
@@ -42,7 +41,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
   };
 
   const handleReorderData = function (up, id) {
-    setWorkoutEdit((prev) => {
+    setEditedExercises((prev) => {
       const newEdit = prev.map((el) => ({ ...el }));
       const index = prev.findIndex((el) => el.id === id);
 
@@ -67,7 +66,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
   };
 
   const handleExerciseDelete = function(id) {
-    setWorkoutEdit((prev) => {
+    setEditedExercises((prev) => {
       const newEdit = prev.map((el) => ({ ...el }));
       const index = prev.findIndex((el) => el.id === id);
       newEdit.splice(index, 1)
@@ -78,59 +77,17 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
     })
   }
 
-  const saveEdited = function(originalExercises) {
-    return saveWorkout({ workout_exercises: workoutEdit, name }, workoutId, handleError).then((saved) => {
-      if (saved) {
-        const newExercises = saved.workout_exercises;
-
-        console.log("newExercises", newExercises)
-        
-        let indexes = [];
-        let addedExercises = newExercises.filter((el) => el.id < 1)
-
-        let editCopy = originalExercises.map((oldExercise, index) => {
-
-         
-          const newExercise = newExercises.find(
-            (el) => el.exercise_id === oldExercise.exercise.id
-          );
-
-          if (!newExercise) {
-            indexes.push(index)
-          }
-
-          if (newExercise) {
-            oldExercise.reps = newExercise.reps;
-            oldExercise.sets = newExercise.sets;
-            oldExercise.note = newExercise.note;
-            oldExercise.duration = newExercise.duration;
-          }
-
-          return oldExercise;
-        });
-
-        indexes.reverse();
-        indexes.forEach((index) => {
-          editCopy.splice(index, -1)
-        })
-
-        addedExercises && addedExercises.forEach((el) => {
-          editCopy.push(el)
-        });
-        
-
-        console.log("edit copy afterwards", editCopy)
-        return editCopy
-        
-      }
-      return false
-    })
+  const saveEdited = function(onSuccess, onError) {
+    const newWorkout = {
+      name: workout.name,
+      owner: workout.owner.id,
+      workout_exercises: editedExercises
+    }
+    postWorkout(newWorkout, workout.id, onSuccess, onError)
   }
 
-    
-
-
   return {
+    editedExercises,
     saveEdited,
     handleReorderData,
     handleWorkoutEdit,
