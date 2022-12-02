@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './styles.scss'
 
 export default function MemberListItem(props) {
