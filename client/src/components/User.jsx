@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
+import WalkthroughContainer from "./Walkthrough";
 import Exercise from "./Exercise";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 
@@ -16,6 +17,18 @@ export default function User(props) {
   const { user } = props
   console.log("Rendering the User component")
 
+  const homeButton = (
+    <button
+      onClick={event => {
+        event.preventDefault();
+        setView(WORKOUT_LIST);
+        setSelectedWorkout(null);
+      }}
+    >
+      Home
+    </button>
+  )
+
   useEffect(() => {
     getUserWorkouts(
       user,
@@ -28,6 +41,7 @@ export default function User(props) {
 
   return (
     <Fragment>
+      {view !== WORKOUT_LIST && homeButton}
       {view === WORKOUT_LIST && 
         <WorkoutList 
           user={user} 
@@ -44,6 +58,9 @@ export default function User(props) {
       }
       {view === WORKOUT_SHOW && 
         <WorkoutShow user_id={user} workout={selectedWorkout} />
+      }
+      {view === WALKTHROUGH && 
+        <WalkthroughContainer user_id={user} workout={selectedWorkout} />
       }
       {/* <Exercise empty user_id={1} /> */}
     </Fragment>
