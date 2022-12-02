@@ -1,4 +1,4 @@
-import api from "./api";
+import api from "./_api";
 
 export default async function addMembers(workoutId, userId, onSuccess, onError) { 
   console.log(typeof userId)

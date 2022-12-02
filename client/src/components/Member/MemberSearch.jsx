@@ -3,7 +3,7 @@ import MemberListItem from "./MemberListItem";
 import searchMembers from "../../helpers/api_requests/searchMembers";
 import TextInput from "../form_elements/TextInput";
 import useForm from "../../hooks/useForm";
-import addMember from '../../helpers/addMember'
+import addMember from '../../helpers/api_requests/addMember'
 import './styles.scss'
 
 export default function MemberSearch(props) {
