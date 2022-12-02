@@ -3,11 +3,9 @@ export default function Expanded(props) {
 
   const errorElements =
     errors &&
-    errors.map((error) => {
+    errors.map((error, index) => {
       return (
-        <section className="error_card">
-          <p className="error"> {error} </p>
-        </section>
+          <p className="error" key={index}> {error} </p>
       );
     });
 

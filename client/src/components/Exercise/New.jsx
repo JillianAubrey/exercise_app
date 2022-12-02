@@ -21,12 +21,10 @@ export default function New(props) {
     }
   };
 
-  let key = 0;
   const errorDisplay =
     errors &&
-    errors.map((error) => {
-      key++
-      return <p className="error custom__error" key={key}> {error} </p>;
+    errors.map((error, index) => {
+      return <p className="error custom__error" key={index}> {error} </p>;
     });
 
 
