@@ -2,8 +2,6 @@ import React, { useState, Fragment } from "react";
 import Login from "./Login"
 import Register from "./Register"
 import About from "./About"
-import classnames from "classnames";
-import Walkthrough from "./Walkthrough";
 import './Guest.scss';
 
 export default function Guest(props) {
@@ -12,14 +10,12 @@ export default function Guest(props) {
   const LOGIN = "LOGIN";
   const REGISTER = "REGISTER"
 
-  const { onLogin, onRegister } = props;
   const [view, setView] = useState(INDEX)
 
-  const changeView = (event, view) => {
-    if (event) {
-      event.preventDefault()
-    }
+  const { setUser } = props
 
+  const changeView = (event, view) => {
+    if (event) event.preventDefault()
     setView(view)
   }
 
@@ -39,10 +35,10 @@ export default function Guest(props) {
         </Fragment>
       )}
       {view === LOGIN && (
-        <Login onLogin={onLogin}/>
+        <Login setUser={setUser}/>
       )}
       {view === REGISTER && (
-        <Register onRegister={onRegister}/>
+        <Register/>
       )}
       {view === ABOUT && (
         <About />

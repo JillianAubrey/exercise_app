@@ -3,7 +3,7 @@ import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from './Member/'
 import Toggle from "./buttons_toggles/Toggle";
-import saveWorkout from "../helpers/saveWorkout";
+import postWorkout from "../helpers/api_requests/postWorkout";
 
 export default function WorkoutShow(props) {
   const { exerciseList, user_id } = props;
@@ -119,7 +119,7 @@ export default function WorkoutShow(props) {
           leftLabel="Save"
           rightLabel="Cancel"
           leftClick={() =>
-            saveWorkout({ workout_exercises: workoutEdit, name }, workout_id)
+            postWorkout({ workout_exercises: workoutEdit, name }, workout_id)
           }
         />
       )}

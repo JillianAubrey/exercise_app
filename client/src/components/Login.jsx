@@ -3,18 +3,30 @@ import useForm from "../hooks/useForm";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import Error from "./Error";
-import classnames from "classnames";
+import postLogin from "../helpers/api_requests/postLogin";
+import useUserData from "../hooks/useUserData";
 import './Login.scss';
-import { useEffect } from "react";
 
 export default function Login(props) {
-  const { onLogin } = props
+  const { setUser } = props
   const { handleInputChange, data} = useForm({email: '', password: ''})
   const [ error, setError ] = useState('')
 
+  const onLogin = (params) => {
+    console.log('onLogin called')
+    postLogin(
+      params,
+      (res) => {
+        console.log(res.data)
+        setUser({...res.data})
+      },
+      (err) => setError(err)
+    )
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    onLogin(data, setError)
+    onLogin(data)
   }
   let errors = ''
   if (error) {

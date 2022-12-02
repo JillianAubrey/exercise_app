@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default (
-  async function saveExercise(data, handleError) {
+  async function postExercise(data, handleError) {
     try {
       const response = await axios.post("/exercises", data);
       const exercise_id = response.data.id;

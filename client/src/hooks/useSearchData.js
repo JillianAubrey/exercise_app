@@ -26,4 +26,3 @@ export default function useSearchData(userId) {
   return { searchData, searchCustomExercises, searchDatabaseExercises }
 
 }
-
