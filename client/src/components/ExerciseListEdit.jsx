@@ -6,7 +6,7 @@ export default function ExerciseListEdit(props) {
   const { 
     exerciseList, 
     handleWorkoutEdit, 
-    handleReorderData, 
+    handleReorder, 
     handleExerciseDelete 
   } = props;
 
@@ -19,6 +19,7 @@ export default function ExerciseListEdit(props) {
     return (
       <Exercise
         key={index}
+        index={index}
         name={name}
         workout_exercise_id={workout_exercise_id || 0}
         exercise_id={exercise_id}
@@ -30,9 +31,9 @@ export default function ExerciseListEdit(props) {
         note={note}
         editMode={true}
         handleWorkoutEdit={handleWorkoutEdit}
-        handleReorder={handleReorderData}
+        handleReorder={handleReorder}
         handleExerciseDelete={() => {
-          handleExerciseDelete(workout_exercise_id);
+          handleExerciseDelete(index);
         }}
       />
     );

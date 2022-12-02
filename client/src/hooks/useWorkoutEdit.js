@@ -40,40 +40,36 @@ const useWorkoutEdit = function(workout) {
     });
   };
 
-  const handleReorderData = function (up, id) {
+  const handleReorderData = function (up, index) {
+    if (up && index === 0) return;
+    if (!up && index === editedExercises.length - 1) return;
+
     setEditedExercises((prev) => {
-      const newEdit = prev.map((el) => ({ ...el }));
-      const index = prev.findIndex((el) => el.id === id);
+      const newEdit = [...prev]
+      console.log('index', index)
 
       if (up) {
-        if (newEdit[index - 1]) {
-          const current = newEdit[index];
-          newEdit[index] = newEdit[index - 1];
-          newEdit[index - 1] = current;
-        }
+        newEdit[index] = prev[index - 1]
+        newEdit[index - 1] = prev[index]
+      } else {
+        newEdit[index] = prev[index + 1]
+        newEdit[index + 1] = prev[index]
       }
-
-      if (!up) {
-        if (newEdit[index + 1]) {
-          const current = newEdit[index];
-          newEdit[index] = newEdit[index + 1];
-          newEdit[index + 1] = current;
-        }
-      }
-      console.log("prev", prev, "current", newEdit)
-      return newEdit;
+      
+      return newEdit
     });
   };
 
-  const handleExerciseDelete = function(id) {
+  const handleExerciseDelete = function(index) {
     setEditedExercises((prev) => {
-      const newEdit = prev.map((el) => ({ ...el }));
-      const index = prev.findIndex((el) => el.id === id);
+      const newEdit = [...prev]
       newEdit.splice(index, 1)
-
-      console.log("this is the new edit being sent" , newEdit)
+      console.log('index', index)
+      console.log('prev')
+      console.table(prev)
+      console.log('new')
+      console.table(newEdit)
       return newEdit
-
     })
   }
 
