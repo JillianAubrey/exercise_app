@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useEffect } from "react";
 import Exercise from "./Exercise";
 import WorkoutItem from "./WorkoutItem";
 import Member from "./Member/";
@@ -8,18 +8,27 @@ import errorDisplay from "../helpers/errorDisplay";
 
 export default function WorkoutShow(props) {
   const { exerciseList, user_id } = props;
-  const { name, first_gif, ownerName, id: workout_id } = { ...exerciseList };
+  const { name, first_gif, owner, id: workout_id } = { ...exerciseList };
   const [errors, setErrors] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [editedCopy, setEditedCopy] = useState(null);
+  const [editedCopy, setEditedCopy] = useState(exerciseList.workout_exercises.map((el) => ({...el})))
+  console.log("edited copy", editedCopy)
   const workout_owner = exerciseList.owner.id;
-  const { handleWorkoutEdit, handleReorder, saveEdited, handleExerciseDelete } =
+  const { handleWorkoutEdit, handleReorderData, saveEdited, handleExerciseDelete } =
     useWorkoutEdit(exerciseList.workout_exercises, name, workout_id, setErrors);
 
   const errorElements = errorDisplay(errors);
 
+
+  const handleReorderComponents = (up, data) => {
+
+    
+    
+    handleReorderData(up, data)
+  }
+
   const handleEditMode = () => {
-    setEditMode((prev) => !prev);
+    setEditMode(prev => !prev);
   };
 
 
@@ -59,7 +68,7 @@ export default function WorkoutShow(props) {
             note={note}
             editMode={editMode}
             handleWorkoutEdit={handleWorkoutEdit}
-            handleReorder={handleReorder}
+            handleReorder={handleReorderComponents}
             handleExerciseDelete={() => {
               handleExerciseDelete(workout_exercise_id);
             }}
@@ -70,9 +79,10 @@ export default function WorkoutShow(props) {
     return exercises;
   };
 
-  const exercises = editedCopy
-    ? createExercises(editedCopy)
-    : createExercises(exerciseList.workout_exercises);
+  
+
+  const exercises = editedCopy ? createExercises(editedCopy)
+  : createExercises(exerciseList.workout_exercises);
 
   return (
     <Fragment>
@@ -89,6 +99,7 @@ export default function WorkoutShow(props) {
 
      
       {editMode && (
+        <Fragment>
         <Exercise
           empty={true}
           handleWorkoutEdit={handleWorkoutEdit}
@@ -96,10 +107,13 @@ export default function WorkoutShow(props) {
           editMode={editMode}
           handleExerciseDelete={handleExerciseDelete}
         />
+         </Fragment>
       )}
-      {errorElements && <div> {errorElements} </div>}
+  
       {editMode && (
+        
         <Toggle leftLabel="Save" rightLabel="Cancel" leftClick={handleSave} />
+        
       )}
        
 

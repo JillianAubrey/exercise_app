@@ -6,11 +6,15 @@ import "./styles.scss"
 
 export default function Empty (props) {
 
-  const { onClick } = props;
+  const { onClick, pageAddClicked } = props;
+
+  const handleClick = function() {
+    onClick()
+  }
 
 
   return(
-    <article className="exercise__card exercise__card--empty" onClick={onClick}>
+    <article className="exercise__card exercise__card--empty" onClick={handleClick}>
       
       <FontAwesomeIcon className="icon" icon="circle-plus"/>
     

@@ -32,7 +32,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
         return { ...el };
       });
 
-      if (!workout_exercise.id) {
+      if (workout_exercise.id < 1) {
           workout_exercise.exercise = {gif_url: workout_exercise.gif_url, name: workout_exercise.name, category: workout_exercise.category, id: workout_exercise.exercise_id}
           newEdit.push(workout_exercise);
         }
@@ -41,7 +41,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
     });
   };
 
-  const handleReorder = function (up, id) {
+  const handleReorderData = function (up, id) {
     setWorkoutEdit((prev) => {
       const newEdit = prev.map((el) => ({ ...el }));
       const index = prev.findIndex((el) => el.id === id);
@@ -84,7 +84,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
         const newExercises = saved.workout_exercises;
         
         let indexes = [];
-        let addedExercises = newExercises.filter((el) => !el.id)
+        let addedExercises = newExercises.filter((el) => el.id < 1)
 
         let editCopy = originalExercises.map((oldExercise, index) => {
 
@@ -113,7 +113,6 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
         })
 
         addedExercises && addedExercises.forEach((el) => {
-          el.id = (Math.random() * 10)
           editCopy.push(el)
         });
         
@@ -131,7 +130,7 @@ const useWorkoutEdit = function(exerciseData, name, workoutId, handleError) {
 
   return {
     saveEdited,
-    handleReorder,
+    handleReorderData,
     handleWorkoutEdit,
     handleExerciseDelete,
   }

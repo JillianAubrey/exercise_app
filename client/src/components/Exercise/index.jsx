@@ -6,7 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Search from "./Search";
 import New from "./New";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -24,6 +24,14 @@ export default function Exercise(props) {
 
   const onEdit = () => setMode(FORM);
 
+  useEffect(() => {
+
+    if (editMode === false) {
+      setMode(SHOW)
+    }
+
+  },[editMode])
+
   const onDelete = () => {
     handleExerciseDelete()
     setVisible(false)
@@ -37,6 +45,7 @@ export default function Exercise(props) {
   };
 
   const handleCustomAdd = (exercise) => {
+    console.log(exercise)
     setAddNewProps(exercise);
     setTimeout(() => {
       setMode(FORM);
@@ -57,13 +66,14 @@ export default function Exercise(props) {
 
   const handleFormSave = (workout_exercise) => {
     setAddNewProps({...workout_exercise})
+    console.log("hello from handle form save", workout_exercise)
    
     handleWorkoutEdit(workout_exercise)
     setMode(SHOW)
   }
 
   const formProps = addNewProps
-    ? { ...addNewProps, onCancel: () => back(), handleFormSave }
+    ? { ...addNewProps, onCancel: () => back(), handleFormSave, workout_exercise_id : Math.random() }
     : { ...props, onCancel: () => back(), handleFormSave };
 
   const showProps = addNewProps ? { ...addNewProps, onEdit, mode, onDelete, editMode } : editMode ? {...props, onEdit, onDelete, mode, editMode} : {...props, mode }
@@ -72,7 +82,7 @@ export default function Exercise(props) {
     <Fragment>
       {mode === SHOW && visible && !(empty && !addNewProps) && <Show {...showProps} />}
       {mode === FORM && <Form {...formProps} />}
-      {mode === EMPTY && empty && <Empty onClick={handleSearchMode} />}
+      {mode === EMPTY && empty && <Empty onClick={handleSearchMode}/>}
       {mode === SEARCH && (
         <Search
           onCancel={back}
