@@ -52,6 +52,23 @@ export default function User(props) {
     )
   }
 
+  const onSave = (editedExercises)=> {
+    setSelectedWorkout(prev => {
+      return {
+        ...prev,
+        first_gif: editedExercises[0].exercise.gif_url,
+        workout_exercises: editedExercises
+      }
+    })
+
+    setView(WORKOUT_SHOW)
+
+    getUserWorkouts(
+      user,
+      (res) => setUserWorkouts([...res.data])
+    )
+  }
+
   return (
     <Fragment>
       {view !== WORKOUT_LIST && homeButton}
@@ -76,16 +93,7 @@ export default function User(props) {
           user_id={user} 
           workout={selectedWorkout}
           onCancel={() => setView(WORKOUT_SHOW)}
-          onSave={(editedExercises)=> {
-            setSelectedWorkout(prev => {
-              return {
-                ...prev,
-                first_gif: editedExercises[0].exercise.gif_url,
-                workout_exercises: editedExercises
-              }
-            })
-            setView(WORKOUT_SHOW)
-          }}
+          onSave={onSave}
         />
       }
       {view === WALKTHROUGH && 
