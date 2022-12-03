@@ -4,11 +4,11 @@ import postWalkthrough from "../../helpers/api_requests/postWalkthrough";
 import './Walkthrough.scss';
 
 export default function WalkthroughContainer(props) {
-  const { user, workout, onFinish } = props
+  const { user_id, workout, onFinish } = props
   const exerciseList = workout.workout_exercises
 
   const onComplete = () => {
-    postWalkthrough(user, workout.id)
+    postWalkthrough(user_id, workout.id)
     onFinish();
   }
 
