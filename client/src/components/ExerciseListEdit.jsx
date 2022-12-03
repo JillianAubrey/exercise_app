@@ -11,10 +11,14 @@ export default function ExerciseListEdit(props) {
     userId
   } = props;
 
+  console.log("Rendering exercise list edit")
+  console.table(exerciseList)
+
   const exercises = exerciseList.map((item, index) => {
     if (!item) {
+      console.log('null item')
       return (<Exercise
-        key={index}
+        key={index + "new"}
         index={index}
         empty={true}
         handleWorkoutEdit={handleWorkoutEdit}
@@ -25,15 +29,15 @@ export default function ExerciseListEdit(props) {
     }
     
     const {
-      id: workout_exercise_id, duration, reps, sets, note,
+      id, duration, reps, sets, note,
       exercise: {id: exercise_id, name, category, gif_url}
     } = item;
 
     return (<Exercise
-      key={index}
+      key={id}
+      id={id}
       index={index}
       name={name}
-      workout_exercise_id={workout_exercise_id || 0}
       exercise_id={exercise_id}
       category={category}
       duration={duration}

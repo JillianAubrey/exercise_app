@@ -15,7 +15,7 @@ const SEARCH = "SEARCH";
 const NEW = "NEW";
 
 export default function Exercise(props) {
-  const { index, empty, editMode, user_id, handleWorkoutEdit } = {
+  const { id, index, empty, editMode, user_id, handleWorkoutEdit } = {
     ...props,
   };
   const [addNewProps, setAddNewProps] = useState();
@@ -60,6 +60,8 @@ export default function Exercise(props) {
     const { name, gif_url, category, ...workout_exercise } = data
     workout_exercise.exercise = { name, gif_url, category }
    
+    workout_exercise.id = id || Math.random()
+
     handleWorkoutEdit(workout_exercise, index)
     setMode(SHOW)
   }

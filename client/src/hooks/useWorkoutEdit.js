@@ -48,10 +48,13 @@ const useWorkoutEdit = function(workout) {
 
   const handleExerciseDelete = function(index) {
     setEditedExercises((prev) => {
+      console.table(prev)
       const newEdit = [...prev]
       newEdit.splice(index, 1)
+      console.table(newEdit)
       return newEdit
     })
+    console.table(editedExercises)
   }
 
   const saveEdited = function(workout_exercises, onSuccess, onError) {
