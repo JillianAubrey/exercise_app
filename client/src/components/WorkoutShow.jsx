@@ -9,8 +9,6 @@ export default function WorkoutShow(props) {
   const { name, category_counts, first_gif, id: workout_id, owner, workout_exercises: exerciseList } = workout;
   const workout_owner = owner.id;
 
-  console.table(category_counts)
-
   return (
     <Fragment>
       <WorkoutItem

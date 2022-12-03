@@ -10,7 +10,7 @@ export default function ExerciseListShow(props) {
 
     const {
       duration, reps, sets, note,
-      exercise: {name, category, gif_url}
+      exercise: {id, name, category, gif_url}
     } = item;
 
     return (
@@ -24,6 +24,7 @@ export default function ExerciseListShow(props) {
         gif_url={gif_url}
         note={note}
         editMode={false}
+        exercise_id={id}
       />
     );
   });

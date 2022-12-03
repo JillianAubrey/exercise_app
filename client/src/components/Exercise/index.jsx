@@ -15,9 +15,10 @@ const SEARCH = "SEARCH";
 const NEW = "NEW";
 
 export default function Exercise(props) {
-  const { id, index, empty, editMode, user_id, handleWorkoutEdit } = {
-    ...props,
-  };
+  const {
+    id, index, empty, editMode, user_id, handleWorkoutEdit
+  } = props;
+
   const [addNewProps, setAddNewProps] = useState();
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
@@ -58,9 +59,11 @@ export default function Exercise(props) {
 
   const handleFormSave = (data) => {
     const { name, gif_url, category, ...workout_exercise } = data
-    workout_exercise.exercise = { name, gif_url, category }
+    workout_exercise.exercise = { id: workout_exercise.exercise_id, name, gif_url, category }
    
     workout_exercise.id = id || Math.random()
+
+    console.table(workout_exercise)
 
     handleWorkoutEdit(workout_exercise, index)
     setMode(SHOW)

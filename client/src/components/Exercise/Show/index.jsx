@@ -22,7 +22,7 @@ export default function Show(props) {
     mode,
     editMode,
     handleReorder
-  } = { ...props };
+  } = props;
 
 
   const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search': mode === 'SEARCH'})

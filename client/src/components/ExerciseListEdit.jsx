@@ -11,12 +11,8 @@ export default function ExerciseListEdit(props) {
     userId
   } = props;
 
-  console.log("Rendering exercise list edit")
-  console.table(exerciseList)
-
   const exercises = exerciseList.map((item, index) => {
     if (!item) {
-      console.log('null item')
       return (<Exercise
         key={index + "new"}
         index={index}
