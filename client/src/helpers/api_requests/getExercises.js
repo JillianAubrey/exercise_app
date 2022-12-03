@@ -5,8 +5,8 @@ export default (
 
     const requestUrl = (
       "/exercises?"
-      + (userId && `user=${userId}&`)
-      + (query && `q=${query}`)
+      + (userId ? `user=${userId}&` : '')
+      + (query ? `q=${query}` : '')
     )
 
     try {
