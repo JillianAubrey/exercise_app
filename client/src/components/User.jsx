@@ -54,8 +54,9 @@ export default function User(props) {
   const onRemoveWorkout = (workoutId, userId) => {
     const deleteIndex = userWorkouts.findIndex((workout) => workout.id === workoutId)
     const newUserWorkouts = [...userWorkouts]
-    newUserWorkouts.splice(deleteIndex, 1)
+    newUserWorkouts.splice(deleteIndex, 1);
     deleteMember(workoutId, userId, setUserWorkouts(newUserWorkouts));
+    setView(WORKOUT_LIST);
   }
 
   return (
@@ -71,7 +72,12 @@ export default function User(props) {
         />
       }
       {view === WORKOUT_SHOW && 
-        <WorkoutShow user_id={user} workout={selectedWorkout} onPlay={() => setView(WALKTHROUGH)}/>
+        <WorkoutShow
+          user_id={user}
+          workout={selectedWorkout}
+          onPlay={() => setView(WALKTHROUGH)}
+          onRemove={() => onRemoveWorkout(selectedWorkout.id, user)}
+        />
       }
       {view === WALKTHROUGH && 
         <WalkthroughContainer user_id={user} workout={selectedWorkout} onFinish={() => setView(WORKOUT_LIST)}/>

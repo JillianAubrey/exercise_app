@@ -7,7 +7,7 @@ import postWorkout from "../helpers/api_requests/postWorkout";
 import Statistics from "./Statistics";
 
 export default function WorkoutShow(props) {
-  const { workout, user_id, onPlay } = props;
+  const { workout, user_id, onPlay, onRemove } = props;
   const [editMode, setEditMode] = useState(false);
   const exerciseList = workout.workout_exercises
   
@@ -106,6 +106,7 @@ export default function WorkoutShow(props) {
         ownWorkout={workout_owner === user_id}
         onEdit={() => setEditMode(true)}
         onPlay={onPlay}
+        onRemove={onRemove}
       />
       {workout_owner === user_id && <Statistics workoutId={workout_id}/>}
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />

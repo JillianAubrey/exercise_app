@@ -30,7 +30,8 @@ export default function WorkoutItem(props) {
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>
-            <button
+            {onRemove &&
+              <button
               type="button"
               className="workout__card-btn"
               onClick={event => {
@@ -41,7 +42,7 @@ export default function WorkoutItem(props) {
               }}
             >
               Remove
-            </button>
+            </button>}
           </div>
           <CategoryBar {...categoryCounts} />
         </section>
