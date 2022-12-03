@@ -24,18 +24,6 @@ export default function User(props) {
   const { user } = props
   console.log("Rendering the User component")
 
-  const homeButton = (
-    <button
-      onClick={event => {
-        event.preventDefault();
-        setView(WORKOUT_LIST);
-        setSelectedWorkout(null);
-      }}
-    >
-      Home
-    </button>
-  )
-
   useEffect(() => {
     getUserWorkouts(
       user,
@@ -77,7 +65,6 @@ export default function User(props) {
 
   return (
     <Fragment>
-      {view !== WORKOUT_LIST && homeButton}
       {view === WORKOUT_LIST && 
         <WorkoutList 
           user={user} 
