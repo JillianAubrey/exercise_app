@@ -115,7 +115,7 @@ export default function User(props) {
             })
           }}
           onCancel={() => {
-            selectedWorkout(null);
+            setSelectedWorkout(null);
             setView(WORKOUT_LIST);
           }}
           onSave={onSave}
