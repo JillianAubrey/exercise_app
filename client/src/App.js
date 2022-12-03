@@ -4,6 +4,7 @@ import User from "./components/User";
 import NavBar from "./components/NavBar";
 import useUserData from "./hooks/useUserData";
 import getSession from "./helpers/api_requests/getSession";
+import './App.scss'
 
 export default function App() {
   const {userId, userName, setUser} = useUserData();
