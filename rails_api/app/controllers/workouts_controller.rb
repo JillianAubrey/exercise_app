@@ -20,17 +20,7 @@ class WorkoutsController < ApplicationController
 
   # GET /workouts/1
   def show
-    render json: @workout.as_json(
-      :except => [:created_at, :updated_at, :user_id],
-      :methods => [:category_counts, :first_gif],
-      :include => [
-        {:owner => {only: [:id, :name]}},
-        {:workout_exercises => {
-          :include => {:exercise => {except: [:created_at, :updated_at]}},
-          :except => [:created_at, :updated_at, :workout_id]
-        }}
-      ]
-    )
+    render json: workout_detail
   end
 
   # POST /workouts
@@ -52,7 +42,7 @@ class WorkoutsController < ApplicationController
     end
 
     if @workout.save
-      render json: @workout, status: :created, location: @workout
+      render json: workout_detail, status: :created, location: @workout
     else
       render json: @workout.errors, status: :unprocessable_entity
     end
@@ -89,7 +79,8 @@ class WorkoutsController < ApplicationController
 
     @workout.workout_exercises.destroy_all
     @workout.workout_exercises << workout_exercises
-    render json: @workout
+    puts workout_detail
+    render json: workout_detail
   end
 
   # DELETE /workouts/1
@@ -118,6 +109,20 @@ class WorkoutsController < ApplicationController
   def set_owner
     @owner = User.find(params[:owner])
   end
+
+  def workout_detail
+    @workout.as_json(
+      :except => [:created_at, :updated_at, :user_id],
+      :methods => [:category_counts, :first_gif],
+      :include => [
+        {:owner => {only: [:id, :name]}},
+        {:workout_exercises => {
+          :include => {:exercise => {except: [:created_at, :updated_at]}},
+          :except => [:created_at, :updated_at, :workout_id]
+        }}
+      ]
+    )
+  end
   
   # Only allow a list of trusted parameters through.
   def workout_params
@@ -136,4 +141,5 @@ class WorkoutsController < ApplicationController
       ]}
     )
   end
+
 end
