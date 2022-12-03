@@ -52,17 +52,10 @@ export default function User(props) {
     )
   }
 
-  const onSave = (editedExercises)=> {
-    setSelectedWorkout(prev => {
-      return {
-        ...prev,
-        first_gif: editedExercises[0].exercise.gif_url,
-        workout_exercises: editedExercises
-      }
-    })
-
+  const onSave = (response)=> {
+    setSelectedWorkout(response.data)
     setView(WORKOUT_SHOW)
-
+    
     getUserWorkouts(
       user,
       (res) => setUserWorkouts([...res.data])

@@ -23,11 +23,7 @@ export default function WorkoutEdit(props) {
     const workout_exercises = [...editedExercises]
     workout_exercises.pop()
 
-    saveEdited(
-      workout_exercises,
-      (res) => onSave(workout_exercises),
-      (err) => setErrors(err)
-    )
+    saveEdited(workout_exercises, onSave, setErrors)
   };
 
   return (
