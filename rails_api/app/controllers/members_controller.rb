@@ -10,7 +10,14 @@ class MembersController < ApplicationController
   def destroy
     @workout = Workout.find(params[:workout_id])
     @user = User.find(params[:id])
-    @workout.user_ids = @workout.user_ids - [@user.id]
+    @workout.users = @workout.users - [@user]
+
+    if @workout.users.count == 0
+      @workout.destroy
+      render json: [], status: :ok
+      return
+    end
+
     render json: @workout.users, status: :ok
   end
 
