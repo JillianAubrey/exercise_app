@@ -40,12 +40,12 @@ export default function New(props) {
     }
   };
 
-
-  const errorElements = 
-    errors &&
-    errors.map((error, index) => {
-      return <p className="error custom__error" key={index}> {error} </p>;
-    });
+  const errorElements = errorDisplay(errors)
+  // const displayErrors =
+  //   errors &&
+  //   errors.map((error, index) => {
+  //     return <p className="error custom__error" key={index}> {error} </p>;
+  //   });
 
   
 

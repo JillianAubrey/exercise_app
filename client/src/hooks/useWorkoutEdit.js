@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import putWorkout from "../helpers/api_requests/putWorkout";
 import postWorkout from "../helpers/api_requests/postWorkout";
-
 
 const useWorkoutEdit = function(workout) {
 
@@ -60,7 +60,13 @@ const useWorkoutEdit = function(workout) {
       owner: workout.owner.id,
       workout_exercises
     }
-    postWorkout(newWorkout, workout.id, onSuccess, onError)
+
+    if (!workout.id) {
+      postWorkout(newWorkout, onSuccess, onError)
+      return
+    }
+    
+    putWorkout(newWorkout, workout.id, onSuccess, onError)
   }
 
   return {

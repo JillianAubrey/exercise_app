@@ -2,35 +2,27 @@ import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import WorkoutEdit from "./WorkoutEdit";
+import WorkoutAdd from "./WorkoutAdd";
 import WalkthroughContainer from "./Walkthrough";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 import deleteMember from "../helpers/api_requests/deleteMembers";
+import Toggle from "./buttons_toggles/Toggle";
 
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
   const WORKOUT_SHOW = "WORKOUT_SHOW"
   const WORKOUT_EDIT = "WORKOUT_EDIT"
+  const WORKOUT_ADD = "WORKOUT_ADD"
   const WALKTHROUGH = "WALKTHROUGH"
 
   const [userWorkouts, setUserWorkouts] = useState([]);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [view, setView] = useState('');
+  const [byOthers, setByOthers] = useState(false)
 
   const { user } = props
   console.log("Rendering the User component")
-
-  const homeButton = (
-    <button
-      onClick={event => {
-        event.preventDefault();
-        setView(WORKOUT_LIST);
-        setSelectedWorkout(null);
-      }}
-    >
-      Home
-    </button>
-  )
 
   useEffect(() => {
     getUserWorkouts(
@@ -73,7 +65,6 @@ export default function User(props) {
 
   return (
     <Fragment>
-      {view !== WORKOUT_LIST && homeButton}
       {view === WORKOUT_LIST && 
         <WorkoutList 
           user={user} 
@@ -81,6 +72,11 @@ export default function User(props) {
           onShow={(workout) => onSelect(workout.id, WORKOUT_SHOW)}
           onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
           onRemove={(workout) => onRemoveWorkout(workout.id, user)}
+          byOthers={byOthers}
+          onAdd={() => {
+            setSelectedWorkout({owner: {id: user}, workout_exercises: []})
+            setView(WORKOUT_ADD)
+          }}
         />
       }
       {view === WORKOUT_SHOW && 
@@ -100,6 +96,21 @@ export default function User(props) {
           onSave={onSave}
         />
       }
+      {view === WORKOUT_ADD &&
+        <WorkoutAdd 
+          workout={selectedWorkout}
+          setName={name => {
+            setSelectedWorkout(prev => {
+              return {...prev, name}
+            })
+          }}
+          onCancel={() => {
+            setSelectedWorkout(null);
+            setView(WORKOUT_LIST);
+          }}
+          onSave={onSave}
+        />
+      }
       {view === WALKTHROUGH && 
         <WalkthroughContainer 
           user_id={user} 
@@ -107,6 +118,13 @@ export default function User(props) {
           onFinish={() => setView(WORKOUT_LIST)}
         />
       }
+      {(view === WORKOUT_SHOW || view === WORKOUT_LIST) && 
+        <Toggle
+          leftLabel="My Workouts"
+        leftClick={() => { setByOthers(false); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
+          rightLabel="Shared Workouts"
+        rightClick={() => { setByOthers(true); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
+        />}
     </Fragment>
   );
 }

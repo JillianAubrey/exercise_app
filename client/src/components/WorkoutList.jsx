@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useMemo } from "react";
 import WorkoutItem from './WorkoutItem'
 import filterWorkoutList from "../helpers/selectors";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "./buttons_toggles/Toggle";
 
 export default function WorkoutList(props) {
-  const { user, userWorkouts, onShow, onPlay, onRemove } = props;
-  const [byOthers, setByOthers] = useState(false)
+  const { user, userWorkouts, onShow, onPlay, onRemove, onAdd, byOthers} = props;
   const workoutList = useMemo(
     () => filterWorkoutList( userWorkouts, user, byOthers),  
     [userWorkouts, byOthers, user]
@@ -28,12 +28,11 @@ export default function WorkoutList(props) {
   return (
     <Fragment>
       <ul>{workouts}</ul>
-      <Toggle
-        leftLabel="My Workouts"
-        leftClick={() => setByOthers(false)}
-        rightLabel="Shared Workouts"
-        rightClick={() => setByOthers(true)}
-      />
+      {!byOthers && 
+        <article className="workout__card workout__card--empty" onClick={onAdd}>
+          <FontAwesomeIcon className="icon" icon="circle-plus"/>
+        </article>
+      }
     </Fragment>
   );
 }
