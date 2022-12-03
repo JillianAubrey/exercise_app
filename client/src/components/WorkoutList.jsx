@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Toggle from "./buttons_toggles/Toggle";
 
 export default function WorkoutList(props) {
-  const { user, userWorkouts, onShow, onPlay, onRemove, onAdd } = props;
-  const [byOthers, setByOthers] = useState(false)
+  const { user, userWorkouts, onShow, onPlay, onRemove, onAdd, byOthers} = props;
   const workoutList = useMemo(
     () => filterWorkoutList( userWorkouts, user, byOthers),  
     [userWorkouts, byOthers, user]
@@ -34,12 +33,6 @@ export default function WorkoutList(props) {
           <FontAwesomeIcon className="icon" icon="circle-plus"/>
         </article>
       }
-      <Toggle
-        leftLabel="My Workouts"
-        leftClick={() => setByOthers(false)}
-        rightLabel="Shared Workouts"
-        rightClick={() => setByOthers(true)}
-      />
     </Fragment>
   );
 }
