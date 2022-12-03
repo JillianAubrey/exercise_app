@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import WorkoutEdit from "./WorkoutEdit";
+import WorkoutAdd from "./WorkoutAdd";
 import WalkthroughContainer from "./Walkthrough";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
@@ -11,6 +12,7 @@ export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
   const WORKOUT_SHOW = "WORKOUT_SHOW"
   const WORKOUT_EDIT = "WORKOUT_EDIT"
+  const WORKOUT_ADD = "WORKOUT_ADD"
   const WALKTHROUGH = "WALKTHROUGH"
 
   const [userWorkouts, setUserWorkouts] = useState([]);
@@ -81,6 +83,10 @@ export default function User(props) {
           onShow={(workout) => onSelect(workout.id, WORKOUT_SHOW)}
           onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
           onRemove={(workout) => onRemoveWorkout(workout.id, user)}
+          onAdd={() => {
+            setSelectedWorkout({owner: user, workout_exercises: []})
+            setView(WORKOUT_ADD)
+          }}
         />
       }
       {view === WORKOUT_SHOW && 
@@ -95,6 +101,13 @@ export default function User(props) {
       {view === WORKOUT_EDIT && 
         <WorkoutEdit 
           user_id={user} 
+          workout={selectedWorkout}
+          onCancel={() => setView(WORKOUT_SHOW)}
+          onSave={onSave}
+        />
+      }
+      {view === WORKOUT_ADD &&
+        <WorkoutAdd 
           workout={selectedWorkout}
           onCancel={() => setView(WORKOUT_SHOW)}
           onSave={onSave}
