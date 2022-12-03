@@ -4,6 +4,7 @@ import WorkoutShow from './WorkoutShow'
 import WalkthroughContainer from "./Walkthrough";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
+import deleteMember from "../helpers/api_requests/deleteMembers";
 
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
@@ -50,6 +51,13 @@ export default function User(props) {
     )
   }
 
+  const onRemoveWorkout = (workoutId, userId) => {
+    const deleteIndex = userWorkouts.findIndex((workout) => workout.id === workoutId)
+    const newUserWorkouts = [...userWorkouts]
+    newUserWorkouts.splice(deleteIndex, 1)
+    deleteMember(workoutId, userId, setUserWorkouts(newUserWorkouts));
+  }
+
   return (
     <Fragment>
       {view !== WORKOUT_LIST && homeButton}
@@ -59,6 +67,7 @@ export default function User(props) {
           userWorkouts={userWorkouts} 
           onShow={(workout) => onSelect(workout.id, WORKOUT_SHOW)}
           onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
+          onRemove={(workout) => onRemoveWorkout(workout.id, user)}
         />
       }
       {view === WORKOUT_SHOW && 
