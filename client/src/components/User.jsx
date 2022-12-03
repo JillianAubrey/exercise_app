@@ -5,6 +5,7 @@ import WorkoutEdit from "./WorkoutEdit";
 import WalkthroughContainer from "./Walkthrough";
 import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
+import deleteMember from "../helpers/api_requests/deleteMembers";
 
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
@@ -52,6 +53,7 @@ export default function User(props) {
     )
   }
 
+<<<<<<< HEAD
   const onSave = (response)=> {
     setSelectedWorkout(response.data)
     setView(WORKOUT_SHOW)
@@ -60,6 +62,14 @@ export default function User(props) {
       user,
       (res) => setUserWorkouts([...res.data])
     )
+=======
+  const onRemoveWorkout = (workoutId, userId) => {
+    const deleteIndex = userWorkouts.findIndex((workout) => workout.id === workoutId)
+    const newUserWorkouts = [...userWorkouts]
+    newUserWorkouts.splice(deleteIndex, 1);
+    deleteMember(workoutId, userId, setUserWorkouts(newUserWorkouts));
+    setView(WORKOUT_LIST);
+>>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
   }
 
   return (
@@ -71,9 +81,11 @@ export default function User(props) {
           userWorkouts={userWorkouts} 
           onShow={(workout) => onSelect(workout.id, WORKOUT_SHOW)}
           onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
+          onRemove={(workout) => onRemoveWorkout(workout.id, user)}
         />
       }
       {view === WORKOUT_SHOW && 
+<<<<<<< HEAD
         <WorkoutShow 
           user_id={user}
           workout={selectedWorkout}
@@ -87,6 +99,13 @@ export default function User(props) {
           workout={selectedWorkout}
           onCancel={() => setView(WORKOUT_SHOW)}
           onSave={onSave}
+=======
+        <WorkoutShow
+          user_id={user}
+          workout={selectedWorkout}
+          onPlay={() => setView(WALKTHROUGH)}
+          onRemove={() => onRemoveWorkout(selectedWorkout.id, user)}
+>>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
         />
       }
       {view === WALKTHROUGH && 

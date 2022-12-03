@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './WorkoutItem.scss'
 
 export default function WorkoutItem(props) {
-  const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, categoryCounts} = {...props}
+  const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, onRemove, categoryCounts} = {...props}
 
   const editable = onEdit && ownWorkout;
 
@@ -32,7 +32,24 @@ export default function WorkoutItem(props) {
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>
+<<<<<<< HEAD
           </div>}
+=======
+            {onRemove &&
+              <button
+              type="button"
+              className="workout__card-btn"
+              onClick={event => {
+                console.log("clicked remove!")
+                event.preventDefault();
+                event.stopPropagation();
+                onRemove();
+              }}
+            >
+              Remove
+            </button>}
+          </div>
+>>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
           <CategoryBar {...categoryCounts} />
         </section>
       </article>

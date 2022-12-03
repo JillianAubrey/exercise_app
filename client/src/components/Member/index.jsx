@@ -21,6 +21,7 @@ export default function Member(props) {
   const toggleSearch = function() {
     if (memberSearch) {
       setMemberSearch(false)
+      getMembers(workoutId, setMemberList)
     } else {
       setMemberSearch(true)
     }

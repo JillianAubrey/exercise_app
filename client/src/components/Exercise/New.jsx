@@ -22,7 +22,16 @@ export default function New(props) {
     }
   };
 
+<<<<<<< HEAD
   const errorElements = errorDisplay(errors)
+=======
+  const errorDisplay =
+    errors &&
+    errors.map((error, index) => {
+      return <p className="error custom__error" key={index}> {error} </p>;
+    });
+
+>>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
 
   return (
      <div className="custom__container">
