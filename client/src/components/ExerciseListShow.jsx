@@ -6,6 +6,8 @@ export default function ExerciseListShow(props) {
   const { exerciseList } = props;
 
   const exercises = exerciseList.map((item, index) => {
+    if (!item) return null;
+
     const {
       duration, reps, sets, note,
       exercise: {name, category, gif_url}

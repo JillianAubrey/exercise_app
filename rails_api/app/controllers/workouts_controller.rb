@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
         {:owner => {only: [:id, :name]}},
         {:workout_exercises => {
           :include => {:exercise => {except: [:created_at, :updated_at]}},
-          :except => [:created_at, :updated_at, :workout_id, :exercise_id]
+          :except => [:created_at, :updated_at, :workout_id]
         }}
       ]
     )

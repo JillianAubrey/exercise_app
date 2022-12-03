@@ -7,11 +7,13 @@ const useWorkoutEdit = function(workout) {
   const exercisesCopy = workout.workout_exercises.map(
     (workout_exercise) => {
       const exerciseCopy = { ...workout_exercise };
-      exerciseCopy.exercise_id = exerciseCopy.exercise.id;
+      // exerciseCopy.exercise_id = exerciseCopy.exercise.id;
       exerciseCopy.exercise = {...workout_exercise.exercise};
       return exerciseCopy;
     }
   );
+
+  exercisesCopy.push(null);
 
   const [editedExercises, setEditedExercises] = useState(exercisesCopy);
 
@@ -68,11 +70,11 @@ const useWorkoutEdit = function(workout) {
     })
   }
 
-  const saveEdited = function(onSuccess, onError) {
+  const saveEdited = function(workout_exercises, onSuccess, onError) {
     const newWorkout = {
       name: workout.name,
       owner: workout.owner.id,
-      workout_exercises: editedExercises
+      workout_exercises
     }
     postWorkout(newWorkout, workout.id, onSuccess, onError)
   }

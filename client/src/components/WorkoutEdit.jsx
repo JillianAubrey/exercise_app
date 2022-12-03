@@ -21,9 +21,13 @@ export default function WorkoutEdit(props) {
   } = useWorkoutEdit(workout)
 
   const handleSave = () => {
+    const workout_exercises = [...editedExercises]
+    workout_exercises.pop()
+
     saveEdited(
+      workout_exercises,
       (res) => {
-        onSave(editedExercises)
+        onSave(workout_exercises)
       },
       (err) => setErrors(err)
     )
@@ -43,13 +47,7 @@ export default function WorkoutEdit(props) {
         handleWorkoutEdit={handleWorkoutEdit}
         handleReorder={handleReorderData}
         handleExerciseDelete={handleExerciseDelete}
-      />
-      <Exercise
-        empty={true}
-        handleWorkoutEdit={handleWorkoutEdit}
-        user_id={user_id}
-        editMode={true}
-        handleExerciseDelete={handleExerciseDelete}
+        userId={owner.id}
       />
       <Toggle 
         leftLabel="Save" 

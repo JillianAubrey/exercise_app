@@ -83,7 +83,7 @@ export default function Form(props) {
         <SmallButton 
           onClick={() => {
             handleReorder(true, index)
-            handleSubmit()
+            // handleSubmit()
           }} 
           type="moveup" 
         />
