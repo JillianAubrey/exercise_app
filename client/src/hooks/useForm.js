@@ -10,6 +10,11 @@ export default function useForm(initialValues) {
     console.log(data)
   }
 
+  const handleCategorySelect = (category) => {
+    setData(prev => ({
+      ...prev, category: category
+    }))
+  }
   const handleInputChange = (event) => {
     setData(prev => ({
       ...prev, [event.target.name]: event.target.value
@@ -19,6 +24,7 @@ export default function useForm(initialValues) {
  
   return {
     handleFormSubmit,
+    handleCategorySelect,
     handleInputChange,
     data,
   }

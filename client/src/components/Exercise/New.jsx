@@ -8,12 +8,27 @@ import SmallButton from "../buttons_toggles/SmallButton";
 
 export default function New(props) {
   const { user_id, onCancel, onAdd } = props;
-  const { handleFormSubmit, handleInputChange, data } = useForm({ user_id });
+  const { handleFormSubmit, handleInputChange, handleCategorySelect, data } = useForm({ user_id });
   const [errors, setErrors] = useState(null);
 
+  const handleSelectClick = (event) => {
+    const inputs = Array.from(document.getElementsByClassName("select__input"))
+    inputs.forEach((input) => {
+      input.classList.remove("select__input-selected")
+    })
+
+    event.target.classList.add("select__input-selected")
+    
+    console.log(event.target.id)
+    handleCategorySelect(event.target.id)
+
+  }
+
   const handleExerciseAdd = (data) => {
+    
     if (validateNewExercise(data, setErrors)) {
       postExercise(data, setErrors).then((responseData) => {
+        console.log(responseData);
         if (responseData) {
           onAdd(responseData);
         }
@@ -47,13 +62,17 @@ export default function New(props) {
           label="Exercise Name: "
         />
 
-        <TextInput
-          className="custom__category"
-          name="category"
-          value={data.category || ""}
-          onChange={handleInputChange}
-          label="Category: "
-        />
+        <div className="select__inputs">
+          <div className="select__input" id="arms" onClick={handleSelectClick}>1</div>
+          <div className="select__input" id="back" onClick={handleSelectClick}>2</div>
+          <div className="select__input" id="chest" onClick={handleSelectClick}>3</div>
+          <div className="select__input" id="core" onClick={handleSelectClick}>4</div>
+          <div className="select__input" id="legs" onClick={handleSelectClick}>5</div>
+          <div className="select__input" id="shoulders" onClick={handleSelectClick}>6</div>
+          <div className="select__input" id="cardio" onClick={handleSelectClick}>7</div>
+          <div className="select__input" id="stretch" onClick={handleSelectClick}>8</div>
+          <div className="select__input" id="other" onClick={handleSelectClick}>9</div>
+        </div>
 
         <TextInput
           className="custom__url"
