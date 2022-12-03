@@ -15,6 +15,7 @@ export default function ExerciseListEdit(props) {
     if (!item) {
       return (<Exercise
         key={index}
+        index={index}
         empty={true}
         handleWorkoutEdit={handleWorkoutEdit}
         user_id={userId}

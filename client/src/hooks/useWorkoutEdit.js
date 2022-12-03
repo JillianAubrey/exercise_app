@@ -11,7 +11,6 @@ const useWorkoutEdit = function(workout) {
       return exerciseCopy;
     }
   );
-
   exercisesCopy.push(null);
 
   const [editedExercises, setEditedExercises] = useState(exercisesCopy);
@@ -20,6 +19,9 @@ const useWorkoutEdit = function(workout) {
     setEditedExercises(prev => {
       const newEdit = [...prev]
       newEdit[index] = workout_exercise
+
+      if (!prev[index]) newEdit.push(null)
+      
       return newEdit
     })
   };

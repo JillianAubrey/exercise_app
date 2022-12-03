@@ -66,7 +66,8 @@ export default function New(props) {
       {data.gif_url && (
         <div className="image__preview">
           <p>Image Preview</p>
-          <img src={data.gif_url}></img>
+          <img src={data.gif_url} alt="Preview">
+        </img>
         </div>
       )}
       </article>
