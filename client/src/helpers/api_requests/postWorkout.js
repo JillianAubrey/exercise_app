@@ -1,11 +1,11 @@
 import api from "./_api"
 
 export default (
-  async function postWorkout(workout, workout_id) {
+  async function postWorkout(workout, workout_id, onSuccess, onError) {
   try {
     const response = await api.put(`/workouts/${workout_id}`, workout)
-    console.log(response)
+    onSuccess && onSuccess(response)
   } catch(error) {
-    console.log(error)
+    onError && onError(error)
   }
 });

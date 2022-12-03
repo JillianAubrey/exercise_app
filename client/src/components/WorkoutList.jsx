@@ -4,7 +4,7 @@ import filterWorkoutList from "../helpers/selectors";
 import Toggle from "./buttons_toggles/Toggle";
 
 export default function WorkoutList(props) {
-  const { user, userWorkouts, onShow, onPlay } = props;
+  const { user, userWorkouts, onShow, onPlay, onRemove } = props;
   const [byOthers, setByOthers] = useState(false)
   const workoutList = useMemo(
     () => filterWorkoutList( userWorkouts, user, byOthers),  
@@ -21,6 +21,7 @@ export default function WorkoutList(props) {
         categoryCounts={workout.category_counts}
         onClick={() => onShow(workout)}
         onPlay={() => onPlay(workout)}
+        onRemove={() => onRemove(workout)}
       />
     )
   })

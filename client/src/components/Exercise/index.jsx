@@ -6,7 +6,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Search from "./Search";
 import New from "./New";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -15,13 +15,20 @@ const SEARCH = "SEARCH";
 const NEW = "NEW";
 
 export default function Exercise(props) {
-  const { empty, editMode, onDelete, user_id, handleWorkoutEdit } = {
-    ...props,
-  };
+  const {
+    id, index, empty, editMode, user_id, handleWorkoutEdit
+  } = props;
+
   const [addNewProps, setAddNewProps] = useState();
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
   const onEdit = () => setMode(FORM);
+
+  useEffect(() => {
+    if (editMode === false) {
+      setMode(SHOW)
+    }
+  }, [editMode])
 
   const handleSearchAdd = (exercise) => {
     setAddNewProps(exercise);
@@ -31,6 +38,7 @@ export default function Exercise(props) {
   };
 
   const handleCustomAdd = (exercise) => {
+    console.log(exercise)
     setAddNewProps(exercise);
     setTimeout(() => {
       setMode(FORM);
@@ -48,17 +56,30 @@ export default function Exercise(props) {
     }, 100);
   };
 
-  const formProps = addNewProps
-    ? { ...addNewProps, onCancel: () => back(), handleWorkoutEdit }
-    : { ...props, onCancel: () => back() };
 
-  const showProps = editMode ? { ...props, onEdit } : props;
+  const handleFormSave = (data) => {
+    const { name, gif_url, category, ...workout_exercise } = data
+    workout_exercise.exercise = { id: workout_exercise.exercise_id, name, gif_url, category }
+   
+    workout_exercise.id = id || Math.random()
+
+    console.table(workout_exercise)
+
+    handleWorkoutEdit(workout_exercise, index)
+    setMode(SHOW)
+  }
+
+  const formProps = addNewProps
+    ? { ...addNewProps, onCancel: () => back(), handleFormSave }
+    : { ...props, onCancel: () => back(), handleFormSave };
+
+  const showProps = editMode ? {...props, onEdit, mode, editMode} : {...props, mode }
 
   return (
     <Fragment>
-      {mode === SHOW && !empty && <Show {...showProps} />}
+      {mode === SHOW  && !(empty && !addNewProps) && <Show {...showProps} />}
       {mode === FORM && <Form {...formProps} />}
-      {mode === EMPTY && empty && <Empty onClick={handleSearchMode} />}
+      {mode === EMPTY && empty && <Empty onClick={handleSearchMode}/>}
       {mode === SEARCH && (
         <Search
           onCancel={back}

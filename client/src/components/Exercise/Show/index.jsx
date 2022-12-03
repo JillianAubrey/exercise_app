@@ -7,9 +7,10 @@ import classNames from "classnames";
 
 export default function Show(props) {
   const {
+    index,
     name,
     exercise_id,
-    workout_exercise_id,
+    onDelete,
     category,
     duration,
     reps,
@@ -17,16 +18,16 @@ export default function Show(props) {
     gif_url,
     note,
     onEdit,
-    onDelete,
     onAdd,
-  } = { ...props };
+    mode,
+    editMode,
+    handleReorder
+  } = props;
 
-  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search' : onAdd})
 
-  const exerciseProps =
-    exercise_id === 1
-      ? null
-      : { name, category, duration, reps, sets, gif_url, note, exercise_id };
+  const cardClasses = classNames('exercise__card', 'exercise__card--show', {'exercise__card--search': mode === 'SEARCH'})
+
+  const exerciseProps = { name, category, duration, reps, sets, gif_url, note, exercise_id };
 
   return (
     <div className="exercise__container">
@@ -34,10 +35,12 @@ export default function Show(props) {
         {exercise_id === 1 && <Rest duration={duration}/>}
         {exercise_id !== 1 && <Exercise {...exerciseProps} />}
       </article>
-      {onEdit && onDelete && (
+      {editMode && (
         <section className="exercise__card-editcancel">
-          {onEdit && <SmallButton onClick={onEdit} type="edit" />}
-          {onDelete && <SmallButton onClick={onDelete} type="delete" />}
+           <SmallButton onClick={() => handleReorder(true, index)} type="moveup" />
+           <SmallButton onClick={onEdit} type="edit" />
+           <SmallButton onClick={onDelete} type="delete" />
+           <SmallButton onClick={() => handleReorder(false, index)} type="movedown" />
         </section>
       )}
       {onAdd && <SmallButton type="add" onClick={() => onAdd({...props})}/>}

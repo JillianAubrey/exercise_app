@@ -5,6 +5,7 @@ import postExercise from "../../helpers/api_requests/postExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
+import errorDisplay from "../../helpers/errorDisplay";
 
 export default function New(props) {
   const { user_id, onCancel, onAdd } = props;
@@ -36,6 +37,7 @@ export default function New(props) {
     }
   };
 
+  const errorElements = errorDisplay(errors)
   const errorDisplay =
     errors &&
     errors.map((error, index) => {
@@ -84,12 +86,13 @@ export default function New(props) {
         />
       </form>
 
-      {errors && <div> {errorDisplay} </div>}
+      {errorElements && <div> {errorElements} </div>}
 
       {data.gif_url && (
         <div className="image__preview">
           <p>Image Preview</p>
-          <img src={data.gif_url}></img>
+          <img src={data.gif_url} alt="Preview">
+        </img>
         </div>
       )}
       </article>
