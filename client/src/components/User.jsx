@@ -109,7 +109,12 @@ export default function User(props) {
       {view === WORKOUT_ADD &&
         <WorkoutAdd 
           workout={selectedWorkout}
-          onCancel={() => setView(WORKOUT_SHOW)}
+          setName={name => {
+            setSelectedWorkout(prev => {
+              return {...prev, name}
+            })
+          }}
+          onCancel={() => setView(WORKOUT_LIST)}
           onSave={onSave}
         />
       }
