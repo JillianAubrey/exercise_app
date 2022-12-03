@@ -120,7 +120,7 @@ custom_exercises = [
 puts "Adding Exercises to Workouts..."
 
 for exercise in leg_exercises do
-  workout1.workout_exercises.create!({exercise_id: exercise.id, reps: 8, sets: 3})
+  workout1.workout_exercises.create!({exercise_id: exercise.id, reps: 8, sets: 3, note:"Last set to failure"})
 end
 
 for exercise in cardio_exercises do
