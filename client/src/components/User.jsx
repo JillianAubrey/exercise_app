@@ -53,7 +53,6 @@ export default function User(props) {
     )
   }
 
-<<<<<<< HEAD
   const onSave = (response)=> {
     setSelectedWorkout(response.data)
     setView(WORKOUT_SHOW)
@@ -62,14 +61,14 @@ export default function User(props) {
       user,
       (res) => setUserWorkouts([...res.data])
     )
-=======
+  }
+
   const onRemoveWorkout = (workoutId, userId) => {
     const deleteIndex = userWorkouts.findIndex((workout) => workout.id === workoutId)
     const newUserWorkouts = [...userWorkouts]
     newUserWorkouts.splice(deleteIndex, 1);
     deleteMember(workoutId, userId, setUserWorkouts(newUserWorkouts));
     setView(WORKOUT_LIST);
->>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
   }
 
   return (
@@ -85,12 +84,12 @@ export default function User(props) {
         />
       }
       {view === WORKOUT_SHOW && 
-<<<<<<< HEAD
         <WorkoutShow 
           user_id={user}
           workout={selectedWorkout}
           onPlay={() => setView(WALKTHROUGH)}
           onEdit={() => setView(WORKOUT_EDIT)}
+          onRemove={() => onRemoveWorkout(selectedWorkout.id, user)}
         />
       }
       {view === WORKOUT_EDIT && 
@@ -99,13 +98,6 @@ export default function User(props) {
           workout={selectedWorkout}
           onCancel={() => setView(WORKOUT_SHOW)}
           onSave={onSave}
-=======
-        <WorkoutShow
-          user_id={user}
-          workout={selectedWorkout}
-          onPlay={() => setView(WALKTHROUGH)}
-          onRemove={() => onRemoveWorkout(selectedWorkout.id, user)}
->>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
         />
       }
       {view === WALKTHROUGH && 

@@ -19,8 +19,8 @@ export default function WorkoutItem(props) {
             <h1> {name} </h1>
             <div className="workout__card-divider"></div>
           </div>
-          {onPlay && <div className="workout__card-note">
-            <button
+          <div className="workout__card-note">
+          {onPlay && <button
               type="button"
               className="workout__card-btn"
               onClick={event => {
@@ -31,10 +31,7 @@ export default function WorkoutItem(props) {
               }}
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
-            </button>
-<<<<<<< HEAD
-          </div>}
-=======
+            </button>}
             {onRemove &&
               <button
               type="button"
@@ -49,7 +46,6 @@ export default function WorkoutItem(props) {
               Remove
             </button>}
           </div>
->>>>>>> bf4ba49b39a4068ddaece708ec72dc53fa79ebf5
           <CategoryBar {...categoryCounts} />
         </section>
       </article>
