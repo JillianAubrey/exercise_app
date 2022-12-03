@@ -66,8 +66,7 @@ export default function Form(props) {
 
 
   const handleSubmit = () => {
-    const validatedData = validateExerciseEdit(data, setError, timed) 
-    validatedData && handleFormSave(validatedData)
+    validateExerciseEdit(data, setError, timed) && handleFormSave(data)
   };
 
   return (

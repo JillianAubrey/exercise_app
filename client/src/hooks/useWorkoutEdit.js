@@ -7,7 +7,6 @@ const useWorkoutEdit = function(workout) {
   const exercisesCopy = workout.workout_exercises.map(
     (workout_exercise) => {
       const exerciseCopy = { ...workout_exercise };
-      // exerciseCopy.exercise_id = exerciseCopy.exercise.id;
       exerciseCopy.exercise = {...workout_exercise.exercise};
       return exerciseCopy;
     }
@@ -17,29 +16,12 @@ const useWorkoutEdit = function(workout) {
 
   const [editedExercises, setEditedExercises] = useState(exercisesCopy);
 
-  const handleWorkoutEdit = function (workout_exercise) {
-
-    workout_exercise = {...workout_exercise}
-
-    workout_exercise.id = workout_exercise.workout_exercise_id;
-    delete workout_exercise.workout_exercise_id;
-
-    setEditedExercises((prev) => {
-      let newEdit = prev.map((el) => {
-        if (el.id === workout_exercise.id) {
-          workout_exercise.id = el.id;
-          return workout_exercise;
-        }
-        return { ...el };
-      });
-
-      if (workout_exercise.id < 1) {
-          workout_exercise.exercise = {gif_url: workout_exercise.gif_url, name: workout_exercise.name, category: workout_exercise.category, id: workout_exercise.exercise_id}
-          newEdit.push(workout_exercise);
-        }
-        
-      return newEdit;
-    });
+  const handleWorkoutEdit = function (workout_exercise, index) {
+    setEditedExercises(prev => {
+      const newEdit = [...prev]
+      newEdit[index] = workout_exercise
+      return newEdit
+    })
   };
 
   const handleReorderData = function (up, index) {

@@ -58,11 +58,11 @@ export default function Exercise(props) {
   };
 
 
-  const handleFormSave = (workout_exercise) => {
-    setAddNewProps({...workout_exercise})
-    console.log("hello from handle form save", workout_exercise)
+  const handleFormSave = (data) => {
+    const { name, gif_url, category, ...workout_exercise } = data
+    workout_exercise.exercise = { name, gif_url, category }
    
-    handleWorkoutEdit(workout_exercise)
+    handleWorkoutEdit(workout_exercise, index)
     setMode(SHOW)
   }
 
