@@ -84,7 +84,7 @@ export default function User(props) {
           onPlay={(workout) => onSelect(workout.id, WALKTHROUGH)}
           onRemove={(workout) => onRemoveWorkout(workout.id, user)}
           onAdd={() => {
-            setSelectedWorkout({owner: user, workout_exercises: []})
+            setSelectedWorkout({owner: {id: user}, workout_exercises: []})
             setView(WORKOUT_ADD)
           }}
         />
@@ -114,7 +114,10 @@ export default function User(props) {
               return {...prev, name}
             })
           }}
-          onCancel={() => setView(WORKOUT_LIST)}
+          onCancel={() => {
+            selectedWorkout(null);
+            setView(WORKOUT_LIST);
+          }}
           onSave={onSave}
         />
       }
