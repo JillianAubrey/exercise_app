@@ -80,7 +80,7 @@ export default function New(props) {
           <div className="select__input"><span>Shoulders&nbsp;</span><img id="shoulders" src="/images/shoulder.png"  onClick={handleSelectClick} alt=""/></div>
           <div className="select__input"><span>Cardio&nbsp;</span><img id="cardio" src="/images/running.png"  onClick={handleSelectClick} alt=""/></div>
           <div className="select__input"><span>Stretch&nbsp;</span><img id="stretch" src="/images/triangle-position.png"  onClick={handleSelectClick} alt=""/></div>
-          <div className="select__input"><span>Other&nbsp;</span><img src="/images/more-information.png" onClick={handleSelectClick} alt="" /></div>
+          <div className="select__input"><span>Other&nbsp;</span><img id="other" src="/images/more-information.png" onClick={handleSelectClick} alt="" /></div>
         </div>
 
         <TextInput
