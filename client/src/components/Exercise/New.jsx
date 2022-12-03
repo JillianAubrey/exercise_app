@@ -5,6 +5,7 @@ import postExercise from "../../helpers/api_requests/postExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export default function New(props) {
@@ -15,18 +16,16 @@ export default function New(props) {
   const [errors, setErrors] = useState(null);
 
   const handleSelectClick = (event) => {
-
+    console.log("hello")
     const inputs = Array.from(document.getElementsByClassName("select__input"))
     inputs.forEach((input) => {
-      input.classList.remove("select__input-selected")
+      input.classList.remove("select__input-selected");
     })
 
-    event.target.classList.add("select__input-selected")
-    
-    console.log(event.target.id)
+    event.target.parentElement.classList.add("select__input-selected")
     handleCategorySelect(event.target.id)
 
-  }
+  } 
 
 
   const handleExerciseAdd = (data) => {
@@ -52,11 +51,13 @@ export default function New(props) {
 
 
   return (
-     <div className="custom__container">
+     <div className="exercise__container">
       <article className="custom__card">
 
         <CardLeft gif_url={data.gif_url} category={data.category} name={data.name}/> 
 
+
+      <div className="custom__card-right">
       <form
         autoComplete="off"
         className="custom__form"
@@ -71,15 +72,15 @@ export default function New(props) {
         />
 
         <div className="select__inputs">
-          <div className="select__input" id="arms" onClick={handleSelectClick}>Arms</div>
-          <div className="select__input" id="back" onClick={handleSelectClick}>Back</div>
-          <div className="select__input" id="chest" onClick={handleSelectClick}>Chest</div>
-          <div className="select__input" id="core" onClick={handleSelectClick}>Core</div>
-          <div className="select__input" id="legs" onClick={handleSelectClick}>Legs</div>
-          <div className="select__input" id="shoulders" onClick={handleSelectClick}>Shoulders</div>
-          <div className="select__input" id="cardio" onClick={handleSelectClick}>Cardio</div>
-          <div className="select__input" id="stretch" onClick={handleSelectClick}>Stretch</div>
-          <div className="select__input" id="other" onClick={handleSelectClick}>Other</div>
+          <div className="select__input"><span>Arms &nbsp;</span> <img id="arms" src="/images/muscle.png" onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Back&nbsp;</span><img id="back" src="/images/back.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Chest&nbsp;</span><img id="chest" src="/images/chest.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Core&nbsp;</span><img id="core" src="/images/abs.png" onClick={handleSelectClick} alt="" /></div>
+          <div className="select__input"><span>Legs&nbsp;</span><img id="legs" src="/images/leg.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Shoulders&nbsp;</span><img id="shoulders" src="/images/shoulder.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Cardio&nbsp;</span><img id="cardio" src="/images/running.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Stretch&nbsp;</span><img id="stretch" src="/images/triangle-position.png"  onClick={handleSelectClick} alt=""/></div>
+          <div className="select__input"><span>Other&nbsp;</span><img src="/images/more-information.png" onClick={handleSelectClick} alt="" /></div>
         </div>
 
         <TextInput
@@ -88,22 +89,18 @@ export default function New(props) {
           value={data.gif_url || ""}
           onChange={handleInputChange}
           placeHolder="(optional)"
-          label="Photo/GIF URL: "
+          label="Photo URL: "
         />
       </form>
 
       {errorElements && <div> {errorElements} </div>}
 
-      {data.gif_url && (
-        <div className="image__preview">
-          <p>Image Preview</p>
-          <img src={data.gif_url} alt="Preview">
-        </img>
-        </div>
-      )}
+      </div>
       </article>
+      <div className="exercise__card-editcancel">
       <SmallButton onClick={() => handleExerciseAdd(data)} type="save"/>
       <SmallButton onClick={onCancel} type="cancel"/>
+      </div>
     </div>
   );
 }

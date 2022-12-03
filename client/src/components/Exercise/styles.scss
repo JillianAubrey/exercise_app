@@ -17,6 +17,9 @@
   margin-top: 0.9rem;
   display: flex;
   gap: 10px;
+  &:last-of-type {
+    margin-bottom: 0.9rem;
+  }
 }
 
 .exercise__card {
@@ -319,6 +322,100 @@
   }
 }
 
-.select__input-selected {
-  color: red;
+.select__inputs {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 3px;
+  margin: 1rem auto;
 }
+
+.select__input {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+ 
+
+  padding: 4px 4px;
+  border: 2px solid white;
+  background-color: white;
+  font-size: 0.9rem;
+  color: $theme-green;
+  font-weight: 300;
+  border: 2px solid $theme-green;
+  span {
+    display: none;
+  }
+
+  img {
+    background-color: white;
+    pointer-events: all;
+  }
+ 
+}
+.select__input-selected {
+  span {
+    display: contents;
+  }
+}
+
+
+.custom__card {
+  @include card-base-styling;
+}
+
+.custom__container {
+  margin-top: 0.9rem;
+  display: flex;
+  gap: 10px;
+}
+
+.custom__name, .custom__url {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  label {
+    font-weight: 300;
+    font-size: 0.9rem;
+  }
+
+  input,
+  textarea {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px rgb(44, 44, 44) inset;
+    resize: none;
+    font-family: inherit;
+    padding: 0.3em;
+    font-weight: 500;
+  }
+
+  input {
+    background: #1d7f1093 40%;
+    color: white;
+    padding-left: 1em;
+  }
+
+  textarea {
+    width: 90%;
+    font-weight: 200;
+  }
+}
+
+.custom__name {
+  input {
+    height: 2em;
+    font-size: 1.1em;
+  }
+}
+
+.custom__url {
+  input {
+    background-color: white;
+    font-weight: 200;
+    color: black;
+  }
+  
+}
+
+
