@@ -54,65 +54,66 @@ workout5.users << user3
 puts "Creating Exercises..."
 
 # Database exercises
-rest = Exercise.create!({name: 'rest', category: 'rest', gif_url: 'https://i.imgur.com/dpnLlp7.png'})
+# Default rest exercise
+rest = Exercise.create!({name: 'Rest', category: 'rest', id:1})
 
 chest_exercises = [
-  Exercise.create!({name: 'push-up', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0662.gif'}),
-  Exercise.create!({name: 'bench press', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0025.gif'}),
-  Exercise.create!({name: 'chest fly', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0308.gif'})
+  Exercise.create!({name: 'Push-up', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0662.gif'}),
+  Exercise.create!({name: 'Bench Press', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0025.gif'}),
+  Exercise.create!({name: 'Chest Fly', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0308.gif'})
 ]
 
 core_exercises = [
-  Exercise.create!({name: 'sit-up', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3679.gif'}),
-  Exercise.create!({name: 'crunch', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0274.gif'}),
-  Exercise.create!({name: 'dead bug', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0276.gif'})
+  Exercise.create!({name: 'Sit-up', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3679.gif'}),
+  Exercise.create!({name: 'Crunch', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0274.gif'}),
+  Exercise.create!({name: 'Dead Bug', category: 'core', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0276.gif'})
 ]
 
 leg_exercises = [
-  Exercise.create!({name: 'deadlift', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0032.gif'}),
-  Exercise.create!({name: 'lunge', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0336.gif'}),
-  Exercise.create!({name: 'calf raise', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0417.gif'}),
-  Exercise.create!({name: 'split squat', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0410.gif'}),
-  Exercise.create!({name: 'good morning', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0044.gif'}),
-  Exercise.create!({name: 'squat', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0063.gif'})
+  Exercise.create!({name: 'Deadlift', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0032.gif'}),
+  Exercise.create!({name: 'Lunge', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0336.gif'}),
+  Exercise.create!({name: 'Calf Raise', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0417.gif'}),
+  Exercise.create!({name: 'Split Squat', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0410.gif'}),
+  Exercise.create!({name: 'Good Morning', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0044.gif'}),
+  Exercise.create!({name: 'Squat', category: 'legs', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0063.gif'})
 ]
 
 cardio_exercises = [
-  Exercise.create!({name: 'jumping jack', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3220.gif'}),
-  Exercise.create!({name: 'burpee', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1160.gif'}),
-  Exercise.create!({name: 'run', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0685.gif'}),
-  Exercise.create!({name: 'skate hop', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3361.gif'})
+  Exercise.create!({name: 'Jumping Jack', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3220.gif'}),
+  Exercise.create!({name: 'Burpee', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1160.gif'}),
+  Exercise.create!({name: 'Run', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0685.gif'}),
+  Exercise.create!({name: 'Skate Hop', category: 'cardio', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/3361.gif'})
 ]
 
 stretch_exercises = [
-  Exercise.create!({name: 'butterfly pose', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1494.gif' }),
+  Exercise.create!({name: 'Butterfly Pose', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1494.gif' }),
   Exercise.create!({name: 'overhead tricep stretch', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0643.gif' }),
   Exercise.create!({name: 'wrist circles', category: 'stretch', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/1428.gif' })
 ]
 
 arm_exercises = [
-  Exercise.create!({name: 'bicep curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0294.gif'}),
-  Exercise.create!({name: 'tricep extension', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0430.gif'}),
-  Exercise.create!({name: 'wrist curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0369.gif'})
+  Exercise.create!({name: 'Bicep Curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0294.gif'}),
+  Exercise.create!({name: 'Tricep Extension', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0430.gif'}),
+  Exercise.create!({name: 'Wrist Curl', category: 'arms', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0369.gif'})
 ]
 
 shoulder_exercises = [
-  Exercise.create!({name: 'lateral raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0334.gif'}),
-  Exercise.create!({name: 'front raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0310.gif'}),
-  Exercise.create!({name: 'shoulder press', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0405.gif'}),
+  Exercise.create!({name: 'Lateral Raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0334.gif'}),
+  Exercise.create!({name: 'Front Raise', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0310.gif'}),
+  Exercise.create!({name: 'Shoulder Press', category: 'shoulders', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0405.gif'}),
 ]
 
 back_exercises = [
-  Exercise.create!({name: 'bent over row', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0293.gif'}),
-  Exercise.create!({name: 'lat pulldown', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0198.gif'}),
-  Exercise.create!({name: 'shrug', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0406.gif'})
+  Exercise.create!({name: 'Bent Over Row', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0293.gif'}),
+  Exercise.create!({name: 'Lat Pulldown', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0198.gif'}),
+  Exercise.create!({name: 'Shrug', category: 'back', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0406.gif'})
 ]
 
 # Custom Exercises
 custom_exercises = [
-  user1.exercises.create!({name: 'water break', category: 'rest', gif_url: 'http://clipart-library.com/img/2048367.jpg'}),
-  user1.exercises.create!({name: 'forward fold', category: 'stretch'}),
-  user1.exercises.create!({name: 'bent over twist', category: 'stretch', gif_url: 'https://www.spotebi.com/wp-content/uploads/2015/02/bent-over-twist-exercise-illustration.gif'})
+  user1.exercises.create!({name: 'Water Break', category: 'rest', gif_url: 'https://clipartmag.com/images/water-bottle-clipart-47.jpg'}),
+  user1.exercises.create!({name: 'Forward Fold', category: 'stretch'}),
+  user1.exercises.create!({name: 'Bent Over Twist', category: 'stretch', gif_url: 'https://www.spotebi.com/wp-content/uploads/2015/02/bent-over-twist-exercise-illustration.gif'})
 ]
 
 ## Workout_Exercises
