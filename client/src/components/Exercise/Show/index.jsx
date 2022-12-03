@@ -7,6 +7,7 @@ import classNames from "classnames";
 
 export default function Show(props) {
   const {
+    index,
     name,
     exercise_id,
     onDelete,
@@ -20,6 +21,7 @@ export default function Show(props) {
     onAdd,
     mode,
     editMode,
+    handleReorder
   } = { ...props };
 
 
@@ -35,8 +37,10 @@ export default function Show(props) {
       </article>
       {editMode && (
         <section className="exercise__card-editcancel">
+           <SmallButton onClick={() => handleReorder(true, index)} type="moveup" />
            <SmallButton onClick={onEdit} type="edit" />
            <SmallButton onClick={onDelete} type="delete" />
+           <SmallButton onClick={() => handleReorder(false, index)} type="movedown" />
         </section>
       )}
       {onAdd && <SmallButton type="add" onClick={() => onAdd({...props})}/>}

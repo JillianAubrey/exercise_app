@@ -11,7 +11,6 @@ export default function WorkoutShow(props) {
 
   return (
     <Fragment>
-      <h1>WORKOUT SHOW</h1>
       <WorkoutItem
         name={name}
         gif_url={first_gif}

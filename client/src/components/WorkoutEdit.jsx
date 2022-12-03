@@ -1,5 +1,4 @@
-import React, { useState, Fragment, useEffect, useRef } from "react";
-import Exercise from "./Exercise";
+import React, { useState, Fragment } from "react";
 import WorkoutItem from "./WorkoutItem";
 import useWorkoutEdit from "../hooks/useWorkoutEdit";
 import Toggle from "./buttons_toggles/Toggle";
@@ -26,16 +25,13 @@ export default function WorkoutEdit(props) {
 
     saveEdited(
       workout_exercises,
-      (res) => {
-        onSave(workout_exercises)
-      },
+      (res) => onSave(workout_exercises),
       (err) => setErrors(err)
     )
   };
 
   return (
     <Fragment>
-      <h1>WORKOUT EDIT</h1>
       <WorkoutItem
         name={name}
         gif_url={first_gif}

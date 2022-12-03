@@ -44,7 +44,7 @@ const useWorkoutEdit = function(workout) {
 
   const handleReorderData = function (up, index) {
     if (up && index === 0) return;
-    if (!up && index === editedExercises.length - 1) return;
+    if (!up && !editedExercises[index + 1]) return;
 
     setEditedExercises((prev) => {
       const newEdit = [...prev]
