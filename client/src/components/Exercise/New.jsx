@@ -5,7 +5,7 @@ import postExercise from "../../helpers/api_requests/postExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import errorDisplay from "../../helpers/errorDisplay"
 
 
 export default function New(props) {
