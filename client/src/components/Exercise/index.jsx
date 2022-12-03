@@ -19,6 +19,7 @@ export default function Exercise(props) {
     id, index, empty, editMode, user_id, handleWorkoutEdit
   } = props;
 
+  console.log("user_id in exercise", user_id)
   const [addNewProps, setAddNewProps] = useState();
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
@@ -45,9 +46,7 @@ export default function Exercise(props) {
     }, 100);
   };
   const handleCustomMode = () => {
-    setTimeout(() => {
       setMode(NEW);
-    }, 100);
   };
 
   const handleSearchMode = () => {

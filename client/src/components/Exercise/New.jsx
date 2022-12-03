@@ -1,18 +1,21 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import useForm from "../../hooks/useForm";
 import TextInput from "../form_elements/TextInput";
 import postExercise from "../../helpers/api_requests/postExercise"
 import validateNewExercise from "../../helpers/validateNewExercise";
 import CardLeft from "./CardLeft";
 import SmallButton from "../buttons_toggles/SmallButton";
-import errorDisplay from "../../helpers/errorDisplay";
+
 
 export default function New(props) {
-  const { user_id, onCancel, onAdd } = props;
+
+  const { user_id, onCancel, onAdd } = {...props};
+
   const { handleFormSubmit, handleInputChange, handleCategorySelect, data } = useForm({ user_id });
   const [errors, setErrors] = useState(null);
 
   const handleSelectClick = (event) => {
+
     const inputs = Array.from(document.getElementsByClassName("select__input"))
     inputs.forEach((input) => {
       input.classList.remove("select__input-selected")
@@ -24,6 +27,7 @@ export default function New(props) {
     handleCategorySelect(event.target.id)
 
   }
+
 
   const handleExerciseAdd = (data) => {
     
@@ -37,12 +41,14 @@ export default function New(props) {
     }
   };
 
-  const errorElements = errorDisplay(errors)
-  const errorDisplay =
+
+  const errorElements = 
     errors &&
     errors.map((error, index) => {
       return <p className="error custom__error" key={index}> {error} </p>;
     });
+
+  
 
 
   return (
@@ -65,15 +71,15 @@ export default function New(props) {
         />
 
         <div className="select__inputs">
-          <div className="select__input" id="arms" onClick={handleSelectClick}>1</div>
-          <div className="select__input" id="back" onClick={handleSelectClick}>2</div>
-          <div className="select__input" id="chest" onClick={handleSelectClick}>3</div>
-          <div className="select__input" id="core" onClick={handleSelectClick}>4</div>
-          <div className="select__input" id="legs" onClick={handleSelectClick}>5</div>
-          <div className="select__input" id="shoulders" onClick={handleSelectClick}>6</div>
-          <div className="select__input" id="cardio" onClick={handleSelectClick}>7</div>
-          <div className="select__input" id="stretch" onClick={handleSelectClick}>8</div>
-          <div className="select__input" id="other" onClick={handleSelectClick}>9</div>
+          <div className="select__input" id="arms" onClick={handleSelectClick}>Arms</div>
+          <div className="select__input" id="back" onClick={handleSelectClick}>Back</div>
+          <div className="select__input" id="chest" onClick={handleSelectClick}>Chest</div>
+          <div className="select__input" id="core" onClick={handleSelectClick}>Core</div>
+          <div className="select__input" id="legs" onClick={handleSelectClick}>Legs</div>
+          <div className="select__input" id="shoulders" onClick={handleSelectClick}>Shoulders</div>
+          <div className="select__input" id="cardio" onClick={handleSelectClick}>Cardio</div>
+          <div className="select__input" id="stretch" onClick={handleSelectClick}>Stretch</div>
+          <div className="select__input" id="other" onClick={handleSelectClick}>Other</div>
         </div>
 
         <TextInput
