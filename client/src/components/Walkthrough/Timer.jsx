@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from "react";
+import classNames from "classnames";
 
 export default function Timer(props) {
   const { duration, onComplete } = props
   const [seconds, setSeconds] = useState(duration.seconds)
+
+  let timerClasses = classNames("timer", {"timer-yellow": seconds <= 10 && seconds > 5, "timer-red": seconds <= 5})
+
+  const beep = new Audio('/audio/beep-07a.mp3');
+
 
   useEffect(() => {
     setSeconds(duration.seconds)
@@ -18,6 +24,10 @@ export default function Timer(props) {
       setSeconds(prev => prev - 1)
     }, 1000)
 
+    if (seconds <= 10) {
+      beep.play();
+    }
+
     return () => clearTimeout(timeout)
   }, [seconds])
 
@@ -26,7 +36,7 @@ export default function Timer(props) {
   if (displaySeconds < 10) displaySeconds = "0" + displaySeconds
 
   return (
-    <div className="timer">
+    <div className={timerClasses}>
       {displayMinutes}:{displaySeconds}
     </div>
   )
