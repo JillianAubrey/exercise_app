@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .toggle {
   display: flex;
   flex-direction: row;
@@ -6,5 +8,6 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width: $max-width;
   box-shadow: 0px -2px 20px rgb(55, 51, 51);
 }
