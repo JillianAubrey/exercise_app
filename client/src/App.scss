@@ -24,5 +24,6 @@ html {
 body {
   max-width: $max-width;
   background-color: white;
-  margin: auto;
+  margin: $nav-height auto 0;
+  padding-top: 10px
 }

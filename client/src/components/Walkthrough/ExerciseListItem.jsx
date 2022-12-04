@@ -11,7 +11,7 @@ export default function ExerciseListItem(props) {
   const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
 
   useEffect(() => {
-    if (first && firstRender.current) {
+    if (firstRender.current) {
       firstRender.current = false;
       return;
     }

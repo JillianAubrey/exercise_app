@@ -1,0 +1,50 @@
+@import '../styles/variables.scss';
+@import 'https://fonts.googleapis.com/css?family=Audiowide';
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: $theme-green;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: $max-width;
+  box-shadow: 0px -2px 20px rgb(55, 51, 51);
+  height: $nav-height;
+  justify-content: space-between;
+
+  .logo {
+    margin: auto 1em;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Audiowide;
+  }
+
+  .user {
+    display: flex;
+    flex-direction: row;
+
+    * {
+      margin: auto 0.1em;
+    }
+
+    p {
+      font-size: 0.8em;
+    }
+
+    .username {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    button {
+      color: inherit;
+      font-size: 1.5rem;
+      background-color: inherit;
+      border: none;
+    }
+  }
+}

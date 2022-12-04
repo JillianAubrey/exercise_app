@@ -14,7 +14,8 @@ import {
   faChevronRight,
   faMoon,
   faPlay,
-  faChildReaching
+  faChildReaching,
+  faRightFromBracket
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -31,5 +32,6 @@ library.add(
   faChevronRight,
   faMoon,
   faPlay,
-  faChildReaching
+  faChildReaching,
+  faRightFromBracket
 );

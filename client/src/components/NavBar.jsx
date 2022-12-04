@@ -1,5 +1,6 @@
 import React from "react";
 import postLogout from "../helpers/api_requests/postLogout";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './NavBar.scss';
 
 export default function NavBar(props) {
@@ -11,8 +12,15 @@ export default function NavBar(props) {
 
   return (
     <nav>
-      <button onClick={handleLogout}>Logout</button>
-      <p>Logged in as {userName}</p>
+      <span class="logo">
+        titan
+      </span>
+      <div class="user">
+        <p>logged in as <span class="username">{userName}</span></p>
+        <button onClick={handleLogout}>
+          <FontAwesomeIcon icon="fa-right-from-bracket" />
+        </button>
+      </div>
     </nav>
   )
 }
