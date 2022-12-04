@@ -69,7 +69,7 @@ class WorkoutsController < ApplicationController
         return
       end
     end
-      
+
     @workout.update(name: params[:name])
 
     if !@workout.valid?

@@ -5,6 +5,8 @@ class Workout < ApplicationRecord
   has_many :exercises, through: :workout_exercises
   has_many :walkthroughs, :dependent => :destroy
 
+  validates :workout_exercises, presence: true
+
   def category_counts
     self.exercises.group(:category).count
   end

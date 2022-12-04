@@ -41,6 +41,7 @@ export default function WorkoutEdit(props) {
         handleExerciseDelete={handleExerciseDelete}
         userId={owner.id}
       />
+      {errors && errorDisplay(errors)}
       <Toggle 
         leftLabel="Save" 
         rightLabel="Cancel" 

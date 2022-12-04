@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import useForm from "../hooks/useForm";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
+import formatApiErrors from "../helpers/formatApiErrors";
 import Error from "./Error";
 import postLogin from "../helpers/api_requests/postLogin";
 import './Login.scss';
@@ -27,18 +28,18 @@ export default function Login(props) {
     event.preventDefault()
     onLogin(data)
   }
-  let errors = ''
+  
+  let errorMessages = ''
   if (error) {
-    errors = Object.entries(error.response.data).map((error) => {
-      const errorMessage = `${error[1][0]}`
-      return (
-        <Error>{errorMessage}</Error>
-      )
-    })
+    errorMessages = formatApiErrors(
+      error.response.data,
+      (errorMessage) => <Error>{errorMessage}</Error>
+    )
   }
+
   return  (
     <form onSubmit={handleSubmit}>
-      {error && <Fragment>{errors}</Fragment>}
+      {error && <Fragment>{errorMessages}</Fragment>}
       <EmailInput
         name="email"
         label="Email"

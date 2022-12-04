@@ -4,6 +4,7 @@ import TextInput from "./form_elements/TextInput";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import Error from "./Error";
+import formatApiErrors from "../helpers/formatApiErrors";
 import postUser from "../helpers/api_requests/postUser";
 import './Register.scss';
 
@@ -28,18 +29,18 @@ export default function Register(props) {
     event.preventDefault()
     onRegister(data, setError)
   }
-  let errors = ''
+
+  let errorMessages = ''
   if (error) {
-    errors = Object.entries(error.response.data).map((error) => {
-      const errorMessage = `${error[0]} ${error[1][0]}`
-      return (
-        <Error>{errorMessage}</Error>
-      )
-    })
+    errorMessages = formatApiErrors(
+      error.response.data,
+      (errorMessage) => <Error>{errorMessage}</Error>
+    )
   }
+
   return  (
     <form onSubmit={handleSubmit}>
-      {error && <Fragment>{errors}</Fragment>}
+      {error && <Fragment>{errorMessages}</Fragment>}
       <TextInput
         name="name"
         label="Username"
