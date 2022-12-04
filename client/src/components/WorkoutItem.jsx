@@ -32,22 +32,17 @@ export default function WorkoutItem(props) {
             >
               <FontAwesomeIcon icon="fa-solid fa-play" />
             </button>}
-            {onRemove &&
-              <button
-              type="button"
-              className="workout__card-btn"
-              onClick={event => {
+        
+          </div>
+          <CategoryBar {...categoryCounts} />
+          {onRemove && <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
                 console.log("clicked remove!")
                 event.preventDefault();
                 event.stopPropagation();
                 onRemove();
-              }}
-            >
-              Remove
-            </button>}
-          </div>
-          <CategoryBar {...categoryCounts} />
+              }}></SmallButton>}
         </section>
+       
       </article>
       {editable && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}
     </Fragment>

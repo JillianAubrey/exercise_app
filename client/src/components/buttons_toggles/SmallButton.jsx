@@ -4,10 +4,10 @@ import './SmallButton.scss'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function SmallButton(props) {
-  const { onClick, type, disabled, children } = {...props};
+  const { onClick, type, disabled, children, classes } = {...props};
 
   //display of button changes depending on the type attribute passed in. typically the same text as the button label but lowercase
-  const buttonClasses = classnames("small_button", {
+  let buttonClasses = classnames("small_button", {
     "small_button--edit": type === "edit",
     "small_button--destroy": type === "delete" || type === "cancel",
     "small_button--save": type === "save" || type === "add" || type === "rest",
@@ -15,6 +15,8 @@ export default function SmallButton(props) {
     "small_button--add": type === "add",
     "small_button--navigate": type === "previous" || type === "next"
   });
+
+  if (classes) buttonClasses += ` ${classes}`
 
   return (
     <button onClick={onClick} className={buttonClasses} disabled={disabled}>
