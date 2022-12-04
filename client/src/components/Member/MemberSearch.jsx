@@ -7,9 +7,9 @@ import addMember from '../../helpers/api_requests/addMember'
 import './styles.scss'
 
 export default function MemberSearch(props) {
-  const { workoutId } = props
+  const { workoutId, setMemberSearch, toggleSearch } = props
   const [memberResults, setMemberResults] = useState([])
-  const { handleInputChange, handleFormSubmit, data } = useForm({});
+  const { handleInputChange, data } = useForm({});
   const query = data.search || null
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function MemberSearch(props) {
   }, [query]);
 
   const selectMember = function(workoutId, userId) {
-    addMember(workoutId, userId, searchMembers(workoutId, query, setMemberResults, console.log), console.log);
+    addMember(workoutId, userId, toggleSearch(), console.log)
   }
 
   const results = memberResults.map((member) => {
@@ -27,14 +27,15 @@ export default function MemberSearch(props) {
         key={member.id}
         name={member.name}
         onClick={() => selectMember(workoutId, member.id)}
+        icon="add"
       />
     )
   })
 
   return (
     <Fragment>
-      <div className="member__card-divider"></div>
-      <div className="member__card-note">
+      <div className="member_item-divider"></div>
+      <div className="member__card-search">
         <TextInput
           className="search__input"
           name="search"
@@ -44,7 +45,10 @@ export default function MemberSearch(props) {
           placeholder="Search a username!"
         />
         <div className="search__results">
-          {results}
+          <ul>
+            {results}
+            {memberResults.length < 1 && <h2> . . . </h2>}
+          </ul>
         </div>
         </div>
     </Fragment>

@@ -26,7 +26,7 @@ export default function MemberList(props) {
 
   return (
     <Fragment>
-      <div className="member__card-divider"></div>
+      <div className="member_item-divider"></div>
       <div className="member__card-note">
         <ul>
           {ownerMember && <MemberListItem name={ownerMember.name} owner={true} />}

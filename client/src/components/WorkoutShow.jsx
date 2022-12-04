@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import WorkoutItem from "./WorkoutItem";
 import Member from "./Member/";
 import Statistics from "./Statistics";
-import Toggle from "./buttons_toggles/Toggle";
 import ExerciseListShow from "./ExerciseListShow";
 
 
