@@ -4,30 +4,41 @@
 main.guest-page {
   min-height: 100vh;
   background-image:
-    linear-gradient(rgba(36,62,32,0.4) 0%, rgba($theme-green,0.6) 95%),
-    // linear-gradient(rgba(36,62,32,0.4) 0%, $theme-green 95%),
+    linear-gradient(rgba($dark-green,0.45) 0%, rgba($theme-green,0.9) 95%),
     url("https://westwon.co.uk/wp-content/uploads/2018/02/iStock-597959750.jpg");
   background-position: 65%;
   background-origin: border-box;
   background-size: cover;
-  background-repeat: no-repeat;
   padding-top: 100px;
 
+  nav.guest-nav {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+
+    .nav-item {
+      color: $theme-green;
+
+      &--selected {
+        color: $dark-green;
+      }
+    }
+  }
+
   .page-container {
-    background-color: white;
+    background-color: rgba(white, 0.85);
     width: 80%;
     box-shadow: 3px 3px 8px grey;
-    box-shadow: inset 3px 3px 8px grey;
+    box-shadow: inset 3px 3px 8px rgba($dark-green,0.45);
     border-radius: 10px;
     margin: auto;
-    min-height: 100px;
   }
 
   .logo {
     @include logo-styling;
     text-align: center;
     font-size: 5em;
-    background: -webkit-linear-gradient($theme-green 0%, rgba(36,62,32,1) 80%);
+    background: -webkit-linear-gradient($theme-green 0%, $dark-green 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
