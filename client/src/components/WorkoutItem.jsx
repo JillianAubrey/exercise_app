@@ -8,6 +8,8 @@ import './WorkoutItem.scss'
 export default function WorkoutItem(props) {
   const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, onRemove, categoryCounts} = {...props}
 
+  console.log(ownWorkout)
+
   const editable = onEdit && ownWorkout;
 
   return (
@@ -35,7 +37,7 @@ export default function WorkoutItem(props) {
         
           </div>
           <CategoryBar {...categoryCounts} />
-          {onRemove && <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
+          {onRemove && ownWorkout &&  <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
                 console.log("clicked remove!")
                 event.preventDefault();
                 event.stopPropagation();
