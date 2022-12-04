@@ -50,24 +50,21 @@ class WorkoutsController < ApplicationController
 
   # PATCH/PUT /workouts/1
   def update
-    workout_exercises = []
+    dummy_workout = @workout.dup
     
     for item in params[:workout_exercises] do
-      workout_exercise = WorkoutExercise.new(
-        workout_id:   @workout.id,
+      dummy_workout.workout_exercises.new(
         exercise_id:  item[:exercise_id],
         duration:     item[:duration],
         reps:         item[:reps],
         sets:         item[:sets],
         note:         item[:note]
       )
+    end
 
-      if workout_exercise.valid?
-        workout_exercises << workout_exercise
-      else
-        render json: workout_exercise.errors, status: :unprocessable_entity
-        return
-      end
+    if !dummy_workout.valid?
+      render json: dummy_workout.errors, status: :unprocessable_entity
+      return
     end
 
     @workout.update(name: params[:name])
@@ -78,8 +75,7 @@ class WorkoutsController < ApplicationController
     end
 
     @workout.workout_exercises.destroy_all
-    @workout.workout_exercises << workout_exercises
-    puts workout_detail
+    @workout.workout_exercises << dummy_workout.workout_exercises
     render json: workout_detail
   end
 
