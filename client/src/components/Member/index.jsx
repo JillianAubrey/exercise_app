@@ -11,6 +11,7 @@ export default function Member(props) {
 
   const toggleMembers = function() {
     if (memberList) {
+      console.log('setting memberList')
       setMemberList(null);
       setMemberSearch(false)
     } else {
@@ -20,9 +21,11 @@ export default function Member(props) {
 
   const toggleSearch = function() {
     if (memberSearch) {
-      setMemberSearch(false)
+      console.log("getting and setting memberList")
       getMembers(workoutId, setMemberList)
+      setMemberSearch(false)
     } else {
+      setMemberList(null)
       setMemberSearch(true)
     }
   }
@@ -33,16 +36,16 @@ export default function Member(props) {
         <div className="member__card-header" onClick={toggleMembers}>
           <h2>Members</h2>
         </div>
-        {memberList && !memberSearch && <MembersList owner={owner} workoutId={workoutId} userId={userId} memberList={memberList} />}
+        {memberList && <MembersList owner={owner} workoutId={workoutId} userId={userId} memberList={memberList} />}
           {memberList &&
             <Fragment>
-              <div className="member__card-divider"></div>
+              <div className="member_item-divider"></div>
               <div className="member__card-note">
                 <h3 onClick={toggleSearch}>Share with a friend!</h3 >
               </div>
             </Fragment>
           }
-        {memberList && memberSearch && <MemberSearch workoutId={workoutId} />}
+        {!memberList && memberSearch && <MemberSearch workoutId={workoutId} toggleSearch={toggleSearch} memberSearch={memberSearch} />}
       </article>
     </Fragment>
   );

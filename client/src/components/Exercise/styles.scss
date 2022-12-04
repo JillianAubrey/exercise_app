@@ -264,6 +264,7 @@
   box-shadow: 2px 2px 10px grey;
   padding: 1em;
   padding-top: 4.6rem;
+  background-color: white;
 
   .toggle {
     position: absolute;
@@ -284,6 +285,7 @@
 
   .search__form {
     width: 100%;
+    
     .search__input {
       display: flex;
       flex-flow: row nowrap;

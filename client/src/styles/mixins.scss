@@ -60,3 +60,10 @@
   }
 
 }
+
+@mixin logo-styling {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Audiowide;
+  letter-spacing: .2rem;
+}

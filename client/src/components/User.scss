@@ -1,0 +1,9 @@
+@import '../styles/variables.scss';
+
+main.user-page {
+  min-height: 100vh;
+  padding-top: calc($nav-height + 10px);
+  padding-bottom: 60px;
+  background-color: #EAF7E8;
+  color: rgb(50, 50, 50);
+}

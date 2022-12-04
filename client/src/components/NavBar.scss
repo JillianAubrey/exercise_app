@@ -1,7 +1,7 @@
 @import '../styles/variables.scss';
-@import 'https://fonts.googleapis.com/css?family=Audiowide';
+@import '../styles/mixins.scss';
 
-nav {
+nav.user-nav {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -18,11 +18,10 @@ nav {
   z-index: 5;
 
   .logo {
+    @include logo-styling;
     margin: auto 1em;
     font-size: 2em;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: Audiowide;
+    color: white;
   }
 
   .user {

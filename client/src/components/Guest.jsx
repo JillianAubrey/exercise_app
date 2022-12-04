@@ -14,35 +14,42 @@ export default function Guest(props) {
 
   const { setUser } = props
 
-  const changeView = (event, view) => {
-    if (event) event.preventDefault()
-    setView(view)
-  }
-
-  const backButton = (
-    <button onClick={(event) => changeView(event, INDEX)}>Back</button>
+  const nav = (
+    <nav className="guest-nav">
+      <span 
+        onClick={() =>setView(LOGIN)} 
+        className={`nav-item${view === LOGIN ? ' nav-item--selected' : ''}`}
+      >Login</span>
+      <span 
+        onClick={() =>setView(REGISTER)}
+        className={`nav-item${view === REGISTER ? ' nav-item--selected' : ''}`}
+      >Register</span>
+      <span 
+        onClick={() =>setView(ABOUT)}
+        className={`nav-item${view === ABOUT ? ' nav-item--selected' : ''}`}
+      >About</span>
+    </nav>
   )
 
   return (
-    <Fragment >
-      {view !== INDEX && backButton}
-      {view === INDEX && (
-        <Fragment >
-          This is the guest page
-          <button onClick={(event) => changeView(event, LOGIN)} >Login</button>
-          <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
-          <button onClick={(event) => changeView(event, ABOUT)} >About</button>
-        </Fragment>
-      )}
-      {view === LOGIN && (
-        <Login setUser={setUser}/>
-      )}
-      {view === REGISTER && (
-        <Register setUser={setUser} />
-      )}
-      {view === ABOUT && (
-        <About />
-      )}
-    </Fragment>
+    <main className="guest-page" >
+      <div className="page-container">
+        <h1 className="logo" onClick={() => setView(INDEX)}>titan</h1>
+        {nav}
+        {view !== INDEX &&
+          <div className="content">
+            {view === LOGIN && (
+              <Login setUser={setUser}/>
+            )}
+            {view === REGISTER && (
+              <Register setUser={setUser} />
+            )}
+            {view === ABOUT && (
+              <About />
+            )}
+          </div>
+        }
+      </div>
+    </main>
   )
 }
