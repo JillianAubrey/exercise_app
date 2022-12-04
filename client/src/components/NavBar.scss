@@ -15,6 +15,7 @@ nav {
   height: $nav-height;
   justify-content: space-between;
   float: top;
+  z-index: 5;
 
   .logo {
     margin: auto 1em;
