@@ -8,6 +8,7 @@ import getUserWorkouts from "../helpers/api_requests/getUserWorkouts";
 import getDetailedWorkout from "../helpers/api_requests/getDetailedWorkout";
 import deleteMember from "../helpers/api_requests/deleteMembers";
 import Toggle from "./buttons_toggles/Toggle";
+import "./User.scss"
 
 export default function User(props) {
   const WORKOUT_LIST = "WORKOUT_LIST"
@@ -64,7 +65,7 @@ export default function User(props) {
   }
 
   return (
-    <Fragment>
+    <main className="user-page">
       {view === WORKOUT_LIST && 
         <WorkoutList 
           user={user} 
@@ -126,6 +127,6 @@ export default function User(props) {
           rightLabel="Shared Workouts"
         rightClick={() => { setByOthers(true); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
         />}
-    </Fragment>
+    </main>
   );
 }

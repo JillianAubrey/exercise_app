@@ -1,0 +1,5 @@
+@import '../styles/variables.scss';
+
+main.user-page {
+  padding-top: calc($nav-height + 10px);
+}

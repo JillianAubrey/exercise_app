@@ -24,7 +24,7 @@ export default function Guest(props) {
   )
 
   return (
-    <Fragment >
+    <main className="guest-page" >
       {view !== INDEX && backButton}
       {view === INDEX && (
         <Fragment >
@@ -43,6 +43,6 @@ export default function Guest(props) {
       {view === ABOUT && (
         <About />
       )}
-    </Fragment>
+    </main>
   )
 }
