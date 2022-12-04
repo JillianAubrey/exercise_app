@@ -1,12 +1,25 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import Timer from "./Timer";
 import CardLeft from "../Exercise/CardLeft";
 
+
 export default function ExerciseListItem(props) {
-  const { onNext, exercise } = props
+  const { onNext, exercise, first } = props
   const { reps, sets, duration, note, exercise:{ id, name, category, gif_url }} = exercise
+  const firstRender = useRef(true)
   
-  
+  useEffect(() => {
+    if (first && firstRender.current) {
+      firstRender.current = false
+      return
+    }
+    
+    const msg = new SpeechSynthesisUtterance(name)
+    msg.volume = 1
+    window.speechSynthesis.speak(msg)
+  }, [name]);
+
+
 
   return (
     <article className="walkthrough--exercise">
