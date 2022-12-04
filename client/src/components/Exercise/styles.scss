@@ -9,9 +9,10 @@
 
 
 .exercise__container {
-  margin-top: 0.9rem;
+  margin: 0.9rem auto 0 auto;
   display: flex;
-  gap: 10px;
+  gap: 5px;
+  width: 97%;
   &:last-of-type {
     margin-bottom: 0.9rem;
   }
@@ -64,6 +65,8 @@
   &-note {
     display: flex;
     flex-direction: column;
+    font-weight: 300;
+    font-size: 0.8rem;
 
     button {
       display: block;
@@ -76,10 +79,14 @@
     }
     div {
       padding-top: 0.3rem;
-      display: inline-block;
+      
       font-size: 0.7rem;
       font-weight: 300;
     }
+  }
+
+  &-notetext {
+    padding-top: 0.3rem;
   }
 
   &-editcancel {

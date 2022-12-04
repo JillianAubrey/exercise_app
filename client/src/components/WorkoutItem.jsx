@@ -46,7 +46,7 @@ export default function WorkoutItem(props) {
         </section>
        
       </article>
-      {editable && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}
+      {editable && <article className="edit__button" onClick={onEdit}> <h2>Edit Workout <FontAwesomeIcon icon="file-pen" className="icon"/></h2></article>}
     </Fragment>
   );
 }

@@ -37,6 +37,7 @@ export default function Expanded(props) {
       <div class="stat_item-divider" />
       {statList}
       {errors && errorElements}
+      
     </section>
   );
 }

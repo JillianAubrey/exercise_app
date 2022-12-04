@@ -83,3 +83,21 @@ ul {
     border-radius: 50%;
   }
 }
+
+.edit__button {
+  @include card-base-styling;
+  margin: 0.7rem auto;
+  background-color: $edit-color;
+  box-shadow: 1px 1px 3px grey;
+  h2 {
+    font-size: 1.1rem;
+    margin: 0 auto;
+    padding: 5px;
+    color: white;
+  }
+
+  &:hover {
+    transform: scale(1.02)
+  }
+  
+}
