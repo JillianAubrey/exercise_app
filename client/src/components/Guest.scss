@@ -1,0 +1,8 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+.logo {
+  @include logo-styling;
+  color: $theme-green;
+  font-size: 5rem;
+}

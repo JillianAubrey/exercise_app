@@ -28,7 +28,7 @@ export default function Guest(props) {
       {view !== INDEX && backButton}
       {view === INDEX && (
         <Fragment >
-          This is the guest page
+          <h1 className="logo">titan</h1>
           <button onClick={(event) => changeView(event, LOGIN)} >Login</button>
           <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
           <button onClick={(event) => changeView(event, ABOUT)} >About</button>
