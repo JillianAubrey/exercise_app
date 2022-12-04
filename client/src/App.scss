@@ -23,6 +23,7 @@ html {
 
 body {
   max-width: $max-width;
+  min-height: calc(100vh - $nav-height);
   background-color: white;
   margin: $nav-height auto 0;
   padding-top: 10px
