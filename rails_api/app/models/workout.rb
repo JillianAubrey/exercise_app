@@ -10,10 +10,10 @@ class Workout < ApplicationRecord
   end
 
   def first_gif
-    @first_exercise = self.workout_exercises.first.exercise
+    @first_exercise = self.workout_exercises.first
 
     if @first_exercise
-      @first_exercise.gif_url
+      @first_exercise.exercise.gif_url
     else
       nil
     end
