@@ -12,7 +12,7 @@ export default function NavBar(props) {
 
   return (
     <nav>
-      <span class="logo">
+      <span class="logo" onClick={() => window.location.reload(false)}>
         titan
       </span>
       <div class="user">
