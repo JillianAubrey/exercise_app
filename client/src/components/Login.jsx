@@ -3,6 +3,7 @@ import useForm from "../hooks/useForm";
 import EmailInput from "./form_elements/EmailInput";
 import PasswordInput from "./form_elements/PasswordInput";
 import formatApiErrors from "../helpers/formatApiErrors";
+import SmallButton from "./buttons_toggles/SmallButton";
 import Error from "./Error";
 import postLogin from "../helpers/api_requests/postLogin";
 import './Login.scss';
@@ -52,7 +53,7 @@ export default function Login(props) {
         value={data.password}
         onChange={handleInputChange}
       />
-      <button>Submit</button>
+      <SmallButton onClick={()=>{}}>Submit</SmallButton>
     </form>
   )
 }

@@ -6,6 +6,7 @@ import PasswordInput from "./form_elements/PasswordInput";
 import Error from "./Error";
 import formatApiErrors from "../helpers/formatApiErrors";
 import postUser from "../helpers/api_requests/postUser";
+import SmallButton from "./buttons_toggles/SmallButton";
 import './Register.scss';
 
 export default function Register(props) {
@@ -65,7 +66,7 @@ export default function Register(props) {
         value={data.password_confirmation}
         onChange={handleInputChange}
       />
-      <button>Submit</button>
+      <SmallButton onClick={()=>{}}>Submit</SmallButton>
     </form>
   )
 }

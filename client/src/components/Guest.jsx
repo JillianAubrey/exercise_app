@@ -36,15 +36,19 @@ export default function Guest(props) {
       <div className="page-container">
         <h1 className="logo" onClick={() => setView(INDEX)}>titan</h1>
         {nav}
-        {view === LOGIN && (
-          <Login setUser={setUser}/>
-        )}
-        {view === REGISTER && (
-          <Register setUser={setUser} />
-        )}
-        {view === ABOUT && (
-          <About />
-        )}
+        {view !== INDEX &&
+          <div className="content">
+            {view === LOGIN && (
+              <Login setUser={setUser}/>
+            )}
+            {view === REGISTER && (
+              <Register setUser={setUser} />
+            )}
+            {view === ABOUT && (
+              <About />
+            )}
+          </div>
+        }
       </div>
     </main>
   )

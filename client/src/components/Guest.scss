@@ -11,20 +11,7 @@ main.guest-page {
   background-size: cover;
   padding-top: 100px;
 
-  nav.guest-nav {
-    display: flex;
-    justify-content: space-around;
-    padding-bottom: 10px;
-
-    .nav-item {
-      color: $theme-green;
-
-      &--selected {
-        color: $dark-green;
-      }
-    }
-  }
-
+  
   .page-container {
     background-color: rgba(white, 0.85);
     width: 80%;
@@ -33,7 +20,7 @@ main.guest-page {
     border-radius: 10px;
     margin: auto;
   }
-
+  
   .logo {
     @include logo-styling;
     text-align: center;
@@ -41,5 +28,46 @@ main.guest-page {
     background: -webkit-linear-gradient($theme-green 0%, $dark-green 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  nav.guest-nav {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 10px;
+  
+    .nav-item {
+      color: $theme-green;
+  
+      &--selected {
+        color: $dark-green;
+      }
+    }
+  }
+
+  .content {
+    padding: 5px 10px 10px;
+    color: $dark-green;
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      label {
+        display: block;
+        margin-left: 10px;
+      }
+
+      input {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        border: none;
+        box-shadow: 3px 3px 8px grey;
+        width: 70%;
+      }
+
+      button {
+        background-color: $theme-green;
+      }
+    }
   }
 }
