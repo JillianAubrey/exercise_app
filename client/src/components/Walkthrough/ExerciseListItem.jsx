@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useMemo } from "react"
 import Timer from "./Timer";
 import CardLeft from "../Exercise/CardLeft";
+import { nativeSelectClasses } from "@mui/material";
 // import Speech from 'react-speech';
 
 
@@ -10,13 +11,17 @@ export default function ExerciseListItem(props) {
   const firstRender = useRef(true)
   const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
 
+
   useEffect(() => {
     if (first && firstRender.current) {
       firstRender.current = false;
       return;
     }
-      
+
     msg.text = name;
+    msg.text += duration ? `, ${duration} seconds` : `${sets} sets, ${reps} repetitions`
+
+
     window.speechSynthesis.speak(msg)
   }, [name]);
 
