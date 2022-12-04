@@ -6,30 +6,32 @@ import './styles.scss'
 export default function MemberList(props) {
   const { owner, memberList } = props
 
-  let members = []
-  if (memberList.length > 0) {
-    members = memberList.map((member) => {
-      return (
+  const formatMembers = function(memberList) {
+    let members = []
+    if (memberList.length > 0) {
+      const ownerlessMembers = memberList.filter((member) => member.name !== owner)
+      return ownerlessMembers.map((member) => {
+        return (
           <MemberListItem
-            key={member.id}
-            name={member.name}
-          />
-      )
-    })
+              key={member.id}
+              name={member.name}
+            />
+        )
+      })
+    }
+    return []
   }
+
+  const ownerMember = memberList.filter((member) => member.name === owner)[0]
 
   return (
     <Fragment>
       <div className="member__card-divider"></div>
       <div className="member__card-note">
-        Workout Owner
         <ul>
-          <MemberListItem name={owner} />
+          {ownerMember && <MemberListItem name={ownerMember.name} owner={true} />}
+          {formatMembers(memberList)}
         </ul>
-        Workout Members
-        <ul>
-        {members}
-      </ul>
       </div>
     </Fragment>
   );
