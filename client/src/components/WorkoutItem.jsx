@@ -37,7 +37,7 @@ export default function WorkoutItem(props) {
         
           </div>
           <CategoryBar {...categoryCounts} />
-          {onRemove && ownWorkout &&  <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
+          {onRemove && <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
                 console.log("clicked remove!")
                 event.preventDefault();
                 event.stopPropagation();

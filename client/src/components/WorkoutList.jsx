@@ -18,7 +18,6 @@ export default function WorkoutList(props) {
         name={workout.name}
         gif_url={workout.first_gif}
         owner={workout.owner.name}
-        ownWorkout={workout.owner.id === user}
         categoryCounts={workout.category_counts}
         onClick={() => onShow(workout)}
         onPlay={() => onPlay(workout)}
