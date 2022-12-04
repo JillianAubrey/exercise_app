@@ -1,21 +1,22 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useMemo } from "react"
 import Timer from "./Timer";
 import CardLeft from "../Exercise/CardLeft";
+// import Speech from 'react-speech';
 
 
 export default function ExerciseListItem(props) {
   const { onNext, exercise, first } = props
   const { reps, sets, duration, note, exercise:{ id, name, category, gif_url }} = exercise
   const firstRender = useRef(true)
-  
+  const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
+
   useEffect(() => {
     if (first && firstRender.current) {
-      firstRender.current = false
-      return
+      firstRender.current = false;
+      return;
     }
-    
-    const msg = new SpeechSynthesisUtterance(name)
-    msg.volume = 1
+      
+    msg.text = name;
     window.speechSynthesis.speak(msg)
   }, [name]);
 

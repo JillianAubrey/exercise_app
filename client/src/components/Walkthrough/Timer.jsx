@@ -8,6 +8,7 @@ export default function Timer(props) {
   let timerClasses = classNames("timer", {"timer-yellow": seconds <= 10 && seconds > 5, "timer-red": seconds <= 5})
 
   const beep = new Audio('/audio/beep-07a.mp3');
+  beep.volume = 0.2
 
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Timer(props) {
       setSeconds(prev => prev - 1)
     }, 1000)
 
-    if (seconds <= 10) {
+    if (seconds <= 5) {
       beep.play();
     }
 
