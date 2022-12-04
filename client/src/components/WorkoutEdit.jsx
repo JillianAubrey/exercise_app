@@ -3,13 +3,14 @@ import WorkoutItem from "./WorkoutItem";
 import useWorkoutEdit from "../hooks/useWorkoutEdit";
 import Toggle from "./buttons_toggles/Toggle";
 import errorDisplay from "../helpers/errorDisplay";
+import formatApiErrors from "../helpers/formatApiErrors";
 import ExerciseListEdit from "./ExerciseListEdit";
 
 export default function WorkoutEdit(props) {
   const { workout, user_id, onSave, onCancel } = props;
   const { name, first_gif, owner } = workout;
   
-  const [errors, setErrors] = useState(null)
+  const [error, setError] = useState(null)
 
   const {
     editedExercises,
@@ -23,8 +24,13 @@ export default function WorkoutEdit(props) {
     const workout_exercises = [...editedExercises]
     workout_exercises.pop()
 
-    saveEdited(workout_exercises, onSave, setErrors)
+    saveEdited(workout_exercises, onSave, setError)
   };
+
+  let errorMessages = ''
+  if (error) {
+    errorMessages = errorDisplay(formatApiErrors(error.response.data));
+  }
 
   return (
     <Fragment>
@@ -41,7 +47,7 @@ export default function WorkoutEdit(props) {
         handleExerciseDelete={handleExerciseDelete}
         userId={owner.id}
       />
-      {errors && errorDisplay(errors)}
+      {error && errorMessages}
       <Toggle 
         leftLabel="Save" 
         rightLabel="Cancel" 
