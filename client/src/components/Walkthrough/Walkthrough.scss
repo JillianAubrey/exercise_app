@@ -38,14 +38,14 @@
 
     .bottom {
       position: fixed;
-      margin-top: 60px;
+      margin: 60px auto auto 0;
       border: none;
       bottom: 0;
-      right: 0;
       width: 100%;
       padding: 1rem 1rem;
       font-size: 1.3em;
       background-color: $danger-color;
+      max-width: $max-width;
       color: white;
       box-shadow: 0px -2px 10px rgba(128, 128, 128, 0.656);
 
