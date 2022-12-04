@@ -120,6 +120,7 @@ export default function User(props) {
       }
       {(view === WORKOUT_SHOW || view === WORKOUT_LIST) && 
         <Toggle
+          toggleType="footer"
           leftLabel="My Workouts"
         leftClick={() => { setByOthers(false); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
           rightLabel="Shared Workouts"

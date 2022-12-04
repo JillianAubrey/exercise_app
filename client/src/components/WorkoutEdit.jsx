@@ -42,6 +42,7 @@ export default function WorkoutEdit(props) {
         userId={owner.id}
       />
       <Toggle 
+        toggleType="footer"
         leftLabel="Save" 
         rightLabel="Cancel" 
         leftClick={handleSave}
