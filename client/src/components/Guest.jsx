@@ -19,30 +19,28 @@ export default function Guest(props) {
     setView(view)
   }
 
-  const backButton = (
-    <button onClick={(event) => changeView(event, INDEX)}>Back</button>
-  )
 
   return (
     <main className="guest-page" >
-      {view !== INDEX && backButton}
-      {view === INDEX && (
-        <Fragment >
-          <h1 className="logo">titan</h1>
-          <button onClick={(event) => changeView(event, LOGIN)} >Login</button>
-          <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
-          <button onClick={(event) => changeView(event, ABOUT)} >About</button>
-        </Fragment>
-      )}
-      {view === LOGIN && (
-        <Login setUser={setUser}/>
-      )}
-      {view === REGISTER && (
-        <Register setUser={setUser} />
-      )}
-      {view === ABOUT && (
-        <About />
-      )}
+      <div className="page-container">
+        <h1 className="logo" onClick={() => changeView(null, INDEX)}>titan</h1>
+        {view === INDEX && (
+          <Fragment >
+            <button onClick={(event) => changeView(event, LOGIN)} >Login</button>
+            <button onClick={(event) => changeView(event, REGISTER)} >Register</button>
+            <button onClick={(event) => changeView(event, ABOUT)} >About</button>
+          </Fragment>
+        )}
+        {view === LOGIN && (
+          <Login setUser={setUser}/>
+        )}
+        {view === REGISTER && (
+          <Register setUser={setUser} />
+        )}
+        {view === ABOUT && (
+          <About />
+        )}
+      </div>
     </main>
   )
 }
