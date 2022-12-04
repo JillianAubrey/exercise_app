@@ -10,25 +10,27 @@ export default function Expanded(props) {
     });
 
   const statList =
-    statistics &&
-    statistics.map((userstat) => {
-      const { name, all_walkthroughs, last_week_walkthroughs } = userstat;
+    statistics.length 
+    ? statistics.map((userstat) => {
+        const { name, all_walkthroughs, last_week_walkthroughs } = userstat;
 
-      return (
-        <div className="stat_item">
-          <h3 className="stat_item-header">{name}</h3>
-          <p className="state_item-info">
-            Past Week: <span>{last_week_walkthroughs}</span>{" "}
-            {last_week_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
-          </p>
-          <p className="stat_item-info">
-            {" "}
-            All time: <span>{all_walkthroughs}</span>{" "}
-            {all_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
-          </p>
-        </div>
-      );
-    });
+        return (
+          <div className="stat_item">
+            <h3 className="stat_item-header">{name}</h3>
+            <p className="stat_item-info">
+              Past Week: <span>{last_week_walkthroughs}</span>{" "}
+              {last_week_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
+            </p>
+            <p className="stat_item-info">
+              {" "}
+              All time: <span>{all_walkthroughs}</span>{" "}
+              {all_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
+            </p>
+          </div>
+        );
+      })
+    : <p className="stat_item-empty">No walkthroughs yet</p>
+    
 
   return (
     <section className="stat_item--container" onClick={onClick}>
