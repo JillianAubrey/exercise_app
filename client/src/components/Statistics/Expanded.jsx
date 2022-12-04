@@ -16,12 +16,12 @@ export default function Expanded(props) {
 
       return (
         <div className="stat_item">
-          <h1 className="stat_item-header">{name}</h1>
+          <h3 className="stat_item-header">{name}</h3>
           <p className="state_item-info">
             Past Week: <span>{last_week_walkthroughs}</span>{" "}
             {last_week_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
           </p>
-          <p className="state_item-info">
+          <p className="stat_item-info">
             {" "}
             All time: <span>{all_walkthroughs}</span>{" "}
             {all_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
@@ -31,7 +31,8 @@ export default function Expanded(props) {
     });
 
   return (
-    <section className="statistics__card-show" onClick={onClick}>
+    <section className="stat_item--container" onClick={onClick}>
+      <div class="stat_item-divider" />
       {statList}
       {errors && errorElements}
     </section>

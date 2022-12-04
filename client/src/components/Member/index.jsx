@@ -31,7 +31,7 @@ export default function Member(props) {
     <Fragment>
       <article className="member__card" >
         <div className="member__card-header" onClick={toggleMembers}>
-          <h1>Workout Members</h1>
+          <h2>Members</h2>
         </div>
         {memberList && !memberSearch && <MembersList owner={owner} workoutId={workoutId} userId={userId} memberList={memberList} />}
           {memberList &&

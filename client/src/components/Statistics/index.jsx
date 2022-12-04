@@ -3,6 +3,7 @@ import getStatistics from "../../helpers/api_requests/getStatistics";
 import formatStatistics from "../../helpers/formatStatistics";
 import Collapsed from "./Collapsed";
 import Expanded from "./Expanded";
+import './Statistics.scss'
 
 export default function Statistics(props) {
   const workoutId = props.workoutId;
@@ -23,8 +24,9 @@ export default function Statistics(props) {
     });
   }, []);
 
-  return (<article className="statistics__container">
-            {expanded && <Expanded statistics={statistics} onClick={handleExpanded} error={errors}/>}
-            {!expanded && <Collapsed onClick={handleExpanded}/>}
-        </article>)
+  return (
+    <article className="statistics__card">
+      <h2 onClick={handleExpanded} >Statistics</h2>
+      {expanded && <Expanded statistics={statistics} onClick={handleExpanded} error={errors}/>}
+    </article>)
 }
