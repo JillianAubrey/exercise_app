@@ -22,6 +22,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .divider {
+      width: 65%;
+      height: 3px;
+      background-color: $theme-green;
+      border-radius: 3px;
+      border: 0.5px solid white;
+    }
+
     h1 {
       display: inline-block;
       margin-top: 1em;
@@ -110,9 +119,39 @@
       text-align: center;
       align-items: center;
       .icon {
-        padding: 3rem;
+        padding: 2rem;
+        font-size: 8rem;
       }
     }
 
+    .setbased {
+      font-size: 1.7rem;
+      border-radius: 10px;
+      display: inline-block;
+      font-weight: 300;
+      padding: 0.5em 1em;
+      margin-bottom: 1em;
+      box-shadow: 2px 2px 6px inset rgba(128, 128, 128, 0.656);
+
+      span {
+        font-weight: bold;
+      }
+
+    }
+
   }
+
+  .note {
+    font-weight: 300;
+    font-size: 0.9rem;
+    padding: 0 1rem 1rem 1rem;
+
+    span {
+      font-weight: 500;
+    }
+
+  }
+
+  
 }
+

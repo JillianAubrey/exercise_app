@@ -16,6 +16,10 @@ export default function ExerciseList(props) {
 
   const onNext = isLastExercise() ? onComplete : nextExercise;
 
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, [exercise])
+
   return (
     <Fragment>
       <div className="walkthrough">

@@ -19,7 +19,7 @@ export default function ExerciseListItem(props) {
         ? <Timer duration={{seconds: duration}} onComplete={onNext}/>
         : <div className="setbased"><span>{sets}</span> sets of <span>{reps}</span></div>
       }
-      {note && <p>Note: {note}</p>}
+      {note && <p className="note"><span>Note:  </span>  {note}</p>}
     </article>
   )
 }

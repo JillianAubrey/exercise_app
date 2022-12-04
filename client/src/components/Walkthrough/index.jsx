@@ -15,6 +15,7 @@ export default function WalkthroughContainer(props) {
   return (
     <main className="walkthrough--container">
       <h1>{workout.name}</h1>
+      <div className="divider"></div>
       {exerciseList && <ExerciseList exerciseList={exerciseList} onComplete={onComplete} onFinish={onFinish} />}
     </main>
   )
