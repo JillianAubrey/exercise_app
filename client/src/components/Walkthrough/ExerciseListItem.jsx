@@ -10,15 +10,21 @@ export default function ExerciseListItem(props) {
   const firstRender = useRef(true)
   const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
 
+
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
-      
+
     msg.text = name;
+    msg.text += duration ? `, ${duration} seconds` : `${sets} sets, ${reps} repetitions`
+
+    
+
+
     window.speechSynthesis.speak(msg)
-  }, [name]);
+  }, [id]);
 
 
 
