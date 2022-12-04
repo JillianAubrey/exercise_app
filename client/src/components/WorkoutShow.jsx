@@ -25,7 +25,7 @@ export default function WorkoutShow(props) {
         categoryCounts={category_counts}
         onRemove={onRemove}
       />
-      {workout_owner === user_id && <Statistics workoutId={workout_id}/>}
+      <Statistics workoutId={workout_id}/>
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
       <ExerciseListShow exerciseList={exerciseList} />
     </Fragment>
