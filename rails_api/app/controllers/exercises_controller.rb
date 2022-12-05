@@ -21,7 +21,7 @@ class ExercisesController < ApplicationController
       @exercises = Exercise.db_exercises.where(where_params)
     end
 
-    render json: @exercises
+    render json: @exercises.first(6)
   end
 
   # POST /exercises

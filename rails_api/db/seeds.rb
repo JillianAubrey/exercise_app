@@ -30,13 +30,125 @@ user3 = User.create!({
   password_confirmation: 'password'
 })
 
-## Workouts
+user4 = User.create!({
+  name: 'Jonathan',
+  email: 'Jonathan@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user5 = User.create!({
+  name: 'Jackie',
+  email: 'Jackie@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user6 = User.create!({
+  name: 'Janet',
+  email: 'Janet@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user7 = User.create!({
+  name: 'Jimbo',
+  email: 'Jimbo@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user8 = User.create!({
+  name: 'Bill',
+  email: 'Bill@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user9 = User.create!({
+  name: 'Brian',
+  email: 'Brian@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user10 = User.create!({
+  name: 'Brandon',
+  email: 'Brandon@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user11 = User.create!({
+  name: 'Britt',
+  email: 'Britt@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user12 = User.create!({
+  name: 'Jan',
+  email: 'Jan@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user13 = User.create!({
+  name: 'Brody',
+  email: 'Brody@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user14 = User.create!({
+  name: 'Ben',
+  email: 'Ben@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user15 = User.create!({
+  name: 'Benji',
+  email: 'Benji@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user16 = User.create!({
+  name: 'Bertolt',
+  email: 'Bertolt@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user17 = User.create!({
+  name: 'Jean',
+  email: 'Jean@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user18 = User.create!({
+  name: 'ErenJeager',
+  email: 'Jeager@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+user19 = User.create!({
+  name: 'SashaBraus',
+  email: 'Braus@domain.com',
+  password: 'password',
+  password_confirmation: 'password'
+})
+
+## Creating workouts
 puts "Creating Workouts..."
-workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
-workout2 = user2.owned_workouts.create!({name: 'Cardio'})
-workout3 = user1.owned_workouts.create!({name: 'Cool Down'})
-workout4 = user1.owned_workouts.create!({name: 'Full Body'})
-workout5 = user3.owned_workouts.create!({name: 'HIIT'})
+workout1 = user1.owned_workouts.new({name: 'Leg Day'})
+workout2 = user2.owned_workouts.new({name: 'Cardio'})
+workout3 = user1.owned_workouts.new({name: 'Cool Down'})
+workout4 = user1.owned_workouts.new({name: 'Full Body'})
+workout5 = user3.owned_workouts.new({name: 'HIIT'})
 
 puts "Adding Users to Workouts..."
 workout1.users << user1
@@ -120,31 +232,37 @@ custom_exercises = [
 puts "Adding Exercises to Workouts..."
 
 for exercise in leg_exercises do
-  workout1.workout_exercises.create!({exercise_id: exercise.id, reps: 8, sets: 3, note:"Last set to failure"})
+  workout1.workout_exercises.new({exercise_id: exercise.id, reps: 8, sets: 3, note:"Last set to failure"})
 end
 
 for exercise in cardio_exercises do
-  workout2.workout_exercises.create!({exercise_id: exercise.id, duration: 300})
-  workout2.workout_exercises.create!({exercise_id: rest.id, duration: 30})
+  workout2.workout_exercises.new({exercise_id: exercise.id, duration: 15})
+  workout2.workout_exercises.new({exercise_id: rest.id, duration: 15})
 end
 
 for exercise in custom_exercises do
-  workout3.workout_exercises.create({exercise_id: exercise.id, duration: 30})
+  workout3.workout_exercises.new({exercise_id: exercise.id, duration: 15})
 end
 
-workout4.workout_exercises.create({exercise_id: 2, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 13,reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 21, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 22, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 26, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 2, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 13,reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 21, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 22, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 26, reps: 8, sets: 3})
 
-workout5.workout_exercises.create({exercise_id: 3, duration: 30})
-workout5.workout_exercises.create({exercise_id: 5, duration: 30})
-workout5.workout_exercises.create({exercise_id: 6, duration: 30})
-workout5.workout_exercises.create({exercise_id: 17, duration: 30})
-workout5.workout_exercises.create({exercise_id: 18, duration: 30})
+workout5.workout_exercises.new({exercise_id: 3, duration: 15})
+workout5.workout_exercises.new({exercise_id: 5, duration: 15})
+workout5.workout_exercises.new({exercise_id: 6, duration: 15})
+workout5.workout_exercises.new({exercise_id: 17, duration: 15})
+workout5.workout_exercises.new({exercise_id: 18, duration: 15})
 
-
+## Saving Workouts
+puts "saving new workouts..."
+workout1.save!
+workout2.save!
+workout3.save!
+workout4.save!
+workout5.save!
 
 ## Walkthroughs
 puts "Adding Walkthroughs..."

@@ -18,8 +18,8 @@ class UsersController < ApplicationController
     if params[:not_in_workout]
       @users = @users - Workout.find(params[:not_in_workout]).users
     end
-
-    render json: @users, only: [:id, :name]
+    
+    render json: @users.first(5), only: [:id, :name]
   end
 
   def create
