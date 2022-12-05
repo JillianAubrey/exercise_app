@@ -378,6 +378,10 @@
   @include card-base-styling;
 }
 
+.custom__form {
+  max-width: 100%;
+}
+
 .custom__container {
   margin-top: 0.9rem;
   display: flex;
