@@ -30,13 +30,13 @@ user3 = User.create!({
   password_confirmation: 'password'
 })
 
-## Workouts
+## Creating workouts
 puts "Creating Workouts..."
-workout1 = user1.owned_workouts.create!({name: 'Leg Day'})
-workout2 = user2.owned_workouts.create!({name: 'Cardio'})
-workout3 = user1.owned_workouts.create!({name: 'Cool Down'})
-workout4 = user1.owned_workouts.create!({name: 'Full Body'})
-workout5 = user3.owned_workouts.create!({name: 'HIIT'})
+workout1 = user1.owned_workouts.new({name: 'Leg Day'})
+workout2 = user2.owned_workouts.new({name: 'Cardio'})
+workout3 = user1.owned_workouts.new({name: 'Cool Down'})
+workout4 = user1.owned_workouts.new({name: 'Full Body'})
+workout5 = user3.owned_workouts.new({name: 'HIIT'})
 
 puts "Adding Users to Workouts..."
 workout1.users << user1
@@ -120,31 +120,37 @@ custom_exercises = [
 puts "Adding Exercises to Workouts..."
 
 for exercise in leg_exercises do
-  workout1.workout_exercises.create!({exercise_id: exercise.id, reps: 8, sets: 3, note:"Last set to failure"})
+  workout1.workout_exercises.new({exercise_id: exercise.id, reps: 8, sets: 3, note:"Last set to failure"})
 end
 
 for exercise in cardio_exercises do
-  workout2.workout_exercises.create!({exercise_id: exercise.id, duration: 300})
-  workout2.workout_exercises.create!({exercise_id: rest.id, duration: 30})
+  workout2.workout_exercises.new({exercise_id: exercise.id, duration: 300})
+  workout2.workout_exercises.new({exercise_id: rest.id, duration: 30})
 end
 
 for exercise in custom_exercises do
-  workout3.workout_exercises.create({exercise_id: exercise.id, duration: 30})
+  workout3.workout_exercises.new({exercise_id: exercise.id, duration: 30})
 end
 
-workout4.workout_exercises.create({exercise_id: 2, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 13,reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 21, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 22, reps: 8, sets: 3})
-workout4.workout_exercises.create({exercise_id: 26, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 2, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 13,reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 21, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 22, reps: 8, sets: 3})
+workout4.workout_exercises.new({exercise_id: 26, reps: 8, sets: 3})
 
-workout5.workout_exercises.create({exercise_id: 3, duration: 30})
-workout5.workout_exercises.create({exercise_id: 5, duration: 30})
-workout5.workout_exercises.create({exercise_id: 6, duration: 30})
-workout5.workout_exercises.create({exercise_id: 17, duration: 30})
-workout5.workout_exercises.create({exercise_id: 18, duration: 30})
+workout5.workout_exercises.new({exercise_id: 3, duration: 30})
+workout5.workout_exercises.new({exercise_id: 5, duration: 30})
+workout5.workout_exercises.new({exercise_id: 6, duration: 30})
+workout5.workout_exercises.new({exercise_id: 17, duration: 30})
+workout5.workout_exercises.new({exercise_id: 18, duration: 30})
 
-
+## Saving Workouts
+puts "saving new workouts..."
+workout1.save!
+workout2.save!
+workout3.save!
+workout4.save!
+workout5.save!
 
 ## Walkthroughs
 puts "Adding Walkthroughs..."
