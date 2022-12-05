@@ -34,21 +34,21 @@ export default function About() {
             <div className="about__card-creator">
               <p>Jillian Aubrey</p>
               <div className="links">
-                <a href="https://github.com/JillianAubrey">
+                <a href="https://github.com/JillianAubrey" target="blank">
                   <img src="/images/github.svg" />
                 </a>
-                <a href="https://www.linkedin.com/in/JillianAubrey/">
+                <a href="https://www.linkedin.com/in/JillianAubrey/" target="blank">
                   <img className="linkedin" src="/images/linkedin.svg" />
                 </a>
               </div>
             </div>
-            <div className="about__card-creator">
+            <div className="about__card-creator" target="blank">
               <p>Michael Davis</p>
               <div className="links">
-                <a href="https://github.com/Michaeltcdavis">
+                <a href="https://github.com/Michaeltcdavis" target="blank">
                   <img src="/images/github.svg" />
                 </a>
-                <a href="https://www.linkedin.com/in/michaeltcdavis/">
+                <a href="https://www.linkedin.com/in/michaeltcdavis/" target="blank">
                   <img className="linkedin" src="/images/linkedin.svg" />
                 </a>
               </div>
@@ -57,17 +57,17 @@ export default function About() {
               <div>
                 <p>Jeremy Buist</p>
                 <div className="links">
-                <a href="https://github.com/jbuistjbuist">
+                <a href="https://github.com/jbuistjbuist" target="blank">
                   <img src="/images/github.svg" />
                 </a>
-                <a href="https://www.linkedin.com/in/jeremy-buist/">
+                <a href="https://www.linkedin.com/in/jeremy-buist/" target="blank">
                   <img className="linkedin" src="/images/linkedin.svg" />
                 </a>
               </div>
               </div>
             </div>
           </div>
-          <p>This application was built by Jillian Aubrey, Michael Davis, and Jeremy Buist as part of the <a href="https://www.lighthouselabs.ca/">Lighthouse Labs</a> web development bootcamp. </p>
+          <p>This application was built by Jillian Aubrey, Michael Davis, and Jeremy Buist as part of the <a href="https://www.lighthouselabs.ca/" target="blank">Lighthouse Labs</a> web development bootcamp. </p>
           <p>The application front-end is built with React, 
             and the server is built with Ruby on Rails. We tested the back-end with the RSpec testing library, and the front end with Storybook and Jest. For styling the application, we used primarily custom SCSS, and components from the Material UI library. Animations were included using React-Spring.</p>
         </div>
