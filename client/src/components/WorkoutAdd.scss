@@ -1,0 +1,82 @@
+@import '../styles/variables.scss';
+
+.new-exercise {
+
+  &__wrapper {
+    position: relative;
+    margin: auto;
+    margin-top: 6rem;
+    width: 85%;
+    height: 100%;
+
+    .small_button {
+      width: 100%;
+      position: absolute;
+      margin-bottom: 0.5rem;
+      height: 3rem;
+      margin-top: 24rem;
+      box-shadow: 2px 2px 8px rgb(144, 144, 144);
+    }
+
+    .small_button:last-of-type {
+      margin-top: 28rem;
+    }
+  }
+
+  &__card {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      margin-bottom: 0.2rem;
+      color: $dark-green;
+    }
+  }
+
+  
+
+  &__form {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: stretch;
+    input {
+      width: 100%;
+      margin-bottom: -5rem;
+      height: 3rem;
+      font-size: 1.7rem;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 1px 1px 10px inset grey;
+    }
+    
+  }
+
+  &__preview {
+    font-size: 3rem;
+    line-break: loose;
+    height: 100%;
+    margin-top: 1rem;
+    text-align: center;
+    align-items: center;
+    background: -webkit-linear-gradient(45deg, $theme-green 20%, #b4faab 60%, $theme-green 85%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+
+    
+  }
+
+}
+
+.new-exercise__card .divider {
+  height: 10px;
+  width: 80%;
+  background: linear-gradient(45deg, $theme-green 20%,#aed7a9 20% , $theme-green 90%);
+  border-radius: 10px;
+  margin-bottom: 4rem;
+}
