@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import { useSpring, animated } from '@react-spring/web'
 import useForm from "../hooks/useForm";
 import TextInput from "./form_elements/TextInput";
 import EmailInput from "./form_elements/EmailInput";
@@ -13,6 +14,7 @@ export default function Register(props) {
   const { setUser } = props
   const { handleInputChange, data} = useForm({name: '', email: '', password: '', password_confirmation: ''})
   const [ error, setError ] = useState('')
+  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}}), [])
 
   const onRegister = (params) => {
     console.log('onLogin called')
@@ -40,7 +42,7 @@ export default function Register(props) {
   }
 
   return  (
-    <form onSubmit={handleSubmit}>
+    <animated.form onSubmit={handleSubmit} style={style}>
       {error && <Fragment>{errorMessages}</Fragment>}
       <TextInput
         name="name"
@@ -67,6 +69,6 @@ export default function Register(props) {
         onChange={handleInputChange}
       />
       <SmallButton onClick={()=>{}}>Submit</SmallButton>
-    </form>
+    </animated.form>
   )
 }

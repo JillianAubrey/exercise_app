@@ -1,10 +1,14 @@
 import React, { Fragment } from "react";
+import {animated, useSpring } from "@react-spring/web"
 import classnames from "classnames";
 import "./About.scss";
 
 export default function About() {
+
+  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}}), [])
+
   return (
-    <div className="about__card">
+    <animated.div className="about__card" style={style}>
       <p className="about__card-header">Customize your fitness!</p>
 
       <div className="divider"></div>
@@ -68,6 +72,6 @@ export default function About() {
             and the server is built with Ruby on Rails. We tested the back-end with the RSpec testing library, and the front end with Storybook and Jest. For styling the application, we used primarily custom SCSS, and components from the Material UI library. Animations were included using React-Spring.</p>
         </div>
       </div>
-    </div>
+    </animated.div>
   );
 }

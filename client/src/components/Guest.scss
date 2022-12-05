@@ -49,11 +49,13 @@ main.guest-page {
     padding: 5px 10px 10px;
     margin-top: 1.5rem;
     color: $dark-green;
+    overflow: hidden;
 
     form {
       display: flex;
       flex-direction: column;
       justify-content: center;
+
 
       div {
         display: flex;
