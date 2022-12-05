@@ -15,7 +15,7 @@ export default function ExerciseListItem(props) {
     let msg = name;
 
     if (duration) {
-      msg += ', '
+      msg += '. '
       const minutes = Math.floor(duration / 60);
       const seconds = duration % 60;
       if (minutes) msg += `${minutes} ${minutes > 1 ? 'minutes' : 'minute'}`;
@@ -26,6 +26,7 @@ export default function ExerciseListItem(props) {
 
     if (isDbRest) return msg;
 
+    msg += '. '
     msg += `${sets} ${sets > 1 ? 'sets' : 'set'} of ${reps}`;
     return msg;
   }
