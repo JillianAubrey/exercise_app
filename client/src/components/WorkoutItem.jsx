@@ -3,19 +3,24 @@ import CardLeft from "./Exercise/CardLeft";
 import SmallButton from "./buttons_toggles/SmallButton";
 import CategoryBar from "./CategoryBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import classNames from "classnames";
 import './WorkoutItem.scss'
 
 export default function WorkoutItem(props) {
-  const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, onRemove, categoryCounts} = {...props}
+  const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, onRemove, categoryCounts, clickable } = {...props}
 
   console.log(ownWorkout)
 
   const editable = onEdit && ownWorkout;
 
+  const workoutItemClass = classNames('workout__card', 'workout__card--show', {
+    'no-hover': !clickable
+  })
+
   return (
     <Fragment>
-      <article className="workout__card workout__card--show" onClick={onClick} disabled>
-        <CardLeft gif_url={gif_url} category={""} name={name} />
+      <article className={workoutItemClass} onClick={onClick}>
+        {onClick && <CardLeft gif_url={gif_url} category={""} name={name} />}
         <section className="workout__card-right">
           <div className="workout__card-header">
             <h1> {name} </h1>
@@ -46,7 +51,7 @@ export default function WorkoutItem(props) {
         </section>
        
       </article>
-      {editable && <SmallButton type="edit" onClick={onEdit}>Edit Workout</SmallButton>}
+      {editable && <article className="edit__button" onClick={onEdit}> <h2>Edit Workout <FontAwesomeIcon icon="file-pen" className="icon"/></h2></article>}
     </Fragment>
   );
 }

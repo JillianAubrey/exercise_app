@@ -17,6 +17,10 @@
   align-items: center;
   background-color: $theme-blue;
   color: $theme-blue-accent-dark;
+  &:hover {
+      box-shadow: 5px 5px 12px grey;
+      transform: scale(1.05);
+    }
 
   &-header {
     width: 100%;
@@ -70,6 +74,7 @@
   h2 {
     margin: 0;
     padding: 5px;
+    font-size: 1.1rem;
   }
 
   h3 {
@@ -85,5 +90,17 @@
 
   em {
     color: $theme-green;
+  }
+
+  &-note {
+    margin: 0.2em 0;
+  }
+
+  input {
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px inset grey;
+    margin-left: 0.5em;
+    height: 1.5rem;
   }
 }
