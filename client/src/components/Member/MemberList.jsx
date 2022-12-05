@@ -3,7 +3,7 @@ import MemberSearch from './MemberSearch.jsx'
 import MemberListItem from "./MemberListItem.jsx";
 import getMembers from "../../helpers/api_requests/getMembers.js";
 import './styles.scss'
-export default function MemberList(props) {
+const MemberList = React.forwardRef((props, ref)  => {
   const { owner, memberList } = props
 
   const formatMembers = function(memberList) {
@@ -28,11 +28,13 @@ export default function MemberList(props) {
     <Fragment>
       <div className="member_item-divider"></div>
       <div className="member__card-note">
-        <ul>
+        <ul ref={ref}>
           {ownerMember && <MemberListItem name={ownerMember.name} owner={true} />}
           {formatMembers(memberList)}
         </ul>
       </div>
     </Fragment>
   );
-}
+})
+
+export default MemberList
