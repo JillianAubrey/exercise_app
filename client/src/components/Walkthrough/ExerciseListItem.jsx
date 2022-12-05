@@ -7,8 +7,9 @@ import CardLeft from "../Exercise/CardLeft";
 export default function ExerciseListItem(props) {
   const { onNext, exercise } = props
   const { reps, sets, duration, note, exercise:{ id, name, category, gif_url }} = exercise
+  const tts = useMemo(() => window.speechSynthesis, []);
+  const msg = useMemo(() => new SpeechSynthesisUtterance(), []);
   const firstRender = useRef(true)
-  const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
   const isDbRest = id === 1;
 
   const ttsMessage = () => {
@@ -32,14 +33,14 @@ export default function ExerciseListItem(props) {
   }
 
   useEffect(() => {
+    tts.cancel()
     if (firstRender.current) {
       firstRender.current = false;
       return;
     }
 
     msg.text = ttsMessage();
-
-    window.speechSynthesis.speak(msg)
+    tts.speak(msg);
   }, [exercise]);
 
 

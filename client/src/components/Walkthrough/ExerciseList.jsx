@@ -4,7 +4,7 @@ import SmallButton from "../buttons_toggles/SmallButton";
 import useList from "../../hooks/useList";
 
 export default function ExerciseList(props) {
-  const { exerciseList, onComplete, onFinish } = props;
+  const { exerciseList, onComplete, onCancel } = props;
   
   const [
     exercise,
@@ -39,7 +39,7 @@ export default function ExerciseList(props) {
         />
       </div>
       {!isLastExercise() ? (
-        <button type="button" className="bottom bottom-cancel" onClick={onFinish}>
+        <button type="button" className="bottom bottom-cancel" onClick={onCancel}>
           Cancel
         </button>
       ) : (

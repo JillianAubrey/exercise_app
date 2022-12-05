@@ -6,16 +6,13 @@ import './Walkthrough.scss';
 export default function WalkthroughContainer(props) {
   const { user_id, workout, onFinish } = props
   const exerciseList = workout.workout_exercises
-  const firstRender = useRef(true)
-  const msg = useMemo(() => new SpeechSynthesisUtterance(), [])
 
   const onComplete = () => {
+    const tts = window.speechSynthesis
+    tts.cancel();
+    tts.speak(new SpeechSynthesisUtterance(`${workout.name} workout completed!`));
     postWalkthrough(user_id, workout.id)
-    if (firstRender.current) {
-      msg.text = `${workout.name} workout completed!`
-      window.speechSynthesis.speak(msg)
-      firstRender.current = false;
-    }
+    console.log('here!')
     onFinish();
   }
 
@@ -23,7 +20,7 @@ export default function WalkthroughContainer(props) {
     <main className="walkthrough--container">
       <h1>{workout.name}</h1>
       <div className="divider"></div>
-      {exerciseList && <ExerciseList exerciseList={exerciseList} onComplete={onComplete} onFinish={onFinish} />}
+      {exerciseList && <ExerciseList exerciseList={exerciseList} onComplete={onComplete} onCancel={onFinish} />}
     </main>
   )
 }
