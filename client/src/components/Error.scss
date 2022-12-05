@@ -1,0 +1,29 @@
+@import '../styles/variables.scss';
+@import '../styles/mixins.scss';
+
+@keyframes animate-in {
+  0%  {
+    height: 0;
+    color: transparent
+  }
+  50% {height: 0.62em;}
+  75% {color: transparent}
+  99% {
+    height: 1.25em;
+    color: transparent
+  }
+  100% {
+    height: auto;
+    color: white;
+  }
+}
+
+.error-message {
+  @include card-base-styling;
+  margin: 5px;
+  background-color: $danger-color;
+  color: white;
+  animation-name: animate-in;
+  animation-duration: 0.1s;
+  padding: 0.25em;
+}
