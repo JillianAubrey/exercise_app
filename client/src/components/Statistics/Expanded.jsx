@@ -9,14 +9,12 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 const Expanded = React.forwardRef((props, ref) =>  {
   const { statistics, onClick, errors } = { ...props };
 
-  console.log(statistics)
-
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((state) => (state + 1) % statistics.length)
-    }, 100)
+    }, 200)
 
     return () => clearInterval(interval)
   }, [])

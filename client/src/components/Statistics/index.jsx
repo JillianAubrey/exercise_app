@@ -20,7 +20,7 @@ export default function Statistics(props) {
    
   useEffect(() => {
     animate({
-      height: (expanded ? bounds.height : 0) + "px"
+      height: (expanded ? bounds.height : 0) + "px",
     });
   }, [ animated, expanded, bounds.height])
 

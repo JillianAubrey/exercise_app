@@ -55,12 +55,12 @@ const MemberList = React.forwardRef((props, ref) => {
             <MemberListItem name={ownerMember.name} owner={true} />
           )}
           {springs.map(({ opacity, transform }, i) => (
-            <animated.li
+            <animated.div
               key={i}
               style={{ opacity, transform, listStyleType: "none" }}
             >
               {formatMembers(memberList)[i]}
-            </animated.li>
+            </animated.div>
           ))}
         </ul>
       </div>
