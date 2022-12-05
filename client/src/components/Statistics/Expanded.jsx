@@ -45,19 +45,20 @@ const Expanded = React.forwardRef((props, ref) =>  {
 
   const statList =
     statistics.length 
-    ? statistics.map((userstat) => {
+    ? statistics.map((userstat, index) => {
         const { name, all_walkthroughs, last_week_walkthroughs } = userstat;
 
         return (
           <div className="stat_item">
             <h3 className="stat_item-header">{name}</h3>
+            <p className="stat_king">{index === 0 && '👑'}</p>
             <p className="stat_item-info">
-              Past Week: <span>{last_week_walkthroughs}</span>{" "}
+              Past Week: <span> {last_week_walkthroughs}</span>{" "}
               {last_week_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
             </p>
             <p className="stat_item-info">
               {" "}
-              All time: <span>{all_walkthroughs}</span>{" "}
+              All time:&nbsp; &nbsp; &nbsp;<span>{all_walkthroughs}</span>{" "}
               {all_walkthroughs === 1 ? "walkthrough" : "walkthroughs"}
             </p>
             </div>

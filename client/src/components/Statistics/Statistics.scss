@@ -5,7 +5,8 @@
 .statistics__card {
   @include card-base-styling;
 
-  overflow: scroll;
+  background-color: rgb(207, 159, 255);
+  color: rgb(74, 36, 112);
 
   &::-webkit-scrollbar {
     display: none;
@@ -31,7 +32,43 @@
     margin: 0 auto;
     padding-top: 5px;
     font-size: 1.1rem;
+
   }
+
+  h3 {
+    width: 40%;
+    margin: 0 auto;
+    padding: 0.1em 0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px inset rebeccapurple;
+  }
+
+  .stat_item {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+  }
+  .stat_item-info {
+    display: block;
+    width: 60%;
+    text-align: left !important;
+    margin-top: 5px;
+    p {
+      text-align: left;
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+
+  h3, p {
+    text-align: center;
+  }
+
+  .stat_king {
+    font-size: 1.5rem;
+  }
+
 }
 
 .stat_item--container {
@@ -61,5 +98,5 @@
   width: 80%;
   height: 1px;
   margin: auto;
-  background-color: $theme-green;
+  background-color: rgb(74, 36, 112);
 }
