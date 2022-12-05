@@ -14,7 +14,7 @@ export default function Register(props) {
   const { setUser } = props
   const { handleInputChange, data} = useForm({name: '', email: '', password: '', password_confirmation: ''})
   const [ error, setError ] = useState('')
-  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}}), [])
+  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}, delay: 80}), [])
 
   const onRegister = (params) => {
     console.log('onLogin called')

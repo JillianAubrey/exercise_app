@@ -5,7 +5,7 @@ import "./About.scss";
 
 export default function About() {
 
-  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}}), [])
+  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 500}, delay: 100}), [])
 
   return (
     <animated.div className="about__card" style={style}>

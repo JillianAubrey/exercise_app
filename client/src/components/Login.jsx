@@ -13,7 +13,7 @@ export default function Login(props) {
   const { setUser } = props
   const { handleInputChange, data} = useForm({email: '', password: ''})
   const [ error, setError ] = useState('')
-  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 400}}), [])
+  const [style] = useSpring(({ from: {opacity: 0.1}, to: {opacity: 1}, config: {duration: 400}, delay: 50}), [])
 
   const onLogin = (params) => {
     console.log('onLogin called')
