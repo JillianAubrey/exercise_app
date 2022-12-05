@@ -22,6 +22,7 @@ export default function WorkoutList(props) {
         onClick={() => onShow(workout)}
         onPlay={() => onPlay(workout)}
         onRemove={() => onRemove(workout)}
+        clickable={true}
       />
     )
   })

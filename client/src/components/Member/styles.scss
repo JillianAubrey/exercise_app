@@ -17,6 +17,10 @@
   align-items: center;
   background-color: $theme-blue;
   color: $theme-blue-accent-dark;
+  &:hover {
+      box-shadow: 5px 5px 12px grey;
+      transform: scale(1.05);
+    }
 
   &-header {
     width: 100%;

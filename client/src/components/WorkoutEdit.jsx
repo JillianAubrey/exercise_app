@@ -36,7 +36,6 @@ export default function WorkoutEdit(props) {
     <Fragment>
       <WorkoutItem
         name={name}
-        gif_url={first_gif}
         ownerName={owner.name}
         ownWorkout={owner.id === user_id}
       />

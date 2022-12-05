@@ -6,7 +6,7 @@ import ExerciseListShow from "./ExerciseListShow";
 
 
 export default function WorkoutShow(props) {
-  const { workout, user_id, onPlay, onEdit, onRemove, onExit, setByOthers, byOthers } = props;
+  const { workout, user_id, onPlay, onEdit, onRemove } = props;
   const exerciseList = workout.workout_exercises
   
   const { name, first_gif, id: workout_id, owner, category_counts } = workout;
@@ -23,6 +23,7 @@ export default function WorkoutShow(props) {
         onPlay={onPlay}
         categoryCounts={category_counts}
         onRemove={onRemove}
+        clickable={false}
       />
       <Statistics workoutId={workout_id}/>
       <Member userId={user_id} owner={owner.name} workoutId={workout_id} />
