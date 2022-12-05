@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-<<<<<<< HEAD
 import { useSprings, animated } from "@react-spring/web";
 import MemberSearch from "./MemberSearch.jsx";
 import MemberListItem from "./MemberListItem.jsx";
@@ -33,15 +32,6 @@ const MemberList = React.forwardRef((props, ref) => {
   );
 
   const formatMembers = function (memberList) {
-    let members = [];
-=======
-import MemberListItem from "./MemberListItem.jsx";
-import './styles.scss'
-export default function MemberList(props) {
-  const { owner, memberList } = props
-
-  const formatMembers = function(memberList) {
->>>>>>> db72096 (format workout item)
     if (memberList.length > 0) {
       const ownerlessMembers = memberList.filter(
         (member) => member.name !== owner
