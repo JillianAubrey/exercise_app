@@ -15,6 +15,7 @@ main.guest-page {
   .page-container {
     background-color: rgba(white, 0.85);
     width: 80%;
+    height: 80%;
     box-shadow: 3px 3px 8px grey;
     box-shadow: inset 3px 3px 8px rgba($dark-green,0.45);
     border-radius: 10px;
@@ -46,27 +47,43 @@ main.guest-page {
 
   .content {
     padding: 5px 10px 10px;
+    margin-top: 1.5rem;
     color: $dark-green;
 
     form {
       display: flex;
       flex-direction: column;
+      justify-content: center;
 
-      label {
-        display: block;
-        margin-left: 10px;
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
 
-      input {
+      label {
+        display: inline-block;
+        text-align: center;
         margin-left: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+      }
+
+
+      input {
+        margin: 0 auto;
+        margin-bottom: 1rem;
         border: none;
-        box-shadow: 3px 3px 8px grey;
+        border-radius: 5px;
+        height: 1.6rem;
+        box-shadow: 2px 2px 6px inset grey;
         width: 70%;
       }
 
       button {
         background-color: $theme-green;
+        width: 70%;
+        height: 2rem;
+        margin: 2rem auto 1rem auto;
       }
     }
   }

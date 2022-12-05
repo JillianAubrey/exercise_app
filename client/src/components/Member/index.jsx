@@ -16,7 +16,9 @@ export default function Member(props) {
    
   useEffect(() => {
     animate({
-      height: (memberList ? bounds.height + 50 : 0) + "px"
+      height: (memberList ? bounds.height + 50 : 0) + "px",
+      opacity: (memberList ? '1': '0'),
+      duration: 300,
     });
   }, [ animated, memberList, bounds.height])
 

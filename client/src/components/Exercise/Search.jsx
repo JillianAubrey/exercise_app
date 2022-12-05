@@ -36,7 +36,7 @@ export default function Search(props) {
       const { id, name, category, gif_url } = { ...exercise };
 
       return (
-        name !== "rest" && (
+        name !== "Rest" && id !== 1 && (
           <Show
             key={id}
             exercise_id={id}
@@ -51,6 +51,7 @@ export default function Search(props) {
 
   return (
     <div className="search__container">
+        <FontAwesomeIcon className="search__cancel" onClick={onCancel} icon="circle-plus" />
       <article className="search__card">
         <Toggle
           leftLabel="Custom Exercises"
@@ -77,7 +78,6 @@ export default function Search(props) {
         </div>
         <div className="search__results">{resultsList}</div>
       </article>
-      <FontAwesomeIcon className="search__cancel" onClick={onCancel} icon="circle-plus" />
     </div>
   );
 }
