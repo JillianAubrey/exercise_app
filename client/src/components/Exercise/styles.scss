@@ -240,12 +240,13 @@
   width: 95%;
   margin: 0 auto;
   .search__cancel {
-    margin-top: 0.6rem;
+    margin-top: 0.5rem;
+    margin-left: 0.5rem;
     height: 2.3rem;
     width: 2.3rem;
     font-size: 2.3rem;
-    margin-left: 88%;
     color: $danger-color;
+    background-color: white;
     transform: rotate(45deg);
     border-radius: 50%;
     box-shadow: 5px 2px 4px rgba(128, 128, 128, 0.598);
@@ -259,7 +260,7 @@
   align-items: center;
   width: 95%;
   position: relative;
-  margin: 0 auto;
+  margin: 0.5em auto;
   border-radius: 10px;
   box-shadow: 2px 2px 10px grey;
   padding: 1em;
@@ -283,6 +284,10 @@
     }
   }
 
+  .small_button {
+    margin-left: 0.8rem;
+  }
+
   .search__form {
     width: 100%;
     
@@ -295,7 +300,8 @@
         margin-right: -10px;
         padding-right: 17px;
         padding-left: 5px;
-        font-size: 1.2rem;
+        text-align: center;
+        font-size: 1.3rem;
         color: white;
         height: 1.8rem;
         background-color: $theme-green;
@@ -311,7 +317,7 @@
         border-bottom-left-radius: 0px;
         border: 2px solid $theme-green;
         border-left: none;
-        width: 50%;
+        width: 70%;
         height: 1.8rem;
       }
     }
@@ -320,10 +326,14 @@
   .search__buttons {
     display: flex;
     justify-content: center;
-    gap: 0.2em;
+    gap: 0em;
     width: 100%;
     margin-top: 0.4rem;
     margin-bottom: 0.5rem;
+    button {
+      width: 44%;
+      margin: 0;
+    }
   }
 }
 
