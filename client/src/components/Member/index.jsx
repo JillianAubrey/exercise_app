@@ -60,7 +60,9 @@ export default function Member(props) {
             </Fragment>
           }
         </animated.div>
+        <animated.div style={style.opacity}>
         {!memberList && memberSearch && <MemberSearch workoutId={workoutId} toggleSearch={toggleSearch} memberSearch={memberSearch} />}
+        </animated.div>
       </article>
     </Fragment>
   );
