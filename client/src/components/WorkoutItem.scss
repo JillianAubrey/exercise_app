@@ -86,7 +86,7 @@ ul {
 
 .edit__button {
   @include card-base-styling;
-  margin: 0.7rem auto;
+  margin: 0.7rem auto 0 auto;
   background-color: $edit-color;
   box-shadow: 1px 1px 3px grey;
   h2 {

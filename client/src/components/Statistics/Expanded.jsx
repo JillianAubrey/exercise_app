@@ -9,6 +9,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 const Expanded = React.forwardRef((props, ref) =>  {
   const { statistics, onClick, errors } = { ...props };
 
+  console.log(statistics)
+
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -43,9 +45,7 @@ const Expanded = React.forwardRef((props, ref) =>  {
       );
     });
 
-  const statList =
-    statistics.length 
-    ? statistics.map((userstat, index) => {
+  const statList = statistics && statistics.map((userstat, index) => {
         const { name, all_walkthroughs, last_week_walkthroughs } = userstat;
 
         return (
@@ -64,7 +64,7 @@ const Expanded = React.forwardRef((props, ref) =>  {
             </div>
         );
       })
-    : <p className="stat_item-empty">No walkthroughs yet</p>
+    
     
   return (
     <section className="stat_item--container" onClick={onClick} ref={ref}>
@@ -78,6 +78,8 @@ const Expanded = React.forwardRef((props, ref) =>  {
       </animated.li>
     ))
       }
+
+      {!statistics.length && <p className="stat_item-empty">No walkthroughs yet</p>}
 
       {errors && errorElements}
       

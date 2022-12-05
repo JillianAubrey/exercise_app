@@ -4,6 +4,7 @@
 
 .statistics__card {
   @include card-base-styling;
+  margin-top: 0.7rem;
 
   background-color: rgb(207, 159, 255);
   color: rgb(74, 36, 112);
