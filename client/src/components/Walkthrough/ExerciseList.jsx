@@ -30,7 +30,7 @@ export default function ExerciseList(props) {
           onClick={previousExercise}
           disabled={isFirstExercise()}
         />
-        <ExerciseListItem exercise={exercise} onNext={onNext} first={isFirstExercise()}/>
+        <ExerciseListItem exercise={exercise} onNext={onNext} />
 
         <SmallButton
           type="next"
