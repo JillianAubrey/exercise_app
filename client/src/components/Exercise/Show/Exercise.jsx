@@ -24,8 +24,8 @@ export default function Exercise(props) {
         {duration && (
           <div className="exercise__card-timebased">
             <p className="exercise__card-duration">
-              <span>{duration}</span> Seconds (
-              <span>{Math.round(duration / 60)}</span> minutes)
+              {duration > 60 && <Fragment><span>{Math.floor(duration / 60)}</span> minutes </Fragment> }
+              {duration % 60 > 0 && <Fragment><span>{Math.floor(duration % 60)}</span> seconds</Fragment> }
             </p>
           </div>
         )}
