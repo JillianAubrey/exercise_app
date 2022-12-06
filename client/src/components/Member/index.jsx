@@ -66,4 +66,4 @@ export default function Member(props) {
       </article>
     </Fragment>
   );
-}
+};

@@ -33,5 +33,5 @@ export default function ExerciseListShow(props) {
     <section className="exercise_list" >
       {exercises}
     </section>
-  )
-}
+  );
+};

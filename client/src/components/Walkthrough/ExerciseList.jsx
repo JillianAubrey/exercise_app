@@ -1,9 +1,7 @@
-import React, { useMemo, useEffect, Fragment, useState } from "react";
-import { useSpring, animated} from "@react-spring/web"
+import React, { useEffect, Fragment } from "react";
 import ExerciseListItem from "./ExerciseListItem";
 import SmallButton from "../buttons_toggles/SmallButton";
 import useList from "../../hooks/useList";
-import { useRef } from "react";
 
 export default function ExerciseList(props) {
   const { exerciseList, onComplete, onCancel } = props;
@@ -20,7 +18,7 @@ export default function ExerciseList(props) {
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
-  }, [exercise])
+  }, [exercise]);
 
   return (
     <Fragment>

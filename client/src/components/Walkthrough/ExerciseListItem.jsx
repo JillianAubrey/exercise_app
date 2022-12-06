@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, Fragment } from "react";
+import React, { useEffect, useMemo } from "react";
 import Timer from "./Timer";
 import CardLeft from "../Exercise/CardLeft";
 
@@ -19,9 +19,10 @@ export default function ExerciseListItem(props) {
   // Returns the appropriate tts message for the current exercise
   const ttsMessage = () => {
     let msg = name;
+    if (isDbRest && !duration) return msg;
+    msg += ". ";
 
     if (duration) {
-      msg += ". ";
       const minutes = Math.floor(duration / 60);
       const seconds = duration % 60;
       if (minutes) msg += `${minutes} ${minutes > 1 ? "minutes" : "minute"}`;
@@ -30,14 +31,11 @@ export default function ExerciseListItem(props) {
       return msg;
     }
 
-    if (isDbRest) return msg;
-
-    msg += ". ";
     msg += `${sets} ${sets > 1 ? "sets" : "set"} of ${reps}`;
     return msg;
   };
 
-  // Reads the text-to-speech (tts) for the exercise
+  // Reads the text-to-speech (tts) on every new exercise
   useEffect(() => {
     tts.cancel();
     msg.text = ttsMessage();

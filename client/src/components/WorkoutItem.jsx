@@ -14,7 +14,7 @@ export default function WorkoutItem(props) {
   const workoutItemClass = classNames('workout__card', 'workout__card--show', {
     'no-hover': !clickable,
     clickable: clickable
-  })
+  });
 
   return (
     <Fragment>
@@ -51,4 +51,4 @@ export default function WorkoutItem(props) {
       {editable && <article className="edit__button clickable" onClick={onEdit}> <h2>Edit Workout <FontAwesomeIcon icon="file-pen" className="icon"/></h2></article>}
     </Fragment>
   );
-}
+};

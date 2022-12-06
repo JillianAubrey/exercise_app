@@ -7,7 +7,7 @@ import ExerciseListShow from "./ExerciseListShow";
 
 export default function WorkoutShow(props) {
   const { workout, user_id, onPlay, onEdit, onRemove } = props;
-  const exerciseList = workout.workout_exercises
+  const exerciseList = workout.workout_exercises;
   
   const { name, first_gif, id: workout_id, owner, category_counts } = workout;
   const workout_owner = owner.id;
@@ -30,4 +30,4 @@ export default function WorkoutShow(props) {
       <ExerciseListShow exerciseList={exerciseList} />
     </Fragment>
   );
-}
+};

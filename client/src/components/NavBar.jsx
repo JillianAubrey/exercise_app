@@ -22,5 +22,5 @@ export default function NavBar(props) {
         </button>
       </div>
     </nav>
-  )
-}
+  );
+};

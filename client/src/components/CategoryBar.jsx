@@ -2,19 +2,19 @@ import React from "react";
 import './CategoryBar.scss';
 
 export default function CategoryBar(props) {
-  const { rest, ...counts} = props
-  const totalCount = Object.values(counts).reduce((sum, val) => sum + val, 0)
+  const { rest, ...counts} = props;
+  const totalCount = Object.values(counts).reduce((sum, val) => sum + val, 0);
   let extra = 0;
 
   const bars = Object.keys(counts).map(key => {
-    if (key === "rest") return;
-
     const count = counts[key]
 
-    if (!count) return;
-    if (count < totalCount * 0.10) {
+    if (!count) return null;
+
+    // Any bar less than 15% of the total size is lumped into extra
+    if (count < totalCount * 0.15) {
       extra += count
-      return
+      return null;
     }
 
     return (

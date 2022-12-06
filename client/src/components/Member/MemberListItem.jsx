@@ -13,4 +13,4 @@ export default function MemberListItem(props) {
       </li>
     </Fragment>
   );
-}
+};

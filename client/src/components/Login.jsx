@@ -26,8 +26,6 @@ export default function Login(props) {
     )
   }
 
-
-
   const handleSubmit = (event) => {
     event.preventDefault()
     onLogin(data)

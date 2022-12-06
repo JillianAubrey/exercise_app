@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useMeasure from "react-use-measure";
 import { animated, useSpring } from "@react-spring/web";
 import Login from "./Login"
@@ -11,20 +11,19 @@ export default function Guest(props) {
   const INDEX = "INDEX";
   const ABOUT = "ABOUT";
   const LOGIN = "LOGIN";
-  const REGISTER = "REGISTER"
+  const REGISTER = "REGISTER";
 
-  const [view, setView] = useState(INDEX)
-  const [ref, bounds] = useMeasure({ debounce: 0 })
-
-  const [style, animate] = useSpring(({ height: "0px", config: {duration: 150} }), [])
+  const [view, setView] = useState(INDEX);
+  const [ref, bounds] = useMeasure({ debounce: 0 });
+  const [style, animate] = useSpring(({ height: "0px", config: {duration: 150} }), []);
+  const { setUser } = props;
    
   useEffect(() => {
     animate({
       height: (view !== INDEX ? bounds.height : 0) + "px",
     });
-  }, [ animated, view, bounds.height])
+  }, [animated, view, bounds.height]);
 
-  const { setUser } = props
 
   const nav = (
     <nav className="guest-nav">
@@ -41,12 +40,12 @@ export default function Guest(props) {
         className={`nav-item clickable${view === ABOUT ? ' nav-item--selected' : ''}`}
       >About</span>
     </nav>
-  )
+  );
 
   return (
     <main className="guest-page" >
       <div className="page-container">
-        <h1 className="logo clickable" onClick={() => setView(INDEX)}>titan</h1>
+        <h1 className={`logo${view === INDEX ? '' : ' clickable'}`} onClick={() => setView(INDEX)}>titan</h1>
         {nav}
         <animated.div style={style}>
         {view !== INDEX &&
@@ -65,5 +64,5 @@ export default function Guest(props) {
         </animated.div>
       </div>
     </main>
-  )
-}
+  );
+};

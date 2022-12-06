@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import WorkoutList from './WorkoutList'
 import WorkoutShow from './WorkoutShow'
 import WorkoutEdit from "./WorkoutEdit";
@@ -11,18 +11,18 @@ import Toggle from "./buttons_toggles/Toggle";
 import "./User.scss"
 
 export default function User(props) {
-  const WORKOUT_LIST = "WORKOUT_LIST"
-  const WORKOUT_SHOW = "WORKOUT_SHOW"
-  const WORKOUT_EDIT = "WORKOUT_EDIT"
-  const WORKOUT_ADD = "WORKOUT_ADD"
-  const WALKTHROUGH = "WALKTHROUGH"
+  const WORKOUT_LIST = "WORKOUT_LIST";
+  const WORKOUT_SHOW = "WORKOUT_SHOW";
+  const WORKOUT_EDIT = "WORKOUT_EDIT";
+  const WORKOUT_ADD = "WORKOUT_ADD";
+  const WALKTHROUGH = "WALKTHROUGH";
 
   const [userWorkouts, setUserWorkouts] = useState([]);
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [view, setView] = useState('');
-  const [byOthers, setByOthers] = useState(false)
+  const [byOthers, setByOthers] = useState(false);
 
-  const { user } = props
+  const { user } = props;
 
   useEffect(() => {
     getUserWorkouts(
@@ -31,8 +31,8 @@ export default function User(props) {
         setUserWorkouts([...res.data])
         setView(WORKOUT_LIST)
       }
-    )
-  }, [user])
+    );
+  }, [user]);
 
   const onSelect = (workoutId, view) => {
     getDetailedWorkout(
@@ -42,8 +42,8 @@ export default function User(props) {
         setView(view)
       },
       (err) => console.error("Error fetching workout data", err)
-    )
-  }
+    );
+  };
 
   const onSave = (response)=> {
     setSelectedWorkout(response.data)
@@ -52,8 +52,8 @@ export default function User(props) {
     getUserWorkouts(
       user,
       (res) => setUserWorkouts([...res.data])
-    )
-  }
+    );
+  };
 
   const onRemoveWorkout = (workoutId, userId) => {
     const deleteIndex = userWorkouts.findIndex((workout) => workout.id === workoutId)
@@ -61,7 +61,7 @@ export default function User(props) {
     newUserWorkouts.splice(deleteIndex, 1);
     deleteMember(workoutId, userId, setUserWorkouts(newUserWorkouts));
     setView(WORKOUT_LIST);
-  }
+  };
 
   return (
     <main className="user-page">
@@ -128,4 +128,4 @@ export default function User(props) {
         />}
     </main>
   );
-}
+};

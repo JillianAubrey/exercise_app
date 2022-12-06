@@ -1,5 +1,4 @@
 import React, { Fragment as div } from "react";
-import classnames from "classnames";
 import './Error.scss';
 
 export default function Error(props) {

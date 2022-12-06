@@ -36,4 +36,4 @@ export default function SmallButton(props) {
      {children && ` ${children}`}
     </button>
   );
-}
+};

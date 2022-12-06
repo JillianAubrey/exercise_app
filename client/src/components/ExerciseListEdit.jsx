@@ -52,5 +52,5 @@ export default function ExerciseListEdit(props) {
     <section className="exercise_list" >
       {exercises}
     </section>
-  )
-}
+  );
+};

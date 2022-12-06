@@ -53,4 +53,4 @@ export default function MemberSearch(props) {
         </div>
     </Fragment>
   );
-}
+};

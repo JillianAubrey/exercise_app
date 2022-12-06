@@ -24,21 +24,21 @@ export default function Register(props) {
         setError('');
       },
       (err) => setError(err)
-    )
-  }
+    );
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    onRegister(data, setError)
-  }
+    event.preventDefault();
+    onRegister(data, setError);
+  };
 
-  let errorMessages = ''
+  let errorMessages = '';
   if (error) {
     errorMessages = formatApiErrors(
       error.response.data,
       (errorMessage) => <Error>{errorMessage}</Error>
-    )
-  }
+    );
+  };
 
   return  (
     <animated.form onSubmit={handleSubmit} style={style}>
@@ -69,5 +69,5 @@ export default function Register(props) {
       />
       <SmallButton>Submit</SmallButton>
     </animated.form>
-  )
-}
+  );
+};

@@ -9,7 +9,7 @@ export default function WalkthroughContainer(props) {
 
   const onComplete = () => {
     // Cancels any speech that might be playing and announces workout completion
-    const tts = window.speechSynthesis
+    const tts = window.speechSynthesis;
     tts.cancel();
     tts.speak(new SpeechSynthesisUtterance(`${workout.name} workout completed!`));
 

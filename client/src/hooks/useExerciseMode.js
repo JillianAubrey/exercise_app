@@ -2,7 +2,7 @@
 import { useState } from 'react';
 
 
-const useExerciseMode = function(initial) {
+export default function useExerciseMode(initial) {
   const [history, setHistory] = useState([initial])
 
   const back = function() {
@@ -19,7 +19,4 @@ const useExerciseMode = function(initial) {
   const mode = history[history.length -1];
 
   return { mode, setMode, back}
-}
-
-
-export default useExerciseMode;
+};

@@ -32,5 +32,4 @@ export default function Toggle(props) {
       </ToggleButton>
     </div>
   );
-}
-
+};

@@ -1,8 +1,7 @@
-import React, { Fragment, useState, useMemo } from "react";
+import React, { Fragment, useMemo } from "react";
 import WorkoutItem from './WorkoutItem'
 import filterWorkoutList from "../helpers/selectors";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Toggle from "./buttons_toggles/Toggle";
 
 export default function WorkoutList(props) {
   const { user, userWorkouts, onShow, onPlay, onRemove, onAdd, byOthers} = props;
@@ -29,7 +28,7 @@ export default function WorkoutList(props) {
   return (
     <Fragment>
       <ul>{workouts}</ul>
-      {!byOthers && 
+      {!byOthers && /* button for creating workout, only visible on "my workouts" */
         <article className="workout__card workout__card--empty clickable" onClick={onAdd}>
           <FontAwesomeIcon className="icon" icon="circle-plus"/>
         </article>

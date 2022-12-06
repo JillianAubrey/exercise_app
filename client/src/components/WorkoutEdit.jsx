@@ -8,9 +8,9 @@ import ExerciseListEdit from "./ExerciseListEdit";
 
 export default function WorkoutEdit(props) {
   const { workout, user_id, onSave, onCancel } = props;
-  const { name, first_gif, owner } = workout;
+  const { name, owner } = workout;
   
-  const [error, setError] = useState(null)
+  const [error, setError] = useState(null);
 
   const {
     editedExercises,
@@ -18,11 +18,13 @@ export default function WorkoutEdit(props) {
     handleReorderData,
     handleWorkoutEdit,
     handleExerciseDelete 
-  } = useWorkoutEdit(workout)
+  } = useWorkoutEdit(workout);
 
   const handleSave = () => {
-    const workout_exercises = [...editedExercises]
-    workout_exercises.pop()
+    const workout_exercises = [...editedExercises];
+
+    // removes the last itme in workout_exercises as it's always null for the add button
+    workout_exercises.pop();
 
     saveEdited(workout_exercises, onSave, setError)
   };
@@ -56,4 +58,4 @@ export default function WorkoutEdit(props) {
       />
     </Fragment>
   );
-}
+};

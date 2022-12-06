@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import {animated, useSpring } from "@react-spring/web"
-import classnames from "classnames";
 import "./About.scss";
 
 export default function About() {
@@ -28,17 +27,17 @@ export default function About() {
         </p>
 
         <div className="about__card-aboutus">
-          <img src="/images/lhl.png" />
+          <img src="/images/lhl.png" alt="lighthouse labs logo"/>
           <h2>About Us</h2>
           <div className="about__card-creators">
             <div className="about__card-creator">
               <p>Jillian Aubrey</p>
               <div className="links">
                 <a href="https://github.com/JillianAubrey" target="blank">
-                  <img src="/images/github.svg" />
+                  <img src="/images/github.svg" alt="github" />
                 </a>
                 <a href="https://www.linkedin.com/in/JillianAubrey/" target="blank">
-                  <img className="linkedin" src="/images/linkedin.svg" />
+                  <img className="linkedin" src="/images/linkedin.svg" alt="linkedin" />
                 </a>
               </div>
             </div>
@@ -46,10 +45,10 @@ export default function About() {
               <p>Michael Davis</p>
               <div className="links">
                 <a href="https://github.com/Michaeltcdavis" target="blank">
-                  <img src="/images/github.svg" />
+                  <img src="/images/github.svg" alt="github" />
                 </a>
                 <a href="https://www.linkedin.com/in/michaeltcdavis/" target="blank">
-                  <img className="linkedin" src="/images/linkedin.svg" />
+                  <img className="linkedin" src="/images/linkedin.svg" alt="linkedin" />
                 </a>
               </div>
             </div>
@@ -58,10 +57,10 @@ export default function About() {
                 <p>Jeremy Buist</p>
                 <div className="links">
                 <a href="https://github.com/jbuistjbuist" target="blank">
-                  <img src="/images/github.svg" />
+                  <img src="/images/github.svg" alt="github" />
                 </a>
                 <a href="https://www.linkedin.com/in/jeremy-buist/" target="blank">
-                  <img className="linkedin" src="/images/linkedin.svg" />
+                  <img className="linkedin" src="/images/linkedin.svg" alt="linkedin" />
                 </a>
               </div>
               </div>
