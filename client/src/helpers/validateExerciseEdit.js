@@ -1,7 +1,7 @@
 
 export default function validateExerciseEdit(data, errorSetter, timed) {
   const { duration, reps, sets } = data;
-  const rest = data.name === 'rest';
+  const rest = data.name === 'Rest';
   errorSetter(null);
 
   if (timed) {
