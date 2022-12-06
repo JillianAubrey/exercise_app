@@ -6,66 +6,73 @@ The app was built as a final project for the lighthouse Labs Web Development Dip
 
 ## Final Product
 
-### Home Page
-
-!["home page"](/public/images/homepage.gif?raw=true "home page")
-
 ### logging in
 
-!["logging in"](/public/images/logginin.gif?raw=true "logging in")
+!["logging in"](./images/loggingin.gif?raw=true "logging in")
 
 ### Workoutlist Navigation
 
-!["workoutlist navigation"](/public/images/workoutlist?raw=true "workoutlist navigation")
+!["workoutlist navigation"](./images/workoutlist.gif?raw=true "workoutlist navigation")
 
 ### Adding a Workout
 
-!["adding a workout"](/public/images/addingworkout.gif?raw=true "adding a workout")
+!["adding a workout"](./images/addworkout.gif?raw=true "adding a workout")
 
 ### Adding an Exercise
 
-!["adding an exercise"](/public/images/addexercise.gif?raw=true "adding an exercise")
+!["adding an exercise"](./images/addexercise.gif?raw=true "adding an exercise")
 
 ### Creating a Custom Exercise
 
-!["creating an exercise"](/public/images/createexercise.gif?raw=true "creating an exercise")
-
-### Workout Statistics
-
-!["workout statistics"](/public/images/workoutstatistics.gif?raw=true "workout statistics")
+!["creating an exercise"](./images/createexercise.gif?raw=true "creating an exercise")
 
 ### Add a Workout Member
 
-!["add a member"](/public/images/addmember.gif?raw=true "add a member")
+!["add a member"](./images/addmember.gif?raw=true "add a member")
 
 ### Editing a Workout
 
-!["editing a workout"](/public/images/editworkout.gif?raw=true "editing a workout")
+!["editing a workout"](./images/editworkout.gif?raw=true "editing a workout")
 
 ### Completing a Workout
 
-!["completing a workout"](/public/images/completeworkout.gif?raw=true "completing a workout")
+!["completing a workout"](./images/completeworkout.gif?raw=true "completing a workout")
 
 
 ## Setup Client
 
-Install dependencies with `npm install`.
+Install dependencies:
+```sh
+npm install
+```
 
 ## Setup API server
 
-Install dependencies with `bundle install`.
+Install dependencies:
+```sh
+bundle install
+```
 
 ### Running the API Server
 
+create, load and seed database:
 ```sh
-npm start
+bin/rails db:reset
+```
+Then start the server:
+```sh
+rails s 
+```
+or from a virtual machine:
+```sh
+rails s -b 0.0.0.0
 ```
 
 
 ### Running the React Client
 
 ```sh
-npm test
+npm start
 ```
 
 ### Running Storybook Visual Testbed
@@ -77,25 +84,36 @@ npm run storybook
 ### Running Jest tests on the Client server
 
 ```sh
-npm run storybook
+npm test
 ```
 
-### Running Rspec Tests in the API server
-
-Cypress requires a global install. This project used version 9.7.0. Once Cypress is installed separatetly, it can be run with:
+## Running RSpec for testing the API server
 
 ```sh
-npm run cypress
+rspec
 ```
 
-```
-logging in
-Workoutlist Navigation
-Adding a Workout
-Adding an Exercise
-Creating a Custom Exercise
-Workout Statistics
-Add a Workout Member
-Editing a Workout
-Completing a Workout
-```
+## Dependencies
+
+### Client Dependencies
+- react
+- axios
+- sass
+- react-spring/web
+- classnames
+- fontawesome
+- mui/material
+- lodash
+- valid-url
+- web-vitals
+
+### API Server Dependencies
+- Ruby
+- Rails
+- SQLite3
+- Puma
+- Bcrypt
+- Bootsnap
+- Rack-CORS
+- rspec-rails
+
