@@ -11,17 +11,19 @@ export default function Member(props) {
   const [memberSearch, setMemberSearch] = useState(false);
   const { owner, workoutId, userId } = props;
   const [ref, bounds] = useMeasure({ debounce: 0 });
-
   const [style, animate] = useSpring(({ height: "0px"}), [])
-   
+
+
+  //animates the component expanding and collapsing, by passing a height reference to the list of statistics
   useEffect(() => {
     animate({
       height: (memberList ? bounds.height + 50 : 0) + "px",
       opacity: (memberList ? '1': '0'),
       duration: 300,
     });
-  }, [ animated, memberList, bounds.height]);
-
+  }, [animated, memberList, bounds.height]);
+  
+  //toggleMembers opens and closes the Member component
   const toggleMembers = async function() {
     if (memberList) {
       setMemberList(null);
@@ -32,6 +34,7 @@ export default function Member(props) {
     }
   }
 
+  //toggleSearch opens and closes the memberSearch component
   const toggleSearch = async function() {
     if (memberSearch) {
       const newMembers = await getMembers(workoutId)

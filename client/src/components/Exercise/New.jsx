@@ -15,6 +15,7 @@ export default function New(props) {
   const { handleFormSubmit, handleInputChange, handleCategorySelect, data } = useForm({ user_id });
   const [errors, setErrors] = useState(null);
 
+  //sets styling of category select inputs. The selected one is updated into the form data, and displays text next to the icon
   const handleSelectClick = (event) => {
     const inputs = Array.from(document.getElementsByClassName("select__input"))
     inputs.forEach((input) => {
@@ -39,13 +40,6 @@ export default function New(props) {
   };
 
   const errorElements = errorDisplay(errors)
-  // const displayErrors =
-  //   errors &&
-  //   errors.map((error, index) => {
-  //     return <p className="error custom__error" key={index}> {error} </p>;
-  //   });
-
-  
 
 
   return (

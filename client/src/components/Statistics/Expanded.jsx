@@ -18,6 +18,7 @@ const Expanded = React.forwardRef((props, ref) =>  {
     return () => clearInterval(interval)
   }, [])
 
+  //maps animations to the list items by using their index
 
   const [springs] =  useSprings(
     statistics.length,

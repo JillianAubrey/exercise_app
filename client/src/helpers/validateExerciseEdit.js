@@ -26,7 +26,7 @@ export default function validateExerciseEdit(data, errorSetter, timed) {
     data.sets = Number(data.sets)
     data.reps = Number(data.reps)
   }
-
+  //for an untimed rest, set reps and sets to 1 each
   if (rest && !timed) {
     data.duration = null;
     data.reps = 1;

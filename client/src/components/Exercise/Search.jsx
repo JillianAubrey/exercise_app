@@ -15,10 +15,12 @@ export default function Search(props) {
   const [custom, setCustom] = useState(true);
   const query = data.search || null;
 
+  //on component entry, get custom exercises
   useEffect(() => {
     searchCustomExercises();
   }, []);
 
+  //when toggling between custom and databse exercises, set search query to input if provided, or search all custom/database exercises
   useEffect(() => {
     if (custom) {
       query && searchCustomExercises(query);
@@ -36,6 +38,7 @@ export default function Search(props) {
       const { id, name, category, gif_url } = { ...exercise };
 
       return (
+        //do not display rest as a search result
         name !== "Rest" && id !== 1 && (
           <Show
             key={id}

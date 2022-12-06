@@ -7,6 +7,7 @@ export default function Exercise(props) {
   const { name, category, duration, reps, sets, gif_url, note, id } = props;
   const cardLeftProps = { gif_url, name, category };
 
+  //handle expansion of the exercise note
   const [truncated, setTruncated] = useState(true);
   const handleTruncated = () => {
     setTruncated((prev) => !prev);

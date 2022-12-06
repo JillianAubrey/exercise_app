@@ -17,8 +17,9 @@ export default function Form(props) {
     gif_url,
     note,
     onCancel,
-    handleFormSave
+    handleFormSave,
   } = { ...props };
+  //initialize form with the original values so they can be edited
 
   const formFunctions = useForm({
     reps,
@@ -29,7 +30,7 @@ export default function Form(props) {
     exercise_id,
     name,
     gif_url,
-    category
+    category,
   });
   const { data } = formFunctions;
 
@@ -37,10 +38,11 @@ export default function Form(props) {
   const [error, setError] = useState(null);
 
   const handleTimed = () => {
-    setError(null)
-    setTimed(prev => !prev)
-  }
+    setError(null);
+    setTimed((prev) => !prev);
+  };
 
+  //if normal exercise, render with these props
   const exerciseProps =
     exercise_id === 1
       ? null
@@ -54,6 +56,7 @@ export default function Form(props) {
           error,
         };
 
+  //if rest exercise, use different props
   const restProps =
     exercise_id !== 1
       ? null
@@ -64,9 +67,8 @@ export default function Form(props) {
           error,
         };
 
-
   const handleSubmit = () => {
-    validateExerciseEdit(data, setError, timed) && handleFormSave(data)
+    validateExerciseEdit(data, setError, timed) && handleFormSave(data);
   };
 
   return (

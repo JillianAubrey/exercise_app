@@ -6,7 +6,8 @@ import "./styles.scss"
 
 export default function Empty (props) {
 
-  const { onClick, pageAddClicked } = props;
+  //empty exercise component, renders as a circle with a plus icon, onCLick renders exercise search
+  const { onClick } = props;
 
   const handleClick = function() {
     onClick()

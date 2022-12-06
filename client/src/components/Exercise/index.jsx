@@ -19,7 +19,10 @@ export default function Exercise(props) {
     id, index, empty, editMode, user_id, handleWorkoutEdit
   } = props;
 
+  //'new props' come from making a custom exercise or adding a search result. they are used to render the next component mode with changed props
   const [addNewProps, setAddNewProps] = useState();
+
+  //if passed empty = true, start out as an empty button, else revert to 'SHOW' component
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
   const onEdit = () => setMode(FORM);
@@ -30,6 +33,7 @@ export default function Exercise(props) {
     }
   }, [editMode])
 
+  //when adding search result, set props to the added result, then render the form component
   const handleSearchAdd = (exercise) => {
     setAddNewProps(exercise);
     setTimeout(() => {
@@ -37,12 +41,15 @@ export default function Exercise(props) {
     }, 100);
   };
 
+  //when adding custom exercuse, use the exercise information to render the form component
   const handleCustomAdd = (exercise) => {
     setAddNewProps(exercise);
     setTimeout(() => {
       setMode(FORM);
     }, 100);
   };
+
+  //render custom exercise form
   const handleCustomMode = () => {
       setMode(NEW);
   };
@@ -63,6 +70,8 @@ export default function Exercise(props) {
     handleWorkoutEdit(workout_exercise, index);
     setMode(SHOW);
   };
+
+  //form props are either the original props, or props from a search result or custom add
 
   const formProps = addNewProps
     ? { ...addNewProps, onCancel: () => back(), handleFormSave }
