@@ -115,16 +115,28 @@ export default function User(props) {
         <WalkthroughContainer 
           user_id={user} 
           workout={selectedWorkout} 
-          onFinish={() => setView(WORKOUT_LIST)}
+          onFinish={() => {
+            setSelectedWorkout(null);
+            setByOthers(false);
+            setView(WORKOUT_LIST);
+          }}
         />
       }
       {(view === WORKOUT_SHOW || view === WORKOUT_LIST) && 
         <Toggle
           toggleType="footer"
           leftLabel="My Workouts"
-        leftClick={() => { setByOthers(false); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
+        leftClick={() => { 
+          setByOthers(false); 
+          setSelectedWorkout(null); 
+          setView(WORKOUT_LIST); 
+        }}
           rightLabel="Shared Workouts"
-        rightClick={() => { setByOthers(true); view === WORKOUT_SHOW && setView(WORKOUT_LIST); }}
+        rightClick={() => { 
+          setByOthers(true); 
+          setSelectedWorkout(null); 
+          setView(WORKOUT_LIST); 
+        }}
         />}
     </main>
   );
