@@ -9,7 +9,7 @@
   50% {height: 0.62em;}
   75% {color: transparent}
   99% {
-    height: 1.25em;
+    height: 1.2em;
     color: transparent
   }
   100% {
@@ -20,6 +20,9 @@
 
 .error-message {
   @include card-base-styling;
+  width: 80%;
+  text-align: center;
+  align-self: center;
   margin: 5px;
   background-color: $danger-color;
   color: white;

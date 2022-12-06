@@ -1,11 +1,13 @@
-import React, { useMemo, useEffect, Fragment } from "react";
+import React, { useMemo, useEffect, Fragment, useState } from "react";
+import { useSpring, animated} from "@react-spring/web"
 import ExerciseListItem from "./ExerciseListItem";
 import SmallButton from "../buttons_toggles/SmallButton";
 import useList from "../../hooks/useList";
+import { useRef } from "react";
 
 export default function ExerciseList(props) {
   const { exerciseList, onComplete, onCancel } = props;
-  
+
   const [
     exercise,
     previousExercise,
@@ -15,8 +17,6 @@ export default function ExerciseList(props) {
   ] = useList(exerciseList, 0);
 
   const onNext = isLastExercise() ? onComplete : nextExercise;
- 
-  
 
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
@@ -30,7 +30,8 @@ export default function ExerciseList(props) {
           onClick={previousExercise}
           disabled={isFirstExercise()}
         />
-        <ExerciseListItem exercise={exercise} onNext={onNext} />
+        
+       <ExerciseListItem exercise={exercise} onNext={onNext}/>
 
         <SmallButton
           type="next"
