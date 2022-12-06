@@ -51,7 +51,7 @@ export default function Search(props) {
 
   return (
     <div className="search__container">
-        <FontAwesomeIcon className="search__cancel" onClick={onCancel} icon="circle-plus" />
+        <FontAwesomeIcon className="search__cancel clickable" onClick={onCancel} icon="circle-plus" />
       <article className="search__card">
         <Toggle
           leftLabel="Custom Exercises"

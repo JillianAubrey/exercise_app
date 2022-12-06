@@ -38,8 +38,8 @@ export default function Statistics(props) {
   }, []);
 
   return (
-    <article className="statistics__card" >
-      <h2 onClick={handleExpanded} >Statistics</h2>
+    <article className="statistics__card clickable" >
+      <h2 onClick={handleExpanded}>Statistics</h2>
       <animated.div className="animediv" style={style}>
       {expanded ? <Expanded statistics={statistics} onClick={handleExpanded} error={errors} ref={ref}/> : null}
       </animated.div>

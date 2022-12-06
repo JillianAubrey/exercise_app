@@ -16,7 +16,6 @@ export default function New(props) {
   const [errors, setErrors] = useState(null);
 
   const handleSelectClick = (event) => {
-    console.log("hello")
     const inputs = Array.from(document.getElementsByClassName("select__input"))
     inputs.forEach((input) => {
       input.classList.remove("select__input-selected");
@@ -32,7 +31,6 @@ export default function New(props) {
     
     if (validateNewExercise(data, setErrors)) {
       postExercise(data, setErrors).then((responseData) => {
-        console.log(responseData);
         if (responseData) {
           onAdd(responseData);
         }

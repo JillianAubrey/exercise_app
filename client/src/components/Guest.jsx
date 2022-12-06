@@ -17,16 +17,16 @@ export default function Guest(props) {
   const nav = (
     <nav className="guest-nav">
       <span 
-        onClick={() =>setView(LOGIN)} 
-        className={`nav-item${view === LOGIN ? ' nav-item--selected' : ''}`}
+        onClick={() => setView(view === LOGIN ? INDEX : LOGIN)} 
+        className={`nav-item clickable${view === LOGIN ? ' nav-item--selected' : ''}`}
       >Login</span>
       <span 
-        onClick={() =>setView(REGISTER)}
-        className={`nav-item${view === REGISTER ? ' nav-item--selected' : ''}`}
+        onClick={() => setView(view === REGISTER ? INDEX : REGISTER)}
+        className={`nav-item clickable${view === REGISTER ? ' nav-item--selected' : ''}`}
       >Register</span>
       <span 
-        onClick={() =>setView(ABOUT)}
-        className={`nav-item${view === ABOUT ? ' nav-item--selected' : ''}`}
+        onClick={() => setView(view === ABOUT ? INDEX : ABOUT)}
+        className={`nav-item clickable${view === ABOUT ? ' nav-item--selected' : ''}`}
       >About</span>
     </nav>
   )
@@ -34,7 +34,7 @@ export default function Guest(props) {
   return (
     <main className="guest-page" >
       <div className="page-container">
-        <h1 className="logo" onClick={() => setView(INDEX)}>titan</h1>
+        <h1 className="logo clickable" onClick={() => setView(INDEX)}>titan</h1>
         {nav}
         {view !== INDEX &&
           <div className="content">

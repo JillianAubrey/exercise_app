@@ -12,6 +12,7 @@ export default function ExerciseListItem(props) {
   const firstRender = useRef(true)
   const isDbRest = id === 1;
 
+  // Returns the approprite tts message for the current exercise
   const ttsMessage = () => {
     let msg = name;
 
@@ -32,8 +33,12 @@ export default function ExerciseListItem(props) {
     return msg;
   }
 
+  // Reads the text-to-speech (tts) for the exercise
   useEffect(() => {
+    // cancels any tts that might be playing
     tts.cancel()
+
+    // prevents tts from playing twice as react is set to strict which renders components twice
     if (firstRender.current) {
       firstRender.current = false;
       return;
@@ -53,10 +58,10 @@ export default function ExerciseListItem(props) {
       </div>
       <CardLeft name={name} category={category} gif_url={gif_url}/>
       {duration 
-        ? <Timer duration={{seconds: duration}} onComplete={onNext}/>
+        ? <Timer duration={{seconds: duration}} onComplete={onNext}/> // Duration is passed an an object to ensure timer re-renders
         : !isDbRest && <div className="setbased"><span>{sets}</span> {sets > 1 ? 'sets' : 'set'} of <span>{reps}</span></div>
       }
       {note && <p className="note"><span>Note:  </span>  {note}</p>}
     </article>
-  )
+  );
 }

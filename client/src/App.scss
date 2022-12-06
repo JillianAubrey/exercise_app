@@ -27,3 +27,7 @@ body {
   background-color: white;
   margin: 0 auto;
 }
+
+button:hover, .clickable:hover {
+  cursor: pointer;
+}

@@ -34,7 +34,6 @@ class UsersController < ApplicationController
       login!
       render json: {user_id: @user.id, user_name: @user.name}, status: :created, location: nil
     else
-      puts @user.errors.inspect
       render json: @user.errors, status: :unprocessable_entity
     end
   end

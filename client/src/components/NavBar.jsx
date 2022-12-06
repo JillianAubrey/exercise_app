@@ -12,11 +12,11 @@ export default function NavBar(props) {
 
   return (
     <nav className="user-nav">
-      <span class="logo" onClick={() => window.location.reload(false)}>
+      <span className="logo clickable" onClick={() => window.location.reload(false)}>
         titan
       </span>
-      <div class="user">
-        <p>logged in as <span class="username">{userName}</span></p>
+      <div className="user">
+        <p>logged in as <span className="username">{userName}</span></p>
         <button onClick={handleLogout}>
           <FontAwesomeIcon icon="fa-right-from-bracket" />
         </button>

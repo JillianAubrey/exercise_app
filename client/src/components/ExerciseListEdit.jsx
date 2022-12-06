@@ -11,9 +11,6 @@ export default function ExerciseListEdit(props) {
     userId
   } = props;
 
-  console.log( "user id in exerciselist edit", userId
-  )
-
   const exercises = exerciseList.map((item, index) => {
     if (!item) {
       return (<Exercise

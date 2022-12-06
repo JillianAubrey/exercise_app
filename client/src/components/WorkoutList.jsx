@@ -30,7 +30,7 @@ export default function WorkoutList(props) {
     <Fragment>
       <ul>{workouts}</ul>
       {!byOthers && 
-        <article className="workout__card workout__card--empty" onClick={onAdd}>
+        <article className="workout__card workout__card--empty clickable" onClick={onAdd}>
           <FontAwesomeIcon className="icon" icon="circle-plus"/>
         </article>
       }

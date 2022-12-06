@@ -14,7 +14,7 @@ export default function Empty (props) {
 
 
   return(
-    <article className="exercise__card exercise__card--empty" onClick={handleClick}>
+    <article className="exercise__card exercise__card--empty clickable" onClick={handleClick}>
       
       <FontAwesomeIcon className="icon" icon="circle-plus"/>
     

@@ -7,7 +7,6 @@ export default function useForm(initialValues) {
     if (event) {
       event.preventDefault();
     }
-    console.log(data)
   }
 
   const handleCategorySelect = (category) => {
@@ -19,7 +18,6 @@ export default function useForm(initialValues) {
     setData(prev => ({
       ...prev, [event.target.name]: event.target.value
     }))
-    console.log(data)
   }
  
   return {

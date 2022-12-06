@@ -1,7 +1,5 @@
 export default function formatStatistics(statistics) {
 
-  console.log(statistics)
-
   const activeUsers = statistics.users.filter((user) => {
     return Object.keys(statistics.all_walkthroughs).includes(user.id.toString());
   });

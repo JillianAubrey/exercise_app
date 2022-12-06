@@ -19,7 +19,6 @@ export default function Exercise(props) {
     id, index, empty, editMode, user_id, handleWorkoutEdit
   } = props;
 
-  console.log("user_id in exercise", user_id)
   const [addNewProps, setAddNewProps] = useState();
   const { back, mode, setMode } = useExerciseMode(empty ? EMPTY : SHOW);
 
@@ -39,7 +38,6 @@ export default function Exercise(props) {
   };
 
   const handleCustomAdd = (exercise) => {
-    console.log(exercise)
     setAddNewProps(exercise);
     setTimeout(() => {
       setMode(FORM);
@@ -57,16 +55,14 @@ export default function Exercise(props) {
 
 
   const handleFormSave = (data) => {
-    const { name, gif_url, category, ...workout_exercise } = data
-    workout_exercise.exercise = { id: workout_exercise.exercise_id, name, gif_url, category }
+    const { name, gif_url, category, ...workout_exercise } = data;
+    workout_exercise.exercise = { id: workout_exercise.exercise_id, name, gif_url, category };
    
-    workout_exercise.id = id || Math.random()
+    workout_exercise.id = id || Math.random();
 
-    console.table(workout_exercise)
-
-    handleWorkoutEdit(workout_exercise, index)
-    setMode(SHOW)
-  }
+    handleWorkoutEdit(workout_exercise, index);
+    setMode(SHOW);
+  };
 
   const formProps = addNewProps
     ? { ...addNewProps, onCancel: () => back(), handleFormSave }

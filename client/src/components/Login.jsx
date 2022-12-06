@@ -14,7 +14,6 @@ export default function Login(props) {
   const [ error, setError ] = useState('')
 
   const onLogin = (params) => {
-    console.log('onLogin called')
     postLogin(
       params,
       (res) => {
@@ -53,7 +52,7 @@ export default function Login(props) {
         value={data.password}
         onChange={handleInputChange}
       />
-      <SmallButton onClick={()=>{}}>Submit</SmallButton>
+      <SmallButton>Submit</SmallButton>
     </form>
   )
 }

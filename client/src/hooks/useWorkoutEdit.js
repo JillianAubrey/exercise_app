@@ -31,18 +31,17 @@ const useWorkoutEdit = function(workout) {
     if (!up && !editedExercises[index + 1]) return;
 
     setEditedExercises((prev) => {
-      const newEdit = [...prev]
-      console.log('index', index)
+      const newEdit = [...prev];
 
       if (up) {
-        newEdit[index] = prev[index - 1]
-        newEdit[index - 1] = prev[index]
+        newEdit[index] = prev[index - 1];
+        newEdit[index - 1] = prev[index];
       } else {
-        newEdit[index] = prev[index + 1]
-        newEdit[index + 1] = prev[index]
+        newEdit[index] = prev[index + 1];
+        newEdit[index + 1] = prev[index];
       }
       
-      return newEdit
+      return newEdit;
     });
   };
 

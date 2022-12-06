@@ -15,7 +15,6 @@ export default function Register(props) {
   const [ error, setError ] = useState('')
 
   const onRegister = (params) => {
-    console.log('onLogin called')
     postUser(
       params,
       (res) => {
@@ -66,7 +65,7 @@ export default function Register(props) {
         value={data.password_confirmation}
         onChange={handleInputChange}
       />
-      <SmallButton onClick={()=>{}}>Submit</SmallButton>
+      <SmallButton>Submit</SmallButton>
     </form>
   )
 }

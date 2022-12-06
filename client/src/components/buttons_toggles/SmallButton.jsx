@@ -18,8 +18,11 @@ export default function SmallButton(props) {
 
   if (classes) buttonClasses += ` ${classes}`
 
+  //if no onClick is provided, button is given default behavior with an empty function
+  const handleClick = onClick ? onClick : () => {};
+
   return (
-    <button onClick={onClick} className={buttonClasses} disabled={disabled}>
+    <button onClick={handleClick} className={buttonClasses} disabled={disabled}>
       {type === 'edit' && <FontAwesomeIcon className="icon" icon="file-pen"/>}
       {type === 'delete' && <FontAwesomeIcon className="icon" icon="trash"/>}
       {type === 'cancel' && <FontAwesomeIcon className="icon" icon="xmark"/>}

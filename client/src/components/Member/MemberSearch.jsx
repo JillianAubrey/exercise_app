@@ -13,15 +13,14 @@ export default function MemberSearch(props) {
   const query = data.search || null
 
   useEffect(() => {
-    searchMembers(workoutId, query, setMemberResults, console.log);
+    searchMembers(workoutId, query, setMemberResults, console.error);
   }, [query]);
 
   const selectMember = function(workoutId, userId) {
-    addMember(workoutId, userId, toggleSearch(), console.log)
+    addMember(workoutId, userId, toggleSearch(), console.error)
   }
 
   const results = memberResults.map((member) => {
-    console.log("member.id: ", member.id)
     return (
       <MemberListItem
         key={member.id}

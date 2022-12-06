@@ -8,7 +8,6 @@ import './App.scss'
 
 export default function App() {
   const {userId, userName, setUser} = useUserData();
-  console.log("rendering the App component")
 
   useEffect(() => {
     getSession(

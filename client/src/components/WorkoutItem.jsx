@@ -9,12 +9,11 @@ import './WorkoutItem.scss'
 export default function WorkoutItem(props) {
   const { name, gif_url, onEdit, ownWorkout, onClick, onPlay, onRemove, categoryCounts, clickable } = {...props}
 
-  console.log(ownWorkout)
-
   const editable = onEdit && ownWorkout;
 
   const workoutItemClass = classNames('workout__card', 'workout__card--show', {
-    'no-hover': !clickable
+    'no-hover': !clickable,
+    clickable: clickable
   })
 
   return (
@@ -31,7 +30,6 @@ export default function WorkoutItem(props) {
               type="button"
               className="workout__card-btn"
               onClick={event => {
-                console.log("clicked play!")
                 event.preventDefault();
                 event.stopPropagation();
                 onPlay();
@@ -43,7 +41,6 @@ export default function WorkoutItem(props) {
           </div>
           <CategoryBar {...categoryCounts} />
           {onRemove && <SmallButton type="delete" classes="workout__card-delete" id="workout_delete" onClick={event => {
-                console.log("clicked remove!")
                 event.preventDefault();
                 event.stopPropagation();
                 onRemove();
@@ -51,7 +48,7 @@ export default function WorkoutItem(props) {
         </section>
        
       </article>
-      {editable && <article className="edit__button" onClick={onEdit}> <h2>Edit Workout <FontAwesomeIcon icon="file-pen" className="icon"/></h2></article>}
+      {editable && <article className="edit__button clickable" onClick={onEdit}> <h2>Edit Workout <FontAwesomeIcon icon="file-pen" className="icon"/></h2></article>}
     </Fragment>
   );
 }

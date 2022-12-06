@@ -23,7 +23,6 @@ export default function User(props) {
   const [byOthers, setByOthers] = useState(false)
 
   const { user } = props
-  console.log("Rendering the User component")
 
   useEffect(() => {
     getUserWorkouts(
