@@ -26,7 +26,7 @@ export default function WorkoutAdd(props) {
                 onChange={handleInputChange}
               />
               <h3 className="new-exercise__preview"> {data.name} </h3>
-              <SmallButton type="save" onClick={() => {}}>
+              <SmallButton type="save" disabled={!data.name} >
                 Submit
               </SmallButton>
               <SmallButton type="cancel" onClick={onCancel}>

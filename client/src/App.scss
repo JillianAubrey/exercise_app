@@ -28,6 +28,6 @@ body {
   margin: 0 auto;
 }
 
-button:hover, .clickable:hover {
+button:hover:not(:disabled), .clickable:hover {
   cursor: pointer;
 }
