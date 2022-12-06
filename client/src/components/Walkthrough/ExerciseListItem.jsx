@@ -9,7 +9,6 @@ export default function ExerciseListItem(props) {
   const { reps, sets, duration, note, exercise:{ id, name, category, gif_url }} = exercise
   const tts = useMemo(() => window.speechSynthesis, []);
   const msg = useMemo(() => new SpeechSynthesisUtterance(), []);
-  const firstRender = useRef(true)
   const isDbRest = id === 1;
 
   // Returns the approprite tts message for the current exercise
@@ -37,12 +36,6 @@ export default function ExerciseListItem(props) {
   useEffect(() => {
     // cancels any tts that might be playing
     tts.cancel()
-
-    // prevents tts from playing twice as react is set to strict which renders components twice
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
 
     msg.text = ttsMessage();
     tts.speak(msg);
