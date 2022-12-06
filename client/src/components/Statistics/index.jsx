@@ -24,6 +24,7 @@ export default function Statistics(props) {
     });
   }, [ animated, expanded, bounds.height])
 
+  //toggles the expansion of the stats component
   const handleExpanded = () => {
     setExpanded(prev => !prev)
   }
