@@ -16,8 +16,9 @@ export default function MemberSearch(props) {
     searchMembers(workoutId, query, setMemberResults, console.error);
   }, [query]);
 
-  const selectMember = function(workoutId, userId) {
-    addMember(workoutId, userId, toggleSearch(), console.error)
+  const selectMember = async function(workoutId, userId) {
+    await addMember(workoutId, userId);
+    toggleSearch();
   }
 
   const results = memberResults.map((member) => {

@@ -7,10 +7,10 @@ import { useSpring, animated } from '@react-spring/web'
 import useMeasure from 'react-use-measure'
 
 export default function Member(props) {
-  const [memberList, setMemberList] = useState(null)
-  const [memberSearch, setMemberSearch] = useState(false)
-  const { owner, workoutId, userId } = props
-  const [ref, bounds] = useMeasure({ debounce: 0 })
+  const [memberList, setMemberList] = useState(null);
+  const [memberSearch, setMemberSearch] = useState(false);
+  const { owner, workoutId, userId } = props;
+  const [ref, bounds] = useMeasure({ debounce: 0 });
 
   const [style, animate] = useSpring(({ height: "0px"}), [])
    
@@ -20,24 +20,26 @@ export default function Member(props) {
       opacity: (memberList ? '1': '0'),
       duration: 300,
     });
-  }, [ animated, memberList, bounds.height])
+  }, [ animated, memberList, bounds.height]);
 
-  const toggleMembers = function() {
+  const toggleMembers = async function() {
     if (memberList) {
       setMemberList(null);
-      setMemberSearch(false)
+      setMemberSearch(false);
     } else {
-      getMembers(workoutId, setMemberList);
+      const newMembers = await getMembers(workoutId);
+      setMemberList((prev) => newMembers);
     }
   }
 
-  const toggleSearch = function() {
+  const toggleSearch = async function() {
     if (memberSearch) {
-      getMembers(workoutId, setMemberList)
-      setMemberSearch(false)
+      const newMembers = await getMembers(workoutId)
+      setMemberList(newMembers);
+      setMemberSearch(false);
     } else {
-      setMemberList(null)
-      setMemberSearch(true)
+      setMemberList(null);
+      setMemberSearch(true);
     }
   }
 
