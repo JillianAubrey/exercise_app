@@ -3,6 +3,7 @@ import { useSprings, animated } from "@react-spring/web";
 import MemberListItem from "./MemberListItem.jsx";
 import "./styles.scss";
 
+//'forward ref' is used to pass a reference to the list height to the parent component
 const MemberList = React.forwardRef((props, ref) => {
   const { owner, memberList } = props;
   const [index, setIndex] = useState(0);
@@ -14,6 +15,8 @@ const MemberList = React.forwardRef((props, ref) => {
 
     return () => clearInterval(interval);
   }, []);
+
+  //maps animation of list items entry to the list items, so they appear staggered 
 
   const [springs] = useSprings(
     memberList.length,

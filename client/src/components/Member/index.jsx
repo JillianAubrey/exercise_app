@@ -12,7 +12,9 @@ export default function Member(props) {
   const { owner, workoutId, userId } = props;
   const [ref, bounds] = useMeasure({ debounce: 0 });
   const [style, animate] = useSpring(({ height: "0px"}), [])
-   
+
+
+  //animates the component expanding and collapsing, by passing a height reference to the list of statistics
   useEffect(() => {
     animate({
       height: (memberList ? bounds.height + 50 : 0) + "px",

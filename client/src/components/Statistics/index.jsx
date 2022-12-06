@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import getStatistics from "../../helpers/api_requests/getStatistics";
 import formatStatistics from "../../helpers/formatStatistics";
-import Collapsed from "./Collapsed";
 import Expanded from "./Expanded";
 import './Statistics.scss'
 import { useSpring, animated } from '@react-spring/web'

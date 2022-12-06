@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 
-
+//sets the display of the 'Exercise' component 
 export default function useExerciseMode(initial) {
   const [history, setHistory] = useState([initial])
 
