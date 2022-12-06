@@ -22,20 +22,20 @@ export default function Member(props) {
     });
   }, [ animated, memberList, bounds.height])
 
-  const toggleMembers = function() {
+  const toggleMembers = async function() {
     if (memberList) {
-      console.log('setting memberList')
       setMemberList(null);
       setMemberSearch(false)
     } else {
-      getMembers(workoutId, setMemberList);
+      const newMembers = await getMembers(workoutId)
+      setMemberList((prev) => newMembers);
     }
   }
 
-  const toggleSearch = function() {
+  const toggleSearch = async function() {
     if (memberSearch) {
-      console.log("getting and setting memberList")
-      getMembers(workoutId, setMemberList)
+      const newMembers = await getMembers(workoutId)
+      setMemberList(newMembers)
       setMemberSearch(false)
     } else {
       setMemberList(null)

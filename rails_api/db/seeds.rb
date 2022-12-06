@@ -32,112 +32,112 @@ user3 = User.create!({
 
 user4 = User.create!({
   name: 'Jonathan',
-  email: 'Jonathan@domain.com',
+  email: 'jonathan@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user5 = User.create!({
   name: 'Jackie',
-  email: 'Jackie@domain.com',
+  email: 'jackie@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user6 = User.create!({
   name: 'Janet',
-  email: 'Janet@domain.com',
+  email: 'janet@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user7 = User.create!({
   name: 'Jimbo',
-  email: 'Jimbo@domain.com',
+  email: 'jimbo@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user8 = User.create!({
   name: 'Bill',
-  email: 'Bill@domain.com',
+  email: 'bill@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user9 = User.create!({
   name: 'Brian',
-  email: 'Brian@domain.com',
+  email: 'brian@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user10 = User.create!({
   name: 'Brandon',
-  email: 'Brandon@domain.com',
+  email: 'brandon@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user11 = User.create!({
   name: 'Britt',
-  email: 'Britt@domain.com',
+  email: 'britt@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user12 = User.create!({
   name: 'Jan',
-  email: 'Jan@domain.com',
+  email: 'jan@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user13 = User.create!({
   name: 'Brody',
-  email: 'Brody@domain.com',
+  email: 'brody@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user14 = User.create!({
   name: 'Ben',
-  email: 'Ben@domain.com',
+  email: 'ben@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user15 = User.create!({
   name: 'Benji',
-  email: 'Benji@domain.com',
+  email: 'benji@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user16 = User.create!({
   name: 'Bertolt',
-  email: 'Bertolt@domain.com',
+  email: 'bertolt@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user17 = User.create!({
   name: 'Jean',
-  email: 'Jean@domain.com',
+  email: 'jean@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user18 = User.create!({
   name: 'ErenJeager',
-  email: 'Jeager@domain.com',
+  email: 'jeager@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })
 
 user19 = User.create!({
   name: 'SashaBraus',
-  email: 'Braus@domain.com',
+  email: 'braus@domain.com',
   password: 'password',
   password_confirmation: 'password'
 })

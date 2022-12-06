@@ -1,9 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useSprings, animated } from "@react-spring/web";
-import MemberSearch from "./MemberSearch.jsx";
 import MemberListItem from "./MemberListItem.jsx";
-import getMembers from "../../helpers/api_requests/getMembers.js";
-
 import "./styles.scss";
 
 const MemberList = React.forwardRef((props, ref) => {
