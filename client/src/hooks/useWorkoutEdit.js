@@ -62,6 +62,11 @@ export default function useWorkoutEdit(workout) {
 
   // saves the final workout to the api server
   const saveEdited = function(workout_exercises, onSuccess, onError) {
+    if (workout_exercises.length === 0) {
+      onError("workout must have at least one exercise");
+      return;
+    }
+
     const newWorkout = {
       name: workout.name,
       owner: workout.owner.id,

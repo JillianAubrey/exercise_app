@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import WorkoutItem from "./WorkoutItem";
 import useWorkoutEdit from "../hooks/useWorkoutEdit";
 import Toggle from "./buttons_toggles/Toggle";
-import errorDisplay from "../helpers/errorDisplay";
+import Error from "./Error";
 import formatApiErrors from "../helpers/formatApiErrors";
 import ExerciseListEdit from "./ExerciseListEdit";
 
@@ -29,9 +29,17 @@ export default function WorkoutEdit(props) {
     saveEdited(workout_exercises, onSave, setError)
   };
 
-  let errorMessages = ''
-  if (error) {
-    errorMessages = errorDisplay(formatApiErrors(error.response.data));
+  const formatError = () => {
+    if (typeof error === "string") {
+      return <Error>{error}</Error>
+    }
+
+    return formatApiErrors(error.response.data, (err) => <Error>{err}</Error>)
+  }
+
+  const onEdit = (workout_exercise, index) => {
+    setError(null);
+    handleWorkoutEdit(workout_exercise, index);
   }
 
   return (
@@ -41,14 +49,14 @@ export default function WorkoutEdit(props) {
         ownerName={owner.name}
         ownWorkout={owner.id === user_id}
       />
+      {error && formatError()}
       <ExerciseListEdit 
         exerciseList={editedExercises}
-        handleWorkoutEdit={handleWorkoutEdit}
+        handleWorkoutEdit={onEdit}
         handleReorder={handleReorderData}
         handleExerciseDelete={handleExerciseDelete}
         userId={owner.id}
       />
-      {error && errorMessages}
       <Toggle 
         toggleType="footer"
         leftLabel="Save" 
