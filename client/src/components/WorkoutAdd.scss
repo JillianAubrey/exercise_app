@@ -10,16 +10,16 @@
     height: 100%;
 
     .small_button {
+      z-index: 1;
       width: 100%;
-      position: absolute;
       margin-bottom: 0.5rem;
       height: 3rem;
-      margin-top: 120%;
+      margin-top: 40vh;
       box-shadow: 2px 2px 8px rgb(144, 144, 144);
     }
 
     .small_button:last-of-type {
-      margin-top: 140%;
+      margin-top: 0.5rem;
     }
   }
 
@@ -39,7 +39,6 @@
   
 
   &__form {
-    position: relative;
     width: 80%;
     height: 100%;
     display: flex;
@@ -60,8 +59,13 @@
   &__preview {
     font-size: 3rem;
     line-break: loose;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 100%;
-    margin-top: 1.5rem;
+    width: 80%;
+    margin-top: 50%;
     text-align: center;
     align-items: center;
     background: -webkit-linear-gradient(45deg, $theme-green 20%, #b4faab 60%, $theme-green 85%);
