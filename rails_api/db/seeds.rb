@@ -167,7 +167,7 @@ puts "Creating Exercises..."
 
 # Database exercises
 # Default rest exercise
-rest = Exercise.create!({name: 'Rest', category: 'rest', id:1})
+rest = Exercise.create!({name: 'Rest', category: 'rest'})
 
 chest_exercises = [
   Exercise.create!({name: 'Push-up', category: 'chest', gif_url: 'http://d205bpvrqc9yn1.cloudfront.net/0662.gif'}),
