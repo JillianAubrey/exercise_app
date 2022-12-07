@@ -13,6 +13,9 @@ export default function Exercise(props) {
     setTruncated((prev) => !prev);
   };
 
+  const minutes = duration ? Math.floor(duration / 60) : null;
+  const seconds = duration ? duration % 60 : null;
+
   return (
     <Fragment>
       <CardLeft {...cardLeftProps} />
@@ -25,18 +28,18 @@ export default function Exercise(props) {
         {duration && (
           <div className="exercise__card-timebased">
             <p className="exercise__card-duration">
-              {duration > 60 && <Fragment><span>{Math.floor(duration / 60)}</span> minutes </Fragment> }
-              {duration % 60 > 0 && <Fragment><span>{Math.floor(duration % 60)}</span> seconds</Fragment> }
+              {minutes > 0 && <Fragment><span>{minutes}</span> {minutes > 1 ? 'minutes' : 'minute'} </Fragment> }
+              {seconds > 0 && <Fragment><span>{seconds}</span> {seconds > 1 ? 'seconds' : 'second'} </Fragment> }
             </p>
           </div>
         )}
         {sets && reps && (
           <div className="exercise__card-setbased">
             <p className="exercise__card-sets">
-              <span>{sets}</span> Sets
+              <span>{sets}</span> {sets > 1 ? 'sets ' : 'set '}
             </p>
             <p className="exercise__card-reps">
-              <span>{reps}</span> Repetitions
+              <span>{reps}</span> {reps > 1 ? 'reps' : 'rep'}
             </p>
           </div>
         )}
