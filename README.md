@@ -13,6 +13,8 @@ Titan lets you build, customize and share workout plans. The user can choose exe
 
 The app was built as a final project for the lighthouse Labs Web Development Diploma Program by Jill Aubrey, Michael Davis and Jeremy Buist (links below). The front-end of the app was built with React and almost entirely custom CSS, and the back-end was built with a ruby on rails API server, communicating with axios. The database uses SQLite. The rails database was seeded with a sample of exercises and gifs from the ExerciseDB REST API.
 
+A version of the app hosted on netlify can be found [here](https://titan-exercise.netlify.app/).
+
 !["workoutlist navigation"](./images/workoutlist.gif?raw=true "workoutlist navigation")
 
 ## Project Setup
